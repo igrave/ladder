@@ -158,12 +158,46 @@ cell_style_requests <- function(style_data, row_offset, objectId) {
 }
 
 
+merge_request <- function(objectId, row_offset, part_spans) {
+  span_index <- which(
+    part_spans$rows * part_spans$columns > 1,
+    arr.ind = TRUE
+  )
+  n_merges <- nrow(span_index)
+
+  if (n_merges == 0L) {
+    return(NULL)
+}
+  span_dim <- list(
+    rows = part_spans$rows[span_index],
+    cols = part_spans$columns[span_index]
+  )
+  merge_requests <- list()
+  for(i in seq_len(n_merges)) {
+    add(merge_requests) <- MergeTableCellsRequest(
+      objectId = objectId,
+      tableRange = TableRange(
+        location = TableCellLocation(
+          rowIndex = span_index[i, 1] + row_offset - 1,
+          columnIndex = span_index[i, 2] - 1
+          ),
+        rowSpan = span_dim$rows[[i]],
+        columnSpan = span_dim$cols[[i]]
+      )
+    )
+  }
+  merge_requests
+}
+
+
 table_requests <- function(ft, part = c("header", "body", "footer")) {
   part <- match.arg(part)
   my_tab <- list()
   part_content <- ft[[part]]$content
   part_styles <- ft[[part]]$styles
   part_dim <- dim(part_content$data)
+  part_spans <- ft[[part]]$spans
+  part_spans$ind <- part_spans$rows * part_spans$columns >= 1
 
   row_offset <- switch(part,
     "footer" = flextable::nrow_part(ft, "body") + nrow_part(ft, "header"),
@@ -171,12 +205,13 @@ table_requests <- function(ft, part = c("header", "body", "footer")) {
     "header" = 0L
   )
 
+  merge_requests <- merge_request(objectId = "mytab", row_offset = row_offset, part_spans = part_spans)
   style_requests <- cell_style_requests(
     part_styles$cells,
     row_offset = row_offset,
     objectId = "mytab"
   )
-  my_tab <- c(my_tab, style_requests)
+  my_tab <- c(my_tab, merge_requests, style_requests)
 
   for (i in seq.int(from = 1, length.out = part_dim[1])) {
     # i is 1-indexed and relative to table part
@@ -185,8 +220,10 @@ table_requests <- function(ft, part = c("header", "body", "footer")) {
     for (j in seq.int(from = 1, length.out = part_dim[2])) {
       j_gs <- j - 1 # Slide table columns are 0-indexed and absolute
 
+
       df <- part_content$data[i, j][[1]]
-      {
+
+      if (isTRUE(part_spans$ind[i, j])) {
         # Add all text
         add(my_tab) <- InsertTextRequest(
           objectId = "mytab",
@@ -200,7 +237,9 @@ table_requests <- function(ft, part = c("header", "body", "footer")) {
           objectId = "mytab",
           cellLocation = TableCellLocation(rowIndex = i_gs, columnIndex = j_gs),
           style = TextStyle(
-            # backgroundColor = OptionalColor(),
+            backgroundColor = OptionalColor(opaqueColor = OpaqueColor(
+              rgbColor = col2RgbColor(part_styles$text$shading.color$data[i, j])
+            )),
             foregroundColor = OptionalColor(opaqueColor = OpaqueColor(
               rgbColor = col2RgbColor(part_styles$text$color$data[i, j])
             )),
@@ -215,7 +254,7 @@ table_requests <- function(ft, part = c("header", "body", "footer")) {
             # underline = ,
           ),
           textRange = Range(type = "ALL"),
-          fields = "bold,italic,fontFamily,fontSize,foregroundColor"
+          fields = "bold,italic,fontFamily,fontSize,foregroundColor,backgroundColor"
         )
 
         # ft
