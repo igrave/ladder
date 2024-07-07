@@ -24,7 +24,7 @@ cell_properties <- function(style_data, row_offset, objectId) {
   bg_default <- style_data[["background.color"]][["default"]]
 
 
-  if (any(va == va_default) & (any(bg == bg_default))) {
+  if (any(va == va_default) && (any(bg == bg_default))) {
     # apply defaults everywhere
     add(reqs) <- UpdateTableCellPropertiesRequest(
       objectId = objectId,

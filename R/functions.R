@@ -98,13 +98,6 @@ table_requests <- function(ft, part = c("header", "body", "footer")) {
           fields = "bold,italic,fontFamily,fontSize,foregroundColor,backgroundColor"
         )
 
-        # ft
-        # add(my_tab) <- UpdateTableBorderPropertiesRequest(
-        #   objectId = "mytab",
-        #
-        # )
-
-
         # set run style if any
         df$txt_ends <- cumsum(nchar(df$txt))
         df$txt_starts <- c(0, head(df$txt_ends, n = -1L))
