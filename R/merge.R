@@ -13,7 +13,7 @@ merge_request <- function(objectId, row_offset, part_spans) {
     cols = part_spans$columns[span_index]
   )
   merge_requests <- list()
-  for(i in seq_len(n_merges)) {
+  for (i in seq_len(n_merges)) {
     add(merge_requests) <- MergeTableCellsRequest(
       objectId = objectId,
       tableRange = TableRange(

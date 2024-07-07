@@ -27,6 +27,7 @@ ft <- vline_left(ft, border = fp_border("red", "solid", 2))
 ft <- vline_right(ft, border = fp_border("red", "solid", 2))
 ft <- vline(ft, i = 2:4, j = 10, border = fp_border("red", "dashed", 2), part = "body")
 
+ft <- valign(ft, i = 3, j = 3, valign = "top", part = "body")
 ft <- merge_at(ft, i = 4:5, j = 5:6)
 ft <- flextable::bg(ft, i = 4, j = 5, bg = "orange")
 ft <- highlight(ft, i = 4:5, j = 5:7) # the merged cell exists at [4,5]

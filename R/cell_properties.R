@@ -10,13 +10,14 @@ cell_properties <- function(style_data, row_offset, objectId) {
   reqs <- list()
 
   # Cell properties (vertical align and background colour) -----
-  enum_valign <- function(x) switch(
-    x,
-    "top" = "TOP",
-    "center" = "MIDDLE",
-    "bottom" = "BOTTOM",
-    "CONTENT_ALIGNMENT_UNSPECIFIED"
-  )
+  enum_valign <- function(x) {
+    switch(x,
+      "top" = "TOP",
+      "center" = "MIDDLE",
+      "bottom" = "BOTTOM",
+      "CONTENT_ALIGNMENT_UNSPECIFIED"
+    )
+  }
   va <- apply(style_data[["vertical.align"]][["data"]], 1:2, enum_valign)
   va_default <- enum_valign(style_data[["vertical.align"]][["default"]])
   bg <- style_data[["background.color"]][["data"]]
@@ -38,13 +39,11 @@ cell_properties <- function(style_data, row_offset, objectId) {
       ),
       fields = "tableCellBackgroundFill.solidFill.color,tableCellBackgroundFill.propertyState,contentAlignment"
     )
-
   }
 
   bg_other <- which(bg != bg_default, arr.ind = TRUE)
   if (nrow(bg_other)) {
     for (s in seq_len(nrow(bg_other))) {
-
       add(reqs) <- UpdateTableCellPropertiesRequest(
         objectId = objectId,
         tableRange = TableRange(
@@ -88,16 +87,15 @@ cell_properties <- function(style_data, row_offset, objectId) {
 }
 
 background_fill_helper <- function(col) {
-  if (col == 'transparent') {
-    prop_state = "NOT_RENDERED"
-    fill_col = col2RgbColor(col)
+  if (col == "transparent") {
+    prop_state <- "NOT_RENDERED"
+    fill_col <- col2RgbColor(col)
   } else {
-    prop_state = "RENDERED"
-    fill_col = col2RgbColor(col)
+    prop_state <- "RENDERED"
+    fill_col <- col2RgbColor(col)
   }
   TableCellBackgroundFill(
-   propertyState = prop_state,
-   solidFill = SolidFill(color = OpaqueColor(rgbColor = fill_col))
+    propertyState = prop_state,
+    solidFill = SolidFill(color = OpaqueColor(rgbColor = fill_col))
   )
 }
-

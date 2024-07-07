@@ -2,13 +2,13 @@ border_request_helper <- function(objectId, i, j, rowspan, colspan, border_posit
   this_colour <- col
   this_width <- lwd
   this_style <- switch(lty,
-                       "solid" = "SOLID",
-                       "dotted" = "DOT",
-                       "dashed" = "DASH",
-                       "dotDash" = "DASH_DOT",
-                       "dashSmallGap" = "LONG_DASH",
-                       "dotDotDash" = "LONG_DASH_DOT",
-                       "SOLID"
+    "solid" = "SOLID",
+    "dotted" = "DOT",
+    "dashed" = "DASH",
+    "dotDash" = "DASH_DOT",
+    "dashSmallGap" = "LONG_DASH",
+    "dotDotDash" = "LONG_DASH_DOT",
+    "SOLID"
   )
 
   border_position <- match.arg(border_position, c("BOTTOM", "LEFT", "RIGHT", "TOP"))
