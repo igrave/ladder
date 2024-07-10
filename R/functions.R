@@ -21,7 +21,7 @@ col2RgbColor <- function(col) {
 
 
 
-table_requests <- function(ft, part = c("header", "body", "footer")) {
+table_requests <- function(ft, table_id = table_id, part = c("header", "body", "footer")) {
   part <- match.arg(part)
   my_tab <- list()
   part_content <- ft[[part]]$content
@@ -37,19 +37,19 @@ table_requests <- function(ft, part = c("header", "body", "footer")) {
   )
 
   merge_requests <- merge_request(
-    objectId = "mytab",
+    objectId = table_id,
     row_offset = row_offset,
     part_spans = part_spans
   )
   border_requests <- border_requests(
     part_styles$cells,
     row_offset = row_offset,
-    objectId = "mytab"
+    objectId = table_id
   )
   cell_properties_requests <- cell_properties(
     part_styles$cells,
     row_offset = row_offset,
-    objectId = "mytab"
+    objectId = table_id
   )
 
   my_tab <- c(my_tab, merge_requests, border_requests, cell_properties_requests)
@@ -67,7 +67,7 @@ table_requests <- function(ft, part = c("header", "body", "footer")) {
       if (isTRUE(part_spans$ind[i, j])) {
         # Add all text
         add(my_tab) <- InsertTextRequest(
-          objectId = "mytab",
+          objectId = table_id,
           cellLocation = TableCellLocation(rowIndex = i_gs, columnIndex = j_gs),
           text = paste0(df$txt),
           insertionIndex = 0
@@ -75,7 +75,7 @@ table_requests <- function(ft, part = c("header", "body", "footer")) {
 
         # Set default cell style
         add(my_tab) <- UpdateTextStyleRequest(
-          objectId = "mytab",
+          objectId = table_id,
           cellLocation = TableCellLocation(rowIndex = i_gs, columnIndex = j_gs),
           style = TextStyle(
             backgroundColor = OptionalColor(opaqueColor = OpaqueColor(
@@ -106,7 +106,7 @@ table_requests <- function(ft, part = c("header", "body", "footer")) {
           df_k <- df[k, ]
           if (!is.na(df_k$bold)) {
             add(my_tab) <- UpdateTextStyleRequest(
-              "mytab",
+              table_id,
               TableCellLocation(i, j),
               style = TextStyle(bold = df_k$bold),
               textRange = Range(df_k$txt_starts, df_k$txt_ends, "FIXED_RANGE"),

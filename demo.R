@@ -34,6 +34,9 @@ ft <- highlight(ft, i = 4:5, j = 5:7) # the merged cell exists at [4,5]
 # ft$body$styles$text$shading.color$data has "yellow" for [4:5, 5:7]
 # TODO see how google api will manage that
 ft
+
+my_tab <- make_table(ft, "hello_table")
+
 my_tab <- list()
 
 # Create table:
@@ -68,3 +71,13 @@ batch_res <- presentations.batchUpdate(
   BatchUpdatePresentationRequest =  BatchUpdatePresentationRequest(requests = reqs)
 )
 
+slide_ids <- get_slide_ids(new_pres$presentationId)
+
+thumb <- googleslides.api:::presentations.pages.getThumbnail(
+  presentationId =new_pres$presentationId,
+  pageObjectId = slide_ids[[1]][[1]]$objectId
+)
+thumb$width
+dest <- tempfile("slide_", fileext = ".png", tmpdir = "./temp")
+download.file(url = thumb$contentUrl, destfile = dest, method = "curl")
+getOption("viewer")("./temp/slide_7c74640c20e0.png")

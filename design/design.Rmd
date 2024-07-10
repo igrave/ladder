@@ -1,0 +1,35 @@
+---
+title: "Design"
+output: html_document
+date: "2024-07-09"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+```{r}
+id <- new_slides()
+id <- choose_slides()
+
+slide_id <- add_slide(id)
+slide_id <- get_slide_id(id, n = 1)
+```
+
+```{r}
+add_table(flextable, id, slide_id = NULL)
+# Make a new slide with title.
+# Could set the subtitle as the caption
+add_slide_with_table(flextable, id, title, subtitle = caption)
+```
+
+```{r}
+add_slide_with_table <- function(flextable, id, title, subtitle = caption) {
+  caption <- flextable$caption$value
+  assert_string(title)
+  assert_string(subtitle)
+  
+  add_slide()
+}
+```
+

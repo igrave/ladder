@@ -5,8 +5,6 @@ cell_properties <- function(style_data, row_offset, objectId) {
   j <- seq_len(part_dim[2]) # j is 1-index and relative to table part
   j_gs <- j - 1 # Slide table columns are 0-indexed and absolute
 
-  browser()
-
   reqs <- list()
 
   # Cell properties (vertical align and background colour) -----
