@@ -17,7 +17,6 @@ make_table <- function(ft, table_id = new_id("table")) {
     columns = ncols
   )
 
-
   my_header <- table_requests(ft, table_id = table_id, part = "header")
   my_body <- table_requests(ft, table_id = table_id, part = "body")
   # my_footer <- table_requests(ft, table_id = table_id, part = "footer")

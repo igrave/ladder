@@ -35,6 +35,8 @@ ft <- highlight(ft, i = 4:5, j = 5:7) # the merged cell exists at [4,5]
 # TODO see how google api will manage that
 ft <- align(ft, i = 1, j = 6, part="header", align = "left")
 ft <- align(ft,  j = 2, part="body", align = "left")
+# ft <- autofit(ft)
+ft <- height(ft, i = 5, height = 2)
 ft
 
 my_tab <- make_table(ft, "hello_table")
@@ -42,7 +44,7 @@ batch_res <- presentations.batchUpdate(
   presentationId = new_pres$presentationId,
   BatchUpdatePresentationRequest = BatchUpdatePresentationRequest(requests = my_tab)
 )
-
+slides_url(batch_res)
 my_tab <- list()
 
 # Create table:

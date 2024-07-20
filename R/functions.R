@@ -36,6 +36,14 @@ table_requests <- function(ft, table_id = table_id, part = c("header", "body", "
     "header" = 0L
   )
 
+  dim_requests <- column_row_requests(
+    table_id,
+    row_offset = row_offset,
+    widths = ft[[part]]$colwidths,
+    heights = ft[[part]]$rowheights
+  )
+
+
   merge_requests <- merge_request(
     objectId = table_id,
     row_offset = row_offset,
@@ -52,7 +60,7 @@ table_requests <- function(ft, table_id = table_id, part = c("header", "body", "
     objectId = table_id
   )
 
-  my_tab <- c(my_tab, merge_requests, border_requests, cell_properties_requests)
+  my_tab <- c(my_tab, dim_requests, merge_requests, border_requests, cell_properties_requests)
 
   for (i in seq.int(from = 1, length.out = part_dim[1])) {
     # i is 1-indexed and relative to table part
