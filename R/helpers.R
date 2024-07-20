@@ -1,7 +1,9 @@
 new_id <- function(prefix = "ID") {
   paste0(
     prefix, "-",
-    paste0(sample(c(letters, LETTERS, 0:9), 20, replace = TRUE), collapse = "")
+    as.integer(Sys.time()),
+    "-",
+    paste0(sample(c(letters, LETTERS), size = 4), collapse = "")
   )
 }
 

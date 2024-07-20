@@ -39,7 +39,9 @@ ft <- align(ft,  j = 2, part="body", align = "left")
 ft <- height(ft, i = 5, height = 2)
 ft
 
-my_tab <- make_table(ft, "hello_table")
+add_to_slides(ft, new_pres$presentationId)
+
+my_tab <- make_table(ft, "hello_table2")
 batch_res <- presentations.batchUpdate(
   presentationId = new_pres$presentationId,
   BatchUpdatePresentationRequest = BatchUpdatePresentationRequest(requests = my_tab)
