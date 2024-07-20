@@ -33,9 +33,15 @@ ft <- flextable::bg(ft, i = 4, j = 5, bg = "orange")
 ft <- highlight(ft, i = 4:5, j = 5:7) # the merged cell exists at [4,5]
 # ft$body$styles$text$shading.color$data has "yellow" for [4:5, 5:7]
 # TODO see how google api will manage that
+ft <- align(ft, i = 1, j = 6, part="header", align = "left")
+ft <- align(ft,  j = 2, part="body", align = "left")
 ft
 
 my_tab <- make_table(ft, "hello_table")
+batch_res <- presentations.batchUpdate(
+  presentationId = new_pres$presentationId,
+  BatchUpdatePresentationRequest = BatchUpdatePresentationRequest(requests = my_tab)
+)
 
 my_tab <- list()
 
