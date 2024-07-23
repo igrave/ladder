@@ -4,12 +4,12 @@
 \name{SlidesTools.flextable-package}
 \alias{SlidesTools.flextable}
 \alias{SlidesTools.flextable-package}
-\title{SlidesTools.flextable: Create tables in Slides presentations}
+\title{SlidesTools.flextable: What the Package Does (One Line, Title Case)}
 \description{
-Create tables from within R directly on Google Slides presentations. Currently supports 'flextable' objects.
+What the package does (one paragraph).
 }
 \author{
-\strong{Maintainer}: Isaac Gravestock \email{isaac.gravestock@gmail.com} (\href{https://orcid.org/orcid=0000-0003-0283-2065}{ORCID})
+\strong{Maintainer}: First Last \email{first.last@example.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
 
 }
 \keyword{internal}

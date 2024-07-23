@@ -1,17 +1,13 @@
 Package: SlidesTools.flextable
-Title: Create tables in Slides presentations
+Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
-    person("Isaac", "Gravestock", , "isaac.gravestock@gmail.com", role = c("aut", "cre"),
-           comment = c(ORCID = "orcid=0000-0003-0283-2065"))
-Description: Create tables from within R directly on Google Slides presentations. 
-    Currently supports 'flextable' objects.
+    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: What the package does (one paragraph).
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-Imports: 
-    SlidesTools (>= 0.0.1)
+Imports: SlidesTools
 Suggests: flextable
-Remotes:  
-    igrave/SlidesTools
