@@ -1,5 +1,5 @@
-add_to_slides <- function(object, presentationId) {
-  reqs <- make_table(ft, new_id("table"))
+add_to_slides <- function(object, presentationId, table_id = new_id("table")) {
+  reqs <- make_table(ft, table_id)
   result <- presentations.batchUpdate(
     presentationId = presentationId,
     BatchUpdatePresentationRequest = BatchUpdatePresentationRequest(
@@ -7,5 +7,6 @@ add_to_slides <- function(object, presentationId) {
     )
   )
   slides_url(result)
+  cat("id:", table_id)
   invisible(result)
 }

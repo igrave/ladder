@@ -1,4 +1,4 @@
-Package: googleslides.flextable
+Package: SlidesTools.flextable
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
@@ -9,5 +9,5 @@ License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-Imports: googleslides.api
+Imports: SlidesTools
 Suggests: flextable
