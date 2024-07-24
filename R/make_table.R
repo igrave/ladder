@@ -24,7 +24,7 @@ make_table <- function(ft, table_id = new_id("table")) {
   my_tab <- c(my_tab, my_header, my_body)
 
   # update -------------
-  my_tab_reqs <- lapply(my_tab, googleslides.api:::rm_null_objs) # rm_null_objs not exported, so this should be hidden
+  my_tab_reqs <- lapply(my_tab, rm_null_objs)
   reqs <- do.call(Request, my_tab_reqs)
   reqs
 }
