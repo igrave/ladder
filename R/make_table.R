@@ -8,7 +8,7 @@ make_table <- function(ft, table_id = new_id("table")) {
     flextable::nrow_part(ft, part = "body") +
     flextable::nrow_part(ft, part = "footer")
 
-  ncols <- ncol_keys(ft)
+  ncols <- flextable::ncol_keys(ft)
 
   add(my_tab) <- CreateTableRequest(
     objectId = table_id,
