@@ -6,9 +6,10 @@
   }
 }
 
-slides_url <- function(presentation) {
+slides_url <- function(presentation, slide_id) {
   id <- presentation$presentationId
-  url <- paste0("https://docs.google.com/presentation/d/", id, "/")
+  slide_part <- if (!is.null(slide_id)) paste0("edit#slide=id.", slide_id) else ""
+  url <- paste0("https://docs.google.com/presentation/d/", id, "/", slide_part)
   cat(cli::style_hyperlink(url, url))
 }
 

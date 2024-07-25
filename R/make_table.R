@@ -1,6 +1,6 @@
 
 
-make_table <- function(ft, table_id = new_id("table")) {
+make_table <- function(ft, table_id = new_id("table"), pageObjectId = "p") {
   my_tab <- list()
 
   nrows <-
@@ -12,7 +12,7 @@ make_table <- function(ft, table_id = new_id("table")) {
 
   add(my_tab) <- CreateTableRequest(
     objectId = table_id,
-    elementProperties = PageElementProperties(pageObjectId = "p"),
+    elementProperties = PageElementProperties(pageObjectId = pageObjectId),
     rows = nrows,
     columns = ncols
   )
