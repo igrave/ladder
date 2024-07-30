@@ -80,7 +80,7 @@ table_requests <- function(ft, table_id = table_id, part = c("header", "body", "
         add(my_tab) <- InsertTextRequest(
           objectId = table_id,
           cellLocation = TableCellLocation(rowIndex = i_gs, columnIndex = j_gs),
-          text = paste0(df$txt),
+          text = paste0(df$txt, collapse = ""),
           insertionIndex = 0
         )
 
@@ -113,15 +113,37 @@ table_requests <- function(ft, table_id = table_id, part = c("header", "body", "
         df$txt_ends <- cumsum(nchar(df$txt))
         df$txt_starts <- c(0, head(df$txt_ends, n = -1L))
 
-        for (k in nrow(df)) {
+        for (k in seq_len(nrow(df))) {
           df_k <- df[k, ]
-          if (!is.na(df_k$bold)) {
+
+          run_styles <- rm_null_objs(
+            list(
+              backgroundColor = NULL,
+              foregroundColor = NULL,
+              bold = NULL,
+              italic = NULL,
+              fontFamily = NULL,
+              fontSize = NULL,
+              link = NULL,
+              baselineOffset = switch(
+                df_k$vertical.align,
+                "superscript" = "SUPERSCRIPT",
+                "subscript" = "SUBSCRIPT"
+              ),
+              smallCaps = NULL,
+              strikethrough = NULL,
+              underline = NULL,
+              weightedFontFamily = NULL
+            ) # TODO handle all styling
+          )
+          if (length(run_styles)) {
+            run_text_style <- do.call(TextStyle, run_styles)
             add(my_tab) <- UpdateTextStyleRequest(
               table_id,
-              TableCellLocation(i, j),
-              style = TextStyle(bold = df_k$bold),
+              TableCellLocation(i_gs, j_gs),
+              style = run_text_style,
               textRange = Range(df_k$txt_starts, df_k$txt_ends, "FIXED_RANGE"),
-              fields = "bold"
+              fields = paste0(names(run_styles), collapse = ",")
             )
           }
         }

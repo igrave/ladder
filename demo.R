@@ -39,12 +39,12 @@ ft <- align(ft,  j = 2, part="body", align = "left")
 ft <- height(ft, i = 5, height = 2)
 ft
 
-add_to_slides(ft, new_pres$presentationId)
-
-my_tab <- make_table(ft, "hello_table2")
+ft <- footnote(ft, i = 2, j = 2, value = as_paragraph("This is 6."), ref_symbols = "1")
+ft <- add_footer_lines(ft, values = "hello feet")
+ft
 batch_res <- presentations.batchUpdate(
-  presentationId = new_pres$presentationId,
-  BatchUpdatePresentationRequest = BatchUpdatePresentationRequest(requests = my_tab)
+s <- choose_slides()
+add_to_slides(ft, s, table_id = "t1234")
 )
 slides_url(batch_res)
 my_tab <- list()
