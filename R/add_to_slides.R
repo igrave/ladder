@@ -8,18 +8,17 @@
 #' @export
 #'
 #' @examples
-add_to_slides <- function(object, presentationId, on = NULL,  table_id = new_id("table")) {
+add_to_slides <- function(object, presentationId, on = NULL, table_id = new_id("table")) {
+  slide_ids <- unlist(get_slide_ids(presentationId))
   if (!is.null(on)) {
-    slide_ids <- get_slide_ids(presentationId)
-
     if (is.numeric(on)) {
-      pageObjectId <- unlist(slide_ids)[as.integer(on)]
+      pageObjectId <- slide_ids[as.integer(on)]
     }
-    if (is.character(on[1]) && on[1] %in% unlist(slide_ids)) {
+    if (is.character(on[1]) && on[1] %in% slide_ids) {
       pageObjectId <- on[1]
     }
   } else {
-    pageObjectId <- NULL
+    pageObjectId <- tail(slide_ids, n = 1L)
   }
 
   reqs <- make_table(object, table_id, pageObjectId)
