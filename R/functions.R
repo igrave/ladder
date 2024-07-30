@@ -31,6 +31,8 @@ table_requests <- function(ft, table_id = table_id, part = c("header", "body", "
   part_spans <- ft[[part]]$spans
   part_spans$ind <- part_spans$rows * part_spans$columns >= 1
 
+  if (any(part_dim == 0)) return(list())
+
   row_offset <- switch(part,
     "footer" = flextable::nrow_part(ft, "body") + flextable::nrow_part(ft, "header"),
     "body" = flextable::nrow_part(ft, "header"),
