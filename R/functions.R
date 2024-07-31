@@ -85,28 +85,18 @@ table_requests <- function(ft, table_id = table_id, part = c("header", "body", "
         )
 
         # Set default cell style
+        cell_text_style <- make_text_style(
+          text_style = part_styles$text,
+          i = i,
+          j = j
+        )
+
         add(my_tab) <- UpdateTextStyleRequest(
           objectId = table_id,
           cellLocation = TableCellLocation(rowIndex = i_gs, columnIndex = j_gs),
-          style = TextStyle(
-            backgroundColor = OptionalColor(opaqueColor = OpaqueColor(
-              rgbColor = col2RgbColor(part_styles$text$shading.color$data[i, j])
-            )),
-            foregroundColor = OptionalColor(opaqueColor = OpaqueColor(
-              rgbColor = col2RgbColor(part_styles$text$color$data[i, j])
-            )),
-            bold = part_styles$text$bold$data[i, j],
-            italic = part_styles$text$italic$data[i, j],
-            fontFamily = part_styles$text$font.family$data[i, j],
-            fontSize = Dimension(part_styles$text$font.size$data[i, j], unit = "PT"),
-            # link,
-            # baselineOffset,
-            # smallCaps = ,
-            # strikethrough = ,
-            # underline = ,
-          ),
+          style = cell_text_style,
           textRange = Range(type = "ALL"),
-          fields = "bold,italic,fontFamily,fontSize,foregroundColor,backgroundColor"
+          fields = paste0(names(cell_text_style), collapse = ",")
         )
 
         # set run style if any
@@ -114,36 +104,20 @@ table_requests <- function(ft, table_id = table_id, part = c("header", "body", "
         df$txt_starts <- c(0, head(df$txt_ends, n = -1L))
 
         for (k in seq_len(nrow(df))) {
-          df_k <- df[k, ]
-
-          run_styles <- rm_null_objs(
-            list(
-              backgroundColor = NULL,
-              foregroundColor = NULL,
-              bold = NULL,
-              italic = NULL,
-              fontFamily = NULL,
-              fontSize = NULL,
-              link = NULL,
-              baselineOffset = switch(
-                df_k$vertical.align,
-                "superscript" = "SUPERSCRIPT",
-                "subscript" = "SUBSCRIPT"
-              ),
-              smallCaps = NULL,
-              strikethrough = NULL,
-              underline = NULL,
-              weightedFontFamily = NULL
-            ) # TODO handle all styling
+          run_text_style <- make_text_style(
+            content_data = part_content$data,
+            i = i,
+            j = j,
+            k = k
           )
-          if (length(run_styles)) {
-            run_text_style <- do.call(TextStyle, run_styles)
+          df_k <- df[k, ]
+          if (length(run_text_style)) {
             add(my_tab) <- UpdateTextStyleRequest(
               table_id,
               TableCellLocation(i_gs, j_gs),
               style = run_text_style,
               textRange = Range(df_k$txt_starts, df_k$txt_ends, "FIXED_RANGE"),
-              fields = paste0(names(run_styles), collapse = ",")
+              fields = paste0(names(run_text_style), collapse = ",")
             )
           }
         }
