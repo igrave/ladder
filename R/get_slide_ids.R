@@ -5,7 +5,7 @@
 #'
 #' @return The response from the API
 #'
-#' This function is not polished. Probably should be moved to the SlidesTools package.
+#' This function is not polished. Probably should be moved to the ladder.api package.
 #'
 #' @export
 #' @examples

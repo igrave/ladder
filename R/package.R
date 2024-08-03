@@ -1,5 +1,5 @@
 #' @keywords internal
-#' @import SlidesTools
+#' @import ladder.api
 #' @importFrom stats setNames
 #' @importFrom grDevices col2rgb
 #' @importFrom utils head

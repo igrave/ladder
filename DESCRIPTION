@@ -1,5 +1,5 @@
-Package: SlidesTools.flextable
-Title: Create tables in Slides presentations
+Package: ladder
+Title: Get on to the Slides
 Version: 0.0.0.9000
 Authors@R: 
     person("Isaac", "Gravestock", , "isaac.gravestock@gmail.com", role = c("aut", "cre"),
@@ -10,9 +10,9 @@ License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-Imports: SlidesTools,
+Imports: ladder.api,
          gargle,
          cli,
          flextable
 Remotes:  
-    igrave/SlidesTools
+    igrave/ladder.api

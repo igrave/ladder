@@ -4,7 +4,7 @@
 \alias{add_to_slides}
 \title{Add table to Slides}
 \usage{
-add_to_slides(object, presentationId, table_id = new_id("table"))
+add_to_slides(object, presentationId, on = NULL, table_id = new_id("table"))
 }
 \arguments{
 \item{object}{A table object (flextable)}

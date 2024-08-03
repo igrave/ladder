@@ -14,6 +14,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{SlidesTools}{\code{\link[SlidesTools]{choose_slides}}}
+  \item{ladder.api}{\code{\link[ladder.api]{choose_slides}}}
 }}
 

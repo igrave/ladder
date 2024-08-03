@@ -1,9 +1,5 @@
-# auth -------
-library(googleslides.api)
-gsd_auth()
-googleslides.api::presentation
-new_pres <- presentations.create(NULL)
-new_pres$presentationId
+
+
 
 # example ---------
 
@@ -42,52 +38,65 @@ ft
 ft <- footnote(ft, i = 2, j = 2, value = as_paragraph("This is 6."), ref_symbols = "1")
 ft <- add_footer_lines(ft, values = "hello feet")
 ft
-batch_res <- presentations.batchUpdate(
+
 s <- choose_slides()
-add_to_slides(ft, s, table_id = "t1234")
+add_to_slides(ft, s, table_id = "t12345")
+
+man_req <- Request(
+  UpdateTextStyleRequest(
+    "t1234",
+    TableCellLocation(2, 1),
+    style = TextStyle(baselineOffset = "SUPERSCRIPT"),
+    textRange = Range(1, 2, "FIXED_RANGE"),
+    fields = "baselineOffset"
+  )
 )
-slides_url(batch_res)
-my_tab <- list()
-
-# Create table:
-# rows, cols
-
-nrows <-
-  flextable::nrow_part(ft, part = "header") +
-  flextable::nrow_part(ft, part = "body") +
-  flextable::nrow_part(ft, part = "footer")
-
-ncols <- ncol_keys(ft)
-
-add(my_tab) <- CreateTableRequest(
-  objectId = "mytab",
-  elementProperties = PageElementProperties(pageObjectId = "p"),
-  rows = nrows,
-  columns = ncols
-)
-
-
-my_header <- table_requests(ft, part = "header")
-my_body <- table_requests(ft, part = "body")
-# my_footer <- table_requests(ft, part = "footer")
-
-my_tab <- c(my_tab, my_header, my_body)
-
-# update -------------
-my_tab_reqs <- lapply(my_tab, googleslides.api:::rm_null_objs) # rm_null_objs not exported, so this should be hidden
-reqs <- do.call(Request, my_tab_reqs)
 batch_res <- presentations.batchUpdate(
-  presentationId = new_pres$presentationId,
-  BatchUpdatePresentationRequest =  BatchUpdatePresentationRequest(requests = reqs)
+  presentationId = s,
+  BatchUpdatePresentationRequest = BatchUpdatePresentationRequest(requests = man_req)
 )
-
-slide_ids <- get_slide_ids(new_pres$presentationId)
-
-thumb <- googleslides.api:::presentations.pages.getThumbnail(
-  presentationId =new_pres$presentationId,
-  pageObjectId = slide_ids[[1]][[1]]$objectId
-)
-thumb$width
-dest <- tempfile("slide_", fileext = ".png", tmpdir = "./temp")
-download.file(url = thumb$contentUrl, destfile = dest, method = "curl")
-getOption("viewer")("./temp/slide_7c74640c20e0.png")
+# slides_url(batch_res)
+# my_tab <- list()
+#
+# # Create table:
+# # rows, cols
+#
+# nrows <-
+#   flextable::nrow_part(ft, part = "header") +
+#   flextable::nrow_part(ft, part = "body") +
+#   flextable::nrow_part(ft, part = "footer")
+#
+# ncols <- ncol_keys(ft)
+#
+# add(my_tab) <- CreateTableRequest(
+#   objectId = "mytab",
+#   elementProperties = PageElementProperties(pageObjectId = "p"),
+#   rows = nrows,
+#   columns = ncols
+# )
+#
+#
+# my_header <- table_requests(ft, part = "header")
+# my_body <- table_requests(ft, part = "body")
+# # my_footer <- table_requests(ft, part = "footer")
+#
+# my_tab <- c(my_tab, my_header, my_body)
+#
+# # update -------------
+# my_tab_reqs <- lapply(my_tab, googleslides.api:::rm_null_objs) # rm_null_objs not exported, so this should be hidden
+# reqs <- do.call(Request, my_tab_reqs)
+# batch_res <- presentations.batchUpdate(
+#   presentationId = new_pres$presentationId,
+#   BatchUpdatePresentationRequest =  BatchUpdatePresentationRequest(requests = reqs)
+# )
+#
+# slide_ids <- get_slide_ids(new_pres$presentationId)
+#
+# thumb <- googleslides.api:::presentations.pages.getThumbnail(
+#   presentationId =new_pres$presentationId,
+#   pageObjectId = slide_ids[[1]][[1]]$objectId
+# )
+# thumb$width
+# dest <- tempfile("slide_", fileext = ".png", tmpdir = "./temp")
+# download.file(url = thumb$contentUrl, destfile = dest, method = "curl")
+# getOption("viewer")("./temp/slide_7c74640c20e0.png")

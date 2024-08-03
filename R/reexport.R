@@ -5,4 +5,4 @@
 #' @export
 #'
 #' @examples
-SlidesTools::choose_slides
+ladder.api::choose_slides
