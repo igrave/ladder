@@ -19,7 +19,7 @@ run_script <- function(presentationId){
       parameters = list(presentationId)
     ),
     base_url = "https://script.googleapis.com",
-    token = slides_token()
+    token = ladder_token()
   )
   response <- gargle::request_make(request)
   gargle::response_process(response)

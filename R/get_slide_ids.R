@@ -16,7 +16,7 @@ get_slide_ids <- function(presentationId){
     params = list(presentationId = presentationId,
                   fields = "slides(objectId)"),
     base_url = "https://slides.googleapis.com",
-    token = slides_token()
+    token = ladder_token()
   )
 response <- gargle::request_make(request)
 gargle::response_process(response)
