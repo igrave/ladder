@@ -29,3 +29,16 @@ A presentation object after updating
 \description{
 Add table to Slides
 }
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\donttest{
+s <- choose_slides()
+library(flextable)
+ft <- flextable(iris[1:5, ])
+ft <- theme_box(ft)
+ft <- color(ft, i = 1:3, j = 1:2, "pink", part = "body")
+ft <- autofit(ft)
+add_to_slides(ft, s, on = 1)
+}
+\dontshow{\}) # examplesIf}
+}

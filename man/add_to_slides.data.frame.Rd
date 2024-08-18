@@ -38,9 +38,11 @@ The data frame is added as a table with the column names in bold as the first ro
 For other formatting use the \code{flextable} package and \link{add_to_slides.flextable}.
 }
 \examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
 s <- choose_slides()
 obj <- iris[1:5, ]
-add_to_slides(obj, s, on = 1, object_id = "iris_table")
+add_to_slides(obj, s, on = 1)
 }
+\dontshow{\}) # examplesIf}
 }

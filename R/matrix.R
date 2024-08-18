@@ -14,11 +14,11 @@
 #'
 #' @export
 #'
-#' @examples
+#' @examplesIf interactive()
 #' \donttest{
 #' s <- choose_slides()
 #' obj <- cov(iris[, 1:4])
-#' add_to_slides(obj, s, on = 1, object_id = "iris_table")
+#' add_to_slides(obj, s, on = 1)
 #' }
 add_to_slides.matrix <- function(object, presentation_id, on = NULL, object_id = new_id("table"), digits = NULL, ...) {
   page_id <- on_slide_id(presentation_id, on)

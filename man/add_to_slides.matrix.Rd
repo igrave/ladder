@@ -37,9 +37,11 @@ Add matrix to Slides
 The matrix is added as a table without any row or column names.
 }
 \examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
 s <- choose_slides()
 obj <- cov(iris[, 1:4])
-add_to_slides(obj, s, on = 1, object_id = "iris_table")
+add_to_slides(obj, s, on = 1)
 }
+\dontshow{\}) # examplesIf}
 }

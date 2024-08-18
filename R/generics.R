@@ -9,7 +9,7 @@
 #' @return A presentation object after updating
 #' @export
 #'
-#' @examples
+#' @examplesIf interactive()
 #' \donttest{
 #' s <- choose_slides()
 #' obj <- iris[1:5, ]

@@ -6,7 +6,7 @@
 \alias{ladder-package}
 \title{ladder: Get on to the Slides}
 \description{
-Create tables from within R directly on Google Slides presentations. Currently supports 'flextable' objects.
+Create tables from within R directly on Google Slides presentations. Currently supports matrix, data.frame and 'flextable' objects.
 }
 \author{
 \strong{Maintainer}: Isaac Gravestock \email{isaac.gravestock@gmail.com} (\href{https://orcid.org/orcid=0000-0003-0283-2065}{ORCID})

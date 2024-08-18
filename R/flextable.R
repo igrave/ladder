@@ -47,7 +47,16 @@ make_table <- function(ft, table_id = new_id("table"), pageObjectId = "p") {
 #' @return A presentation object after updating
 #' @export
 #'
-#' @examples
+#' @examplesIf interactive()
+#' \donttest{
+#' s <- choose_slides()
+#' library(flextable)
+#' ft <- flextable(iris[1:5, ])
+#' ft <- theme_box(ft)
+#' ft <- color(ft, i = 1:3, j = 1:2, "pink", part = "body")
+#' ft <- autofit(ft)
+#' add_to_slides(ft, s, on = 1)
+#' }
 add_to_slides.flextable <- function(object, presentation_id, on = NULL, object_id = new_id("table"), ...) {
   page_id <- on_slide_id(presentation_id, on)
   reqs <- make_table(object, object_id, page_id)

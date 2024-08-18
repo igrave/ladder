@@ -6,7 +6,7 @@
 #' @return A vector of slide ids.
 #'
 #' @export
-#' @examples
+#' @examplesIf interactive()
 #' \donttest{
 #' s <- choose_slides()
 #' get_slide_ids(s)

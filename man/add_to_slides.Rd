@@ -24,10 +24,11 @@ A presentation object after updating
 Add Object to Slides
 }
 \examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
 s <- choose_slides()
 obj <- iris[1:5, ]
 add_to_slides(obj, s, on = 1, object_id = "iris_table")
 }
-
+\dontshow{\}) # examplesIf}
 }
