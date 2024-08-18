@@ -47,15 +47,15 @@ gargle_lookup_table <- list(
 #' ladder_auth(path = "foofy-83ee9e7c9c48.json")
 #'
 ladder_auth <- function(email = gargle::gargle_oauth_email(),
-                     path = NULL,
-                     subject = NULL,
-                     scopes = c(
-                       "https://www.googleapis.com/auth/drive.file",
-                       "https://www.googleapis.com/auth/presentations.currentonly"
-                       ),
-                     cache = gargle::gargle_oauth_cache(),
-                     use_oob = gargle::gargle_oob_default(),
-                     token = NULL) {
+                        path = NULL,
+                        subject = NULL,
+                        scopes = c(
+                          "https://www.googleapis.com/auth/drive.file",
+                          "https://www.googleapis.com/auth/presentations.currentonly"
+                        ),
+                        cache = gargle::gargle_oauth_cache(),
+                        use_oob = gargle::gargle_oob_default(),
+                        token = NULL) {
   cred <- gargle::token_fetch(
     scopes = scopes,
     app = ladder_oauth_client(),
@@ -215,4 +215,3 @@ ladder_user <- function() {
     NULL
   }
 }
-

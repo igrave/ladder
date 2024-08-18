@@ -1,4 +1,3 @@
-
 col2RgbColor <- function(col) {
   rgb <- col2rgb(col) / 255
   RgbColor(red = rgb[1, 1], green = rgb[2, 1], blue = rgb[3, 1])
@@ -79,12 +78,14 @@ table_requests <- function(ft, table_id = table_id, part = c("header", "body", "
   part_spans <- ft[[part]]$spans
   part_spans$ind <- part_spans$rows * part_spans$columns >= 1
 
-  if (any(part_dim == 0)) return(list())
+  if (any(part_dim == 0)) {
+    return(list())
+  }
 
   row_offset <- switch(part,
-                       "footer" = flextable::nrow_part(ft, "body") + flextable::nrow_part(ft, "header"),
-                       "body" = flextable::nrow_part(ft, "header"),
-                       "header" = 0L
+    "footer" = flextable::nrow_part(ft, "body") + flextable::nrow_part(ft, "header"),
+    "body" = flextable::nrow_part(ft, "header"),
+    "header" = 0L
   )
 
   dim_requests <- column_row_requests(

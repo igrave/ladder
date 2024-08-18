@@ -4,10 +4,10 @@
 \alias{get_slide_ids}
 \title{Get ids in Slides}
 \usage{
-get_slide_ids(presentationId)
+get_slide_ids(presentation_id)
 }
 \arguments{
-\item{presentationId}{character, the presentation id}
+\item{presentation_id}{character, the presentation id}
 }
 \value{
 A vector of slide ids.

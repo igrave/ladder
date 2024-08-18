@@ -9,7 +9,7 @@
 #'
 #' @examplesIf interactive()
 #' \donttest{
-#'   id <- choose_slides()
+#' id <- choose_slides()
 #' }
 choose_slides <- function() {
   request_url <- "http://127.0.0.1:1083/index.html"
@@ -22,7 +22,7 @@ choose_slides <- function() {
         if (nchar(req$QUERY_STRING)) {
           auth_slide_id <<- sub("?slides=", "", req$QUERY_STRING, fixed = TRUE)
         } else {
-         picker_page()
+          picker_page()
         }
       }
     )
@@ -48,10 +48,10 @@ choose_slides <- function() {
 
 
 picker_page <- function() {
-  CLIENT_ID <- '1073903696751-e5c51669nkid25bk0gjng5evspeakp7r.apps.googleusercontent.com'
+  CLIENT_ID <- "1073903696751-e5c51669nkid25bk0gjng5evspeakp7r.apps.googleusercontent.com"
   # Google Picker API only Key
   API_KEY <- paste("AIzaSyAyLt5QNsDtC73", "fbV7ayndchq5iEzyy-k", sep = "_")
-  APP_ID <- '1073903696751'
+  APP_ID <- "1073903696751"
 
   body <- gluestick(
     r"--(
@@ -223,13 +223,14 @@ picker_page <- function() {
 </body>
 </html>
 
-)--")
+)--"
+  )
 
   # return
   list(
     status = 200L,
     headers = list(
-      'Content-Type' = 'text/html'
+      "Content-Type" = "text/html"
     ),
     body = body
   )

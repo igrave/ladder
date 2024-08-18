@@ -16,4 +16,3 @@
 # dev.print(png("hello.png"))
 # readBin("hello.png", what = "raw", n = 1e6) -> rb
 # jsonlite::base64_enc(rb) -> b64
-

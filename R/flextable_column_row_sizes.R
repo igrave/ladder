@@ -10,11 +10,12 @@ column_row_requests <- function(table_id, row_offset, widths, heights) {
   for (w in seq_along(same_widths)) {
     width <- as.numeric(names(same_widths[w]))
     cols <- same_widths[[w]]
-    add(reqs) <-UpdateTableColumnPropertiesRequest(
+    add(reqs) <- UpdateTableColumnPropertiesRequest(
       objectId = table_id,
       columnIndices = cols,
       tableColumnProperties = TableColumnProperties(
-        columnWidth = Dimension(width * 914400, unit = "EMU")),
+        columnWidth = Dimension(width * 914400, unit = "EMU")
+      ),
       fields = "columnWidth"
     )
   }
@@ -23,11 +24,12 @@ column_row_requests <- function(table_id, row_offset, widths, heights) {
   for (h in seq_along(same_heights)) {
     height <- as.numeric(names(same_heights[h]))
     rows <- same_heights[[h]]
-    add(reqs) <-UpdateTableRowPropertiesRequest(
+    add(reqs) <- UpdateTableRowPropertiesRequest(
       objectId = table_id,
       rowIndices = rows,
       tableRowProperties = TableRowProperties(
-        minRowHeight = Dimension(height * 914400, unit = "EMU")),
+        minRowHeight = Dimension(height * 914400, unit = "EMU")
+      ),
       fields = "minRowHeight"
     )
   }

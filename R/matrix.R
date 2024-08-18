@@ -1,7 +1,7 @@
 #' Add matrix to Slides
 #'
 #' @param object A matrix
-#' @param presentationId The id from the Slides presentation
+#' @param presentation_id The id from the Slides presentation
 #' @param object_id A unique id for the table
 #' @param on The id or number of the slide to add to
 #' @param digits the minimum number of significant digits, see [format]. If `NULL`
@@ -53,7 +53,7 @@ make_matrix_table <- function(m, table_id, page_id, digits = NULL) {
 
   if (is.numeric(m)) m <- format(m, trim = TRUE, digits = digits)
   # Add text to each cell
-  for(i in seq_len(nrows)) {
+  for (i in seq_len(nrows)) {
     for (j in seq_len(ncols)) {
       add(my_tab) <- InsertTextRequest(
         objectId = table_id,

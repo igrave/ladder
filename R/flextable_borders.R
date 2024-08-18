@@ -39,7 +39,9 @@ border_request_helper <- function(objectId, i, j, rowspan, colspan, border_posit
 
 border_requests <- function(style_data, row_offset, objectId) {
   part_dim <- dim(style_data[[1]][["data"]])
-  if (any(part_dim == 0)) return(list())
+  if (any(part_dim == 0)) {
+    return(list())
+  }
 
   i <- seq_len(part_dim[1]) # i is 1-indexed and relative to table part
   i_gs <- i - 1 + row_offset # Slide table rows are 0-indexed and absolute

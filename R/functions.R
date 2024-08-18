@@ -1,4 +1,3 @@
-
 #' Add an item to a list
 #' @param x A list like object, typically a list of *Request objects
 #' @param value An item to append to the list

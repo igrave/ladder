@@ -1,7 +1,7 @@
 #' Add data frame to Slides
 #'
 #' @param object A data.frame
-#' @param presentationId The id from the Slides presentation
+#' @param presentation_id The id from the Slides presentation
 #' @param object_id A unique id for the table
 #' @param on The id or number of the slide to add to
 #' @param digits the minimum number of significant digits, see [format]. If `NULL`
@@ -56,7 +56,7 @@ make_df_table <- function(df, table_id, page_id, digits = NULL) {
   m <- as.matrix(format.data.frame(df, digits = digits))
   m <- rbind(colnames(m), m)
   # Add text to each cell
-  for(i in seq_len(nrows)) {
+  for (i in seq_len(nrows)) {
     for (j in seq_len(ncols)) {
       add(my_tab) <- InsertTextRequest(
         objectId = table_id,
@@ -67,7 +67,7 @@ make_df_table <- function(df, table_id, page_id, digits = NULL) {
       if (i == 1) {
         add(my_tab) <- UpdateTextStyleRequest(
           objectId = table_id,
-          cellLocation = TableCellLocation(rowIndex =  i - 1, columnIndex = j - 1),
+          cellLocation = TableCellLocation(rowIndex = i - 1, columnIndex = j - 1),
           style = TextStyle(bold = TRUE),
           textRange = Range(type = "ALL"),
           fields = "bold"

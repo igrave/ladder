@@ -16,6 +16,8 @@
 \arguments{
 \item{object}{A data.frame}
 
+\item{presentation_id}{The id from the Slides presentation}
+
 \item{on}{The id or number of the slide to add to}
 
 \item{object_id}{A unique id for the table}
@@ -24,8 +26,6 @@
 \code{getOption("digits")} is used.}
 
 \item{...}{Not used in this method}
-
-\item{presentationId}{The id from the Slides presentation}
 }
 \value{
 A presentation object after updating

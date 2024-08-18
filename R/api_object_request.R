@@ -101,8 +101,7 @@
 Request <- function(...) {
   req_list <- list(...)
   req_types <- lapply(req_list, function(req) {
-    req_type <- switch(
-      class(req)[1],
+    req_type <- switch(class(req)[1],
       "InsertTableColumnsRequest" = "insertTableColumns",
       "DeleteTableColumnRequest" = "deleteTableColumn",
       "UpdateSlidesPositionRequest" = "updateSlidesPosition",

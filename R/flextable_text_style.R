@@ -4,7 +4,6 @@ make_text_style <- function(text_style = NULL,
                             i,
                             j,
                             k = 1) {
-
   if (!is.null(text_style)) {
     s <- data.frame(
       shading.color = text_style$shading.color$data[i, j],
@@ -26,13 +25,13 @@ make_text_style <- function(text_style = NULL,
   }
   style_list <- list()
 
-  style_list$backgroundColor <- if(!is.na(s$shading.color)) {
+  style_list$backgroundColor <- if (!is.na(s$shading.color)) {
     OptionalColor(opaqueColor = OpaqueColor(
       rgbColor = col2RgbColor(s$shading.color)
     ))
   }
 
-  style_list$foregroundColor <- if(!is.na(s$color)) {
+  style_list$foregroundColor <- if (!is.na(s$color)) {
     OptionalColor(opaqueColor = OpaqueColor(
       rgbColor = col2RgbColor(s$color)
     ))
@@ -41,16 +40,15 @@ make_text_style <- function(text_style = NULL,
   style_list$italic <- na2null(s$italic)
   style_list$fontFamily <- na2null(s$font.family)
   style_list$fontSize <- if (!is.na(s$font.size)) Dimension(s$font.size, unit = "PT")
-  style_list$baselineOffset <- switch(
-      s$vertical.align,
-      "superscript" = "SUPERSCRIPT",
-      "subscript" = "SUBSCRIPT"
-    )
-    # link,
-    # baselineOffset,
-    # smallCaps = ,
-    # strikethrough = ,
-    # underline = ,
+  style_list$baselineOffset <- switch(s$vertical.align,
+    "superscript" = "SUPERSCRIPT",
+    "subscript" = "SUBSCRIPT"
+  )
+  # link,
+  # baselineOffset,
+  # smallCaps = ,
+  # strikethrough = ,
+  # underline = ,
 
   ts <- do.call(TextStyle, style_list)
   trim_nulls(ts)
