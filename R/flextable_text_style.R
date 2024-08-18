@@ -53,5 +53,5 @@ make_text_style <- function(text_style = NULL,
     # underline = ,
 
   ts <- do.call(TextStyle, style_list)
-  rm_null_objs(ts)
+  trim_nulls(ts)
 }

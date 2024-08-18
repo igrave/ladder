@@ -1,3 +1,9 @@
+
+#' Add an item to a list
+#' @param x A list like object, typically a list of *Request objects
+#' @param value An item to append to the list
+#' @returns A list
+#' @noRd
 `add<-` <- function(x, value) {
   if (is.null(value)) {
     x
@@ -6,130 +12,43 @@
   }
 }
 
-slides_url <- function(presentation, slide_id) {
-  id <- presentation$presentationId
+#' Print presentation URL
+#'
+#' @param presentation_id ID of presentation
+#' @param slide_id Optional slide id to link directly to a certain slide. See [get_slide_ids].
+#'
+#' @return Prints URL as a link and invisibly returns URL.
+#' @export
+#'
+#' @examples
+#' slides_url("example_id_won't_work_1234567asdfbg")
+#' slides_url("example_id_won't_work_1234567asdfbg", slide_id = "p")
+#'
+slides_url <- function(presentation_id, slide_id = NULL) {
+  checkmate::assert_string(slide_id, null.ok = TRUE)
+  checkmate::assert_string(presentation_id, null.ok = FALSE)
   slide_part <- if (!is.null(slide_id)) paste0("edit#slide=id.", slide_id) else ""
-  url <- paste0("https://docs.google.com/presentation/d/", id, "/", slide_part)
+  url <- paste0("https://docs.google.com/presentation/d/", presentation_id, "/", slide_part)
   cat(cli::style_hyperlink(url, url))
+  invisible(url)
 }
 
 
-col2RgbColor <- function(col) {
-  rgb <- col2rgb(col) / 255
-  RgbColor(red = rgb[1, 1], green = rgb[2, 1], blue = rgb[3, 1])
-}
-
-
-
-
-table_requests <- function(ft, table_id = table_id, part = c("header", "body", "footer")) {
-  part <- match.arg(part)
-  my_tab <- list()
-  part_content <- ft[[part]]$content
-  part_styles <- ft[[part]]$styles
-  part_dim <- dim(part_content$data)
-  part_spans <- ft[[part]]$spans
-  part_spans$ind <- part_spans$rows * part_spans$columns >= 1
-
-  if (any(part_dim == 0)) return(list())
-
-  row_offset <- switch(part,
-    "footer" = flextable::nrow_part(ft, "body") + flextable::nrow_part(ft, "header"),
-    "body" = flextable::nrow_part(ft, "header"),
-    "header" = 0L
-  )
-
-  dim_requests <- column_row_requests(
-    table_id,
-    row_offset = row_offset,
-    widths = ft[[part]]$colwidths,
-    heights = ft[[part]]$rowheights
-  )
-
-
-  merge_requests <- merge_request(
-    objectId = table_id,
-    row_offset = row_offset,
-    part_spans = part_spans
-  )
-  border_requests <- border_requests(
-    part_styles$cells,
-    row_offset = row_offset,
-    objectId = table_id
-  )
-  cell_properties_requests <- cell_properties(
-    part_styles$cells,
-    row_offset = row_offset,
-    objectId = table_id
-  )
-
-  my_tab <- c(my_tab, dim_requests, merge_requests, border_requests, cell_properties_requests)
-
-  for (i in seq.int(from = 1, length.out = part_dim[1])) {
-    # i is 1-indexed and relative to table part
-    i_gs <- i - 1 + row_offset # Slide table rows are 0-indexed and absolute
-
-    for (j in seq.int(from = 1, length.out = part_dim[2])) {
-      j_gs <- j - 1 # Slide table columns are 0-indexed and absolute
-
-
-      df <- part_content$data[i, j][[1]]
-
-      if (isTRUE(part_spans$ind[i, j])) {
-        # Add all text
-        add(my_tab) <- InsertTextRequest(
-          objectId = table_id,
-          cellLocation = TableCellLocation(rowIndex = i_gs, columnIndex = j_gs),
-          text = paste0(df$txt, collapse = ""),
-          insertionIndex = 0
-        )
-
-        # Set default cell style
-        cell_text_style <- make_text_style(
-          text_style = part_styles$text,
-          i = i,
-          j = j
-        )
-
-        add(my_tab) <- UpdateTextStyleRequest(
-          objectId = table_id,
-          cellLocation = TableCellLocation(rowIndex = i_gs, columnIndex = j_gs),
-          style = cell_text_style,
-          textRange = Range(type = "ALL"),
-          fields = paste0(names(cell_text_style), collapse = ",")
-        )
-
-        # set run style if any
-        df$txt_ends <- cumsum(nchar(df$txt))
-        df$txt_starts <- c(0, head(df$txt_ends, n = -1L))
-
-        for (k in seq_len(nrow(df))) {
-          run_text_style <- make_text_style(
-            content_data = part_content$data,
-            i = i,
-            j = j,
-            k = k
-          )
-          df_k <- df[k, ]
-          if (length(run_text_style)) {
-            add(my_tab) <- UpdateTextStyleRequest(
-              table_id,
-              TableCellLocation(i_gs, j_gs),
-              style = run_text_style,
-              textRange = Range(df_k$txt_starts, df_k$txt_ends, "FIXED_RANGE"),
-              fields = paste0(names(run_text_style), collapse = ",")
-            )
-          }
-        }
-      }
+on_slide_id <- function(presentation_id, on) {
+  slide_ids <- get_slide_ids(presentation_id)
+  if (!is.null(on)) {
+    on <- on[1]
+    if (is.numeric(on)) {
+      assert_integerish(on, lower = 1, upper = length(slide_ids), any.missing = FALSE)
+      this_slide_id <- slide_ids[on]
+    } else if (is.character(on)) {
+      assert_choice(on, slide_ids)
+      this_slide_id <- on
+    } else {
+      stop("Unrecognised `on` value: ", on)
     }
+  } else {
+    this_slide_id <- tail(slide_ids, n = 1L)
   }
-
-  par_style_requests <- paragraph_style(
-    part_styles$pars,
-    row_offset = row_offset,
-    objectId = table_id
-  )
-  c(my_tab, par_style_requests)
-  my_tab
+  this_slide_id
 }

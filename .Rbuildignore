@@ -1,3 +1,6 @@
-^googleslides\.flextable\.Rproj$
+^ladder.Rproj$
+^design*
+^demo.R$
 ^\.Rproj\.user$
 ^LICENSE\.md$
+^.*\.Rproj$

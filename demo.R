@@ -40,7 +40,7 @@ ft <- add_footer_lines(ft, values = "hello feet")
 ft
 
 s <- choose_slides()
-add_to_slides(ft, s, table_id = "t12345")
+add_to_slides(ft, s, table_id = "t123456")
 
 man_req <- Request(
   UpdateTextStyleRequest(
@@ -83,7 +83,7 @@ batch_res <- presentations.batchUpdate(
 # my_tab <- c(my_tab, my_header, my_body)
 #
 # # update -------------
-# my_tab_reqs <- lapply(my_tab, googleslides.api:::rm_null_objs) # rm_null_objs not exported, so this should be hidden
+# my_tab_reqs <- lapply(my_tab, googleslides.api:::trim_nulls) # trim_nulls not exported, so this should be hidden
 # reqs <- do.call(Request, my_tab_reqs)
 # batch_res <- presentations.batchUpdate(
 #   presentationId = new_pres$presentationId,

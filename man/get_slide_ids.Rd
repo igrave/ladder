@@ -10,10 +10,14 @@ get_slide_ids(presentationId)
 \item{presentationId}{character, the presentation id}
 }
 \value{
-The response from the API
-
-This function is not polished. Probably should be moved to the ladder.api package.
+A vector of slide ids.
 }
 \description{
 Get ids in Slides
+}
+\examples{
+\donttest{
+s <- choose_slides()
+get_slide_ids(s)
+}
 }

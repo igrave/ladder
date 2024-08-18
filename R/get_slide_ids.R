@@ -3,21 +3,16 @@
 #'
 #' @param presentationId character, the presentation id
 #'
-#' @return The response from the API
-#'
-#' This function is not polished. Probably should be moved to the ladder.api package.
+#' @return A vector of slide ids.
 #'
 #' @export
 #' @examples
+#' \donttest{
+#' s <- choose_slides()
+#' get_slide_ids(s)
+#' }
+
 get_slide_ids <- function(presentationId){
-  request <- gargle::request_build(
-    method = "GET",
-    path = "/v1/presentations/{presentationId}",
-    params = list(presentationId = presentationId,
-                  fields = "slides(objectId)"),
-    base_url = "https://slides.googleapis.com",
-    token = ladder_token()
-  )
-response <- gargle::request_make(request)
-gargle::response_process(response)
+  result <- presentations.get(presentationId, params = list(fields = "slides(objectId)"))
+  setNames(unlist(result), seq_along(result))
 }
