@@ -10,6 +10,7 @@
   on = NULL,
   object_id = new_id("table"),
   digits = NULL,
+  overwrite = FALSE,
   ...
 )
 }
@@ -24,6 +25,8 @@
 
 \item{digits}{the minimum number of significant digits, see \link{format}. If \code{NULL}
 \code{getOption("digits")} is used.}
+
+\item{overwrite}{If TRUE and an object with \code{object_id} exists it will deleted and replaced.}
 
 \item{...}{Not used in this method}
 }

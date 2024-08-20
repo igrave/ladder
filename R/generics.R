@@ -4,6 +4,7 @@
 #' @param presentation_id The id from the Slides presentation
 #' @param on The id or number of the slide to add `object` to
 #' @param object_id A unique id for the new object on the slides
+#' @param overwrite If TRUE and an object with `object_id` exists it will deleted and replaced.
 #' @param ... Other arguments used in methods
 #'
 #' @return A presentation object after updating

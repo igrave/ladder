@@ -41,6 +41,7 @@ make_table <- function(ft, table_id = new_id("table"), pageObjectId = "p") {
 #' @param presentation_id The id from the Slides presentation
 #' @param object_id A unique id for the table
 #' @param on The id or number of the slide to add to
+#' @param overwrite If TRUE and an object with `object_id` exists it will deleted and replaced.
 #' @param ... Not used in this method
 #'
 #' @return A presentation object after updating
@@ -56,9 +57,24 @@ make_table <- function(ft, table_id = new_id("table"), pageObjectId = "p") {
 #' ft <- autofit(ft)
 #' add_to_slides(ft, s, on = 1)
 #' }
-add_to_slides.flextable <- function(object, presentation_id, on = NULL, object_id = new_id("table"), ...) {
+add_to_slides.flextable <- function(object,
+                                    presentation_id,
+                                    on = NULL,
+                                    object_id = new_id("table"),
+                                    overwrite = FALSE,
+                                    ...) {
+  assert_string(object_id, min.chars = 5)
   page_id <- on_slide_id(presentation_id, on)
+
   reqs <- make_table(object, object_id, page_id)
+
+  if (isTRUE(overwrite)) {
+    if (object_id %in% unlist(get_object_ids(presentation_id))) {
+      reqs <- c(list(DeleteObjectRequest(objectId = object_id)), reqs)
+    }
+  }
+
+  reqs <- do.call(Request, reqs)
   result <- presentations.batchUpdate(
     presentationId = presentation_id,
     BatchUpdatePresentationRequest = BatchUpdatePresentationRequest(requests = reqs)

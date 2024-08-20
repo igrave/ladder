@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_slide_ids.R
 \name{get_slide_ids}
 \alias{get_slide_ids}
-\title{Get ids in Slides}
+\title{Get ids of Slides pages}
 \usage{
 get_slide_ids(presentation_id)
 }
@@ -13,7 +13,7 @@ get_slide_ids(presentation_id)
 A vector of slide ids.
 }
 \description{
-Get ids in Slides
+Get ids of Slides pages
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

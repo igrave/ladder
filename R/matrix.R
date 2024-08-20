@@ -6,6 +6,7 @@
 #' @param on The id or number of the slide to add to
 #' @param digits the minimum number of significant digits, see [format]. If `NULL`
 #'   `getOption("digits")` is used.
+#' @param overwrite If TRUE and an object with `object_id` exists it will deleted and replaced.
 #' @param ... Not used in this method
 #'
 #' @return A presentation object is returned invisibly
@@ -20,10 +21,26 @@
 #' obj <- cov(iris[, 1:4])
 #' add_to_slides(obj, s, on = 1)
 #' }
-add_to_slides.matrix <- function(object, presentation_id, on = NULL, object_id = new_id("table"), digits = NULL, ...) {
+add_to_slides.matrix <- function(object,
+                                 presentation_id,
+                                 on = NULL,
+                                 object_id = new_id("table"),
+                                 digits = NULL,
+                                 overwrite = FALSE,
+                                 ...) {
+  assert_string(object_id, min.chars = 5)
   page_id <- on_slide_id(presentation_id, on)
 
   reqs <- make_matrix_table(object, object_id, page_id, digits)
+
+  if (isTRUE(overwrite)) {
+    if (object_id %in% unlist(get_object_ids(presentation_id))) {
+      reqs <- c(list(DeleteObjectRequest(objectId = object_id)), reqs)
+    }
+  }
+
+  reqs <- do.call(Request, reqs)
+
   result <- presentations.batchUpdate(
     presentationId = presentation_id,
     BatchUpdatePresentationRequest = BatchUpdatePresentationRequest(
@@ -63,7 +80,6 @@ make_matrix_table <- function(m, table_id, page_id, digits = NULL) {
       )
     }
   }
-  my_tab_reqs <- lapply(my_tab, trim_nulls)
-  reqs <- do.call(Request, my_tab_reqs)
+  reqs <- lapply(my_tab, trim_nulls)
   reqs
 }

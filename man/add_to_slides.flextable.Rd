@@ -9,6 +9,7 @@
   presentation_id,
   on = NULL,
   object_id = new_id("table"),
+  overwrite = FALSE,
   ...
 )
 }
@@ -20,6 +21,8 @@
 \item{on}{The id or number of the slide to add to}
 
 \item{object_id}{A unique id for the table}
+
+\item{overwrite}{If TRUE and an object with \code{object_id} exists it will deleted and replaced.}
 
 \item{...}{Not used in this method}
 }
