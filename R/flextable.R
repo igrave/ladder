@@ -30,8 +30,7 @@ make_table <- function(ft, table_id = new_id("table"), pageObjectId = "p") {
   my_tab <- c(my_tab, my_header, my_body, my_footer)
 
   # update -------------
-  my_tab_reqs <- lapply(my_tab, trim_nulls)
-  reqs <- do.call(Request, my_tab_reqs)
+  reqs <- lapply(my_tab, trim_nulls)
   reqs
 }
 
