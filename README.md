@@ -1,6 +1,6 @@
 # ladder
 
-To get on to the (Google) Slides
+To get on to the (Google) Slides 🛝
 
 ```r
 # Install 'ladder' in R:
