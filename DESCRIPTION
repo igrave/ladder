@@ -17,5 +17,5 @@ Imports: gargle,
          httr,
          rlang,
          checkmate
-URL: http://www.r-ladder.com
+URL: https://www.r-ladder.com
 BugReports: https://github.com/igrave/ladder/issues
