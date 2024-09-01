@@ -58,7 +58,7 @@ ladder_auth <- function(email = gargle::gargle_oauth_email(),
                         token = NULL) {
   cred <- gargle::token_fetch(
     scopes = scopes,
-    app = ladder_oauth_client(),
+    app = ladder_oauth_client() %||% builtin_ladder_oauth_client(),
     email = email,
     path = path,
     subject = subject,
@@ -214,4 +214,32 @@ ladder_user <- function() {
   } else {
     NULL
   }
+}
+
+
+#' Built-in oauth client
+#' @noRd
+
+builtin_ladder_oauth_client <- function(type = NULL) {
+  if (is.null(type) || is.na(type)) {
+    type <- gargle::gargle_oauth_client_type()
+  }
+  check_string(type)
+  type <- rlang::arg_match(type, values = c("installed", "web"))
+
+  switch(
+    type,
+    web = gargle::gargle_oauth_client_from_json(
+      # path = system.file("web.json", package = "ladder")),
+      path = gargle::secret_decrypt_json(
+        path = system.file("web.json.enc", package = "ladder"),
+        key = "SLIDES_KEY"
+      )),
+    installed = gargle::gargle_oauth_client_from_json(
+      path = gargle::secret_decrypt_json(
+        path = system.file("installed.json.enc", package = "ladder"),
+        key = "SLIDES_KEY"
+      )
+    )
+  )
 }

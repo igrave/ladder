@@ -9,13 +9,7 @@
     ".auth",
     gargle::init_AuthState(
       package = "ladder",
-      auth_active = TRUE,
-      gargle::gargle_oauth_client_from_json(
-        path = gargle::secret_decrypt_json(
-          path = system.file("api.json.enc", package = "ladder"),
-          key = "SLIDES_KEY"
-        )
-      )
+      auth_active = TRUE
     )
   )
 }
