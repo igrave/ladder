@@ -33,7 +33,7 @@ currently configured OAuth client and API key, respectively.'></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">ladder</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9002</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -125,12 +125,7 @@ argument.</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># see and store the current user-configured OAuth client (probaby `NULL`)</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">original_client</span> <span class="op">&lt;-</span> <span class="fu">ladder_oauth_client</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">&lt;gargle_oauth_client&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> name: helpful-range-376621_282b25e7c11ad30ee06e5f971f717cae</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> id: 1073903696751-gr5k1k39e97ufjl5ssklhqp9pv787rfo.apps.googleusercontent.com</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> secret: <span style="color: #555555;">&lt;REDACTED&gt;</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> type: installed</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> redirect_uris: http://localhost</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># see and store the current user-configured API key (probaby `NULL`)</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">original_api_key</span> <span class="op">&lt;-</span> <span class="fu">ladder_api_key</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
