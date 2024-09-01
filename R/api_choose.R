@@ -12,11 +12,12 @@
 #' id <- choose_slides()
 #' }
 choose_slides <- function() {
-  request_url <- "http://127.0.0.1:1083/index.html"
+  request_url <- "http://localhost:1410/index.html"
   auth_slide_id <- NULL
 
   server <- httpuv::startServer(
-    host = "127.0.0.1", port = 1083,
+    host = "127.0.0.1",
+    port = 1410,
     app = list(
       call = function(req) {
         if (nchar(req$QUERY_STRING)) {
