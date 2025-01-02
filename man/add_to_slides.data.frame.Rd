@@ -9,8 +9,8 @@
   presentation_id,
   on = NULL,
   object_id = new_id("table"),
-  digits = NULL,
   overwrite = FALSE,
+  digits = NULL,
   ...
 )
 }
@@ -23,10 +23,10 @@
 
 \item{object_id}{A unique id for the table}
 
+\item{overwrite}{If TRUE and an object with \code{object_id} exists it will deleted and replaced.}
+
 \item{digits}{the minimum number of significant digits, see \link{format}. If \code{NULL}
 \code{getOption("digits")} is used.}
-
-\item{overwrite}{If TRUE and an object with \code{object_id} exists it will deleted and replaced.}
 
 \item{...}{Not used in this method}
 }

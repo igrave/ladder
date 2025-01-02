@@ -17,6 +17,6 @@
 #' add_to_slides(obj, s, on = 1, object_id = "iris_table")
 #' }
 #'
-add_to_slides <- function(object, presentation_id, on = NULL, object_id, ...) {
+add_to_slides <- function(object, presentation_id, on = NULL, object_id, overwrite, ...) {
   UseMethod("add_to_slides")
 }

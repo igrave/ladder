@@ -25,8 +25,8 @@ add_to_slides.matrix <- function(object,
                                  presentation_id,
                                  on = NULL,
                                  object_id = new_id("table"),
-                                 digits = NULL,
                                  overwrite = FALSE,
+                                 digits = NULL,
                                  ...) {
   assert_string(object_id, min.chars = 5)
   page_id <- on_slide_id(presentation_id, on)

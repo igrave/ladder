@@ -4,7 +4,7 @@
 \alias{add_to_slides}
 \title{Add Object to Slides}
 \usage{
-add_to_slides(object, presentation_id, on = NULL, object_id, ...)
+add_to_slides(object, presentation_id, on = NULL, object_id, overwrite, ...)
 }
 \arguments{
 \item{object}{An object to add to slides}
@@ -15,9 +15,9 @@ add_to_slides(object, presentation_id, on = NULL, object_id, ...)
 
 \item{object_id}{A unique id for the new object on the slides}
 
-\item{...}{Other arguments used in methods}
-
 \item{overwrite}{If TRUE and an object with \code{object_id} exists it will deleted and replaced.}
+
+\item{...}{Other arguments used in methods}
 }
 \value{
 A presentation object after updating
