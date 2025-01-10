@@ -6,6 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Get on to the Slides • ladder</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -13,6 +19,7 @@
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Get on to the Slides">
 <meta name="description" content="Create tables from within R directly on Google Slides presentations. Currently supports matrix, data.frame and flextable objects.">
 <meta property="og:description" content="Create tables from within R directly on Google Slides presentations. Currently supports matrix, data.frame and flextable objects.">
+<meta property="og:image" content="https://www.r-ladder.com/logo.svg">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -46,22 +53,31 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="ladder">ladder<a class="anchor" aria-label="anchor" href="#ladder"></a>
-</h1></div>
+<div class="page-header">
+<img src="logo.svg" class="logo" alt=""><h1 id="ladder-">ladder 
+<a class="anchor" aria-label="anchor" href="#ladder-"></a>
+</h1>
+</div>
 <p>To get on to the (Google) Slides 🛝</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Install 'ladder' in R:</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'ladder'</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'https://igrave.r-universe.dev'</span>, <span class="st">'https://cloud.r-project.org'</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.r-ladder.com">ladder</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Select a presentation and authorise it for use with `ladder`</span></span>
-<span><span class="va">slides_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/choose_slides.html">choose_slides</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Add the table to the presentation</span></span>
-<span><span class="fu"><a href="reference/add_to_slides.html">add_to_slides</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span>, <span class="va">slides_id</span><span class="op">)</span></span></code></pre></div>
-<p>For more powerful formatting, use flextable!</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'ladder'</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'https://igrave.r-universe.dev'</span>, <span class="st">'https://cloud.r-project.org'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="basic-usage">Basic Usage<a class="anchor" aria-label="anchor" href="#basic-usage"></a>
+</h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.r-ladder.com">ladder</a></span><span class="op">)</span></span></code></pre></div>
+<p>Select a presentation and authorise it for use with <code>ladder</code></p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">slides_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/choose_slides.html">choose_slides</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>Add the table to the presentation</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/add_to_slides.html">add_to_slides</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span>, <span class="va">slides_id</span><span class="op">)</span></span></code></pre></div>
+<p>For more powerful formatting, use <a href="https://ardata-fr.github.io/flextable-book/" class="external-link"><code>flextable</code></a>!</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Make a flextable</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ardata-fr.github.io/flextable-book/" class="external-link">flextable</a></span><span class="op">)</span></span>
 <span><span class="va">ft</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/flextable.html" class="external-link">flextable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span></span>
@@ -93,6 +109,8 @@
 <span></span>
 <span><span class="co"># Add the table to the presentation</span></span>
 <span><span class="fu"><a href="reference/add_to_slides.html">add_to_slides</a></span><span class="op">(</span><span class="va">ft</span>, <span class="va">slides_id</span><span class="op">)</span></span></code></pre></div>
+<p>You can directly preview the slides with <code>view_slide(slides_id)</code> or get a link with <code>get_link(slides_id)</code>.</p>
+</div>
 </div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
