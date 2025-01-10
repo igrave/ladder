@@ -7,6 +7,7 @@
 #' @param viewer logical, if TRUE opens the image in the viewer
 #' @return A character string of the file path to the saved image and
 #'  opens the image in the viewer or browser if `viewer = TRUE`.
+#' @export
 view_slide <- function(presentation_id, page, size = "MEDIUM", viewer = TRUE) {
   size <- match.arg(size, c("SMALL", "MEDIUM", "LARGE"))
   page_id <- on_slide_id(presentation_id, page)

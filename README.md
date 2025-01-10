@@ -1,21 +1,30 @@
-# ladder
+# ladder <a href="https://www.r-ladder.com"><img src="man/figures/logo.svg" align="right" height="139" alt="ladder website" /></a>
 
 To get on to the (Google) Slides 🛝
 
+
+## Installation
 ```r
-# Install 'ladder' in R:
 install.packages('ladder', repos = c('https://igrave.r-universe.dev', 'https://cloud.r-project.org'))
+```
 
+## Basic Usage
+```r
 library(ladder)
+```
 
-# Select a presentation and authorise it for use with `ladder`
+Select a presentation and authorise it for use with `ladder`
+```r
 slides_id <- choose_slides()
+```
 
-# Add the table to the presentation
+Add the table to the presentation
+
+```r
 add_to_slides(head(mtcars), slides_id)
 ```
 
-For more powerful formatting, use flextable!
+For more powerful formatting, use [`flextable`](https://ardata-fr.github.io/flextable-book/)!
 ```r
 # Make a flextable
 library(flextable)
@@ -49,3 +58,6 @@ ft <- add_footer_lines(ft, values = "hello feet")
 # Add the table to the presentation
 add_to_slides(ft, slides_id)
 ```
+
+You can directly preview the slides with `view_slide(slides_id)` or get a link 
+with `get_link(slides_id)`.
