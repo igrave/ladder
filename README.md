@@ -13,7 +13,8 @@ install.packages('ladder', repos = c('https://igrave.r-universe.dev', 'https://c
 library(ladder)
 ```
 
-Select a presentation and authorise it for use with `ladder`
+Select a presentation and authorise it for use with `ladder`.
+(Currently not working with hosted environments, eg RStudio workbench.)
 ```r
 slides_id <- choose_slides()
 ```
