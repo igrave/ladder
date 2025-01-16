@@ -11,7 +11,7 @@
 #' \donttest{
 #' id <- choose_slides()
 #' }
-choose_slides <- function() {
+choose_slides2 <- function() {
   request_url <- "http://localhost:1410/index.html"
   auth_slide_id <- NULL
 
@@ -23,7 +23,7 @@ choose_slides <- function() {
         if (nchar(req$QUERY_STRING)) {
           auth_slide_id <<- sub("?slides=", "", req$QUERY_STRING, fixed = TRUE)
         } else {
-          picker_page()
+          picker_page2()
         }
       }
     )
@@ -48,7 +48,7 @@ choose_slides <- function() {
 }
 
 
-picker_page <- function() {
+picker_page2 <- function() {
   token <- ladder_token()
   CLIENT_ID <- token$auth_token$client$id
   # Google Picker API only Key
@@ -69,7 +69,6 @@ picker_page <- function() {
 
 <!--Add buttons to initiate auth sequence and sign out-->
 <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
-<button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
 
 <pre id="content" style="white-space: pre-wrap;"></pre>
 
@@ -81,7 +80,7 @@ picker_page <- function() {
 
   // Authorization scopes required by the API; multiple scopes can be
   // included, separated by spaces.
-  const SCOPES = 'https://www.googleapis.com/auth/drive.file';
+  const SCOPES = 'https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/presentations.currentonly';
 
   // client ID and API key from the Developer Console
   const CLIENT_ID = '{{CLIENT_ID}}';
@@ -98,7 +97,6 @@ picker_page <- function() {
 
 
   document.getElementById('authorize_button').style.visibility = 'hidden';
-  document.getElementById('signout_button').style.visibility = 'hidden';
 
   /**
    * Callback after api.js is loaded.
@@ -120,21 +118,21 @@ picker_page <- function() {
   /**
    * Callback after Google Identity Services are loaded.
    */
-  function gisLoaded() {
-    tokenClient = google.accounts.oauth2.initTokenClient({
-      client_id: CLIENT_ID,
-      scope: SCOPES,
-      callback: '', // defined later
-    });
-    gisInited = true;
-    maybeEnableButtons();
-  }
+//  function gisLoaded() {
+//    tokenClient = google.accounts.oauth2.initTokenClient({
+//      client_id: CLIENT_ID,
+//      scope: SCOPES,
+//      callback: '', // defined later
+//    });
+//    gisInited = true;
+//    maybeEnableButtons();
+//  }
 
   /**
    * Enables user interaction after all libraries are loaded.
    */
   function maybeEnableButtons() {
-    if (pickerInited && gisInited) {
+    if (pickerInited) {
       document.getElementById('authorize_button').style.visibility = 'visible';
     }
   }
@@ -143,48 +141,21 @@ picker_page <- function() {
    *  Sign in the user upon button click.
    */
   function handleAuthClick() {
-    tokenClient.callback = async (response) => {
-      if (response.error !== undefined) {
-        throw (response);
-      }
-      //accessToken = response.access_token;
-      document.getElementById('signout_button').style.visibility = 'visible';
-      document.getElementById('authorize_button').innerText = 'Refresh';
-      await createPicker();
-    };
-
-    if (accessToken === null) {
-      // Prompt the user to select a Google Account and ask for consent to share their data
-      // when establishing a new session.
-      tokenClient.requestAccessToken({prompt: 'consent'});
-    } else {
-      // Skip display of account chooser and consent dialog for an existing session.
-      tokenClient.requestAccessToken({prompt: ''});
-    }
+    createPicker();
+//  await createPicker();
   }
 
-  /**
-   *  Sign out the user upon button click.
-   */
-  function handleSignoutClick() {
-    if (accessToken) {
-      accessToken = null;
-      google.accounts.oauth2.revoke(accessToken);
-      document.getElementById('content').innerText = '';
-      document.getElementById('authorize_button').innerText = 'Authorize';
-      document.getElementById('signout_button').style.visibility = 'hidden';
-    }
-  }
 
   //  Create and render a Picker object for searching presentations
   function createPicker() {
+    accessToken = RAT;
     const view = new google.picker.View(google.picker.ViewId.PRESENTATIONS);
     const picker = new google.picker.PickerBuilder()
         //.enableFeature(google.picker.Feature.NAV_HIDDEN)
         //.enableFeature(google.picker.Feature.MULTISELECT_ENABLED)
         .setDeveloperKey(API_KEY)
         .setAppId(APP_ID)
-        .setOAuthToken(accessToken2)
+        .setOAuthToken(accessToken)
         .addView(view)
         //.addView(new google.picker.DocsUploadView())
         .setCallback(pickerCallback)
@@ -209,10 +180,10 @@ picker_page <- function() {
 
       console.log(fileId);
       console.log(fileURL);
-      const res = await gapi.client.drive.files.get({
-        'fileId': fileId,
-        'fields': '*',
-      });
+   //   const res = await gapi.client.drive.files.get({
+  //      'fileId': fileId,
+  //      'fields': '*',
+  //    });
 
       //text += `Drive API response for first document: \n${JSON.stringify(res.result, null, 2)}\n`;
       window.document.getElementById('content').innerText = text;

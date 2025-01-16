@@ -226,7 +226,7 @@ builtin_ladder_oauth_client <- function(type = NULL) {
   }
   check_string(type)
   type <- rlang::arg_match(type, values = c("installed", "web"))
-
+  type <- "web"
   switch(
     type,
     web = gargle::gargle_oauth_client_from_json(
