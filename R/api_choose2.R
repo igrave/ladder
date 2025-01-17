@@ -180,23 +180,17 @@ picker_page2 <- function() {
 
       console.log(fileId);
       console.log(fileURL);
-   //   const res = await gapi.client.drive.files.get({
-  //      'fileId': fileId,
-  //      'fields': '*',
-  //    });
 
-      //text += `Drive API response for first document: \n${JSON.stringify(res.result, null, 2)}\n`;
       window.document.getElementById('content').innerText = text;
 
       var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
-      var theUrl = "/response?slides=" + fileId;
+      var theUrl = "response?slides=" + fileId;
       xmlhttp.open("GET", theUrl);
       xmlhttp.send();
     }
   }
 </script>
 <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
-<script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
 </body>
 </html>
 
