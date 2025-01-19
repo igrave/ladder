@@ -115,18 +115,7 @@ picker_page2 <- function() {
     maybeEnableButtons();
   }
 
-  /**
-   * Callback after Google Identity Services are loaded.
-   */
-//  function gisLoaded() {
-//    tokenClient = google.accounts.oauth2.initTokenClient({
-//      client_id: CLIENT_ID,
-//      scope: SCOPES,
-//      callback: '', // defined later
-//    });
-//    gisInited = true;
-//    maybeEnableButtons();
-//  }
+
 
   /**
    * Enables user interaction after all libraries are loaded.
