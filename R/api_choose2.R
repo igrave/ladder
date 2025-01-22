@@ -83,7 +83,7 @@ picker_page2 <- function() {
   const SCOPES = 'https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/presentations.currentonly';
 
   // client ID and API key from the Developer Console
-  const CLIENT_ID = '{{CLIENT_ID}}';
+
   const API_KEY = '{{API_KEY}}';
   const APP_ID = '{{APP_ID}}';
   const RAT = '{{TOKEN}}';

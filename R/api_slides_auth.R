@@ -243,3 +243,35 @@ builtin_ladder_oauth_client <- function(type = NULL) {
     )
   )
 }
+
+
+ladder_auth_internal <- function(account = c("testing"),
+                                 scopes = NULL) {
+  account <- match.arg(account)
+  can_decrypt <- gargle::secret_has_key("LADDER_KEY")
+  online <- !is.null(curl::nslookup("slides.googleapis.com", error = FALSE))
+  if (!can_decrypt || !online) {
+        if (!can_decrypt) {
+          stop(gluestick("Can't decrypt the {{account}} service account token."))
+        } else if (!online) {
+          stop("We don't appear to be online. Or maybe the slides API is down?")
+        }
+  }
+
+  filename <- gluestick("ladder-{{account}}.json")
+
+  scopes <- scopes %||% c(
+    "https://www.googleapis.com/auth/drive.file",
+    "https://www.googleapis.com/auth/presentations.currentonly"
+  )
+  ladder_auth(
+    scopes = scopes,
+    path = gargle::secret_decrypt_json(
+      system.file("secret", filename, package = "ladder"),
+      "LADDER_KEY"
+    )
+  )
+  ladder_user()
+  invisible(TRUE)
+}
+
