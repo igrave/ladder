@@ -1,3 +1,6 @@
 # ladder (development version)
 
-* Initial CRAN submission.
+* Initial implementation
+* Supports data.frame, matrix and flextable
+* Get preview image of slides
+* Slide picker

@@ -23,7 +23,7 @@ choose_slides <- function() {
         if (nchar(req$QUERY_STRING)) {
           auth_slide_id <<- sub("?slides=", "", req$QUERY_STRING, fixed = TRUE)
         } else {
-          picker_page2()
+          picker_page()
         }
       }
     )
