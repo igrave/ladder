@@ -15,6 +15,8 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  hello: "workflow"
 jobs:
   audit:
     name: Audit Dependencies 🕵️‍♂️
@@ -27,8 +29,7 @@ jobs:
     with:
       additional-env-vars: |
         _R_CHECK_CRAN_INCOMING_REMOTE_=false
-      secrets:
-        LADDER_KEY: ${{ secrets.LADDER_KEY }}
+        LADDER_KEY=$workflow
       additional-r-cmd-check-params: --as-cran
       enforce-note-blocklist: true
       note-blocklist: |
@@ -64,9 +65,6 @@ jobs:
     uses: insightsengineering/r.pkg.template/.github/workflows/test-coverage.yaml@main
     secrets:
       REPO_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    with:
-      secrets:
-        LADDER_KEY: ${{ secrets.LADDER_KEY }}
   linter:
     if: github.event_name != 'push'
     name: SuperLinter 🦸‍♀️
