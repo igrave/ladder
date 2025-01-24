@@ -24,10 +24,10 @@ jobs:
     uses: insightsengineering/r.pkg.template/.github/workflows/build-check-install.yaml@main
     secrets:
       REPO_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      LADDER_KEY: ${{ secrets.LADDER_KEY }}
     with:
       additional-env-vars: |
         _R_CHECK_CRAN_INCOMING_REMOTE_=false
+        LADDER_KEY=${{ secrets.LADDER_KEY }}
       additional-r-cmd-check-params: --as-cran
       enforce-note-blocklist: true
       note-blocklist: |
@@ -44,10 +44,10 @@ jobs:
     uses: insightsengineering/r.pkg.template/.github/workflows/build-check-install.yaml@main
     secrets:
       REPO_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      LADDER_KEY: ${{ secrets.LADDER_KEY }}
     with:
       additional-env-vars: |
         NOT_CRAN=true
+        LADDER_KEY=${{ secrets.LADDER_KEY }}
       enforce-note-blocklist: true
       concurrency-group: non-cran
       unit-test-report-directory: unit-test-report-non-cran
@@ -65,7 +65,9 @@ jobs:
     uses: insightsengineering/r.pkg.template/.github/workflows/test-coverage.yaml@main
     secrets:
       REPO_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      LADDER_KEY: ${{ secrets.LADDER_KEY }}
+    with:
+      additional-env-vars: |
+        LADDER_KEY=${{ secrets.LADDER_KEY }}
   linter:
     if: github.event_name != 'push'
     name: SuperLinter 🦸‍♀️
