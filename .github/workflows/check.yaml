@@ -16,7 +16,7 @@ on:
   workflow_dispatch:
 
 env:
-  LADDER_KEY: ${{ LADDER_KEY }}
+  LADDER_KEY: ${{ secrets.LADDER_KEY }}
 jobs:
   audit:
     name: Audit Dependencies 🕵️‍♂️
