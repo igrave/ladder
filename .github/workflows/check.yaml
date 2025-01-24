@@ -48,6 +48,7 @@ jobs:
       REPO_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     with:
       additional-env-vars: |
+        NOT_CRAN=true
         LADDER_KEY=$LADDER_KEY
       enforce-note-blocklist: true
       concurrency-group: non-cran
