@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="api_gluestick" timestamp="2025-01-24T06:25:25Z" hostname="2c674b232c34" tests="1" skipped="0" failures="0" errors="0" time="0.016">
-    <testcase time="0.016" classname="api_gluestick" name="gluestick_works"/>
+  <testsuite name="api_gluestick" timestamp="2025-01-24T19:20:55Z" hostname="6c1e90fb0a34" tests="1" skipped="0" failures="0" errors="0" time="0.015">
+    <testcase time="0.015" classname="api_gluestick" name="gluestick_works"/>
   </testsuite>
-  <testsuite name="thumbnail" timestamp="2025-01-24T06:25:25Z" hostname="2c674b232c34" tests="1" skipped="0" failures="0" errors="1" time="0.152">
-    <testcase time="0.152" classname="thumbnail" name="get_slide_img_works">
-      <error type="error" message="Error in `ladder_auth_internal(&quot;testing&quot;)`: Can't decrypt the testing service account token. ('test-thumbnail.R:3:3')">Error in `ladder_auth_internal("testing")`: Can't decrypt the testing service account token.
-Backtrace:
-    x
- 1. \-ladder:::ladder_auth_internal("testing") at test-thumbnail.R:3:3</error>
+  <testsuite name="thumbnail" timestamp="2025-01-24T19:20:55Z" hostname="6c1e90fb0a34" tests="1" skipped="1" failures="0" errors="0" time="0.103">
+    <testcase time="0.103" classname="thumbnail" name="get_slide_img_works">
+      <skipped message="Reason: On CRAN ('test-thumbnail.R:2:3')"/>
     </testcase>
   </testsuite>
 </testsuites>
