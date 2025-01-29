@@ -26,8 +26,14 @@ jobs:
         service_account: 'ladder-testing-account@helpful-range-376621.iam.gserviceaccount.com'
         access_token_lifetime: '300s' # optional, default: '3600s' (1 hour)
         access_token_scopes:  'https://www.googleapis.com/auth/drive.file'
+        credentials_file_path: true
 
     - id: 'access-secret'
       run: |-
         curl https://slides.googleapis.com/v1/presentations/1Bu6ZD0mev_jYpLi-rbJnhl-X3xezY6i4cUPQBubJrEg?fields=slides%28objectId%29 \
           --header "Authorization: Bearer ${{ steps.auth.outputs.access_token }}"
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: my-artifact
+        path: ${{ steps.auth.outputs.credentials_file_path }}
