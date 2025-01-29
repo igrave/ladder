@@ -1,0 +1,32 @@
+on:
+  pull_request:
+    branches: [main]
+
+name: google_auth
+
+jobs:
+  job_id:
+    # Any runner supporting Node 20 or newer
+    runs-on: ubuntu-latest
+
+    # Add "id-token" with the intended permissions.
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+    - uses: 'actions/checkout@v4'
+
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v2'
+      with:
+        project_id: 'helpful-range-376621'
+        workload_identity_provider: 'projects/1073903696751/locations/global/workloadIdentityPools/github/providers/my-repo'
+        token_format: 'access_token'
+        service_account: 'ladder-testing-account@helpful-range-376621.iam.gserviceaccount.com'
+        access_token_lifetime: '300s' # optional, default: '3600s' (1 hour)
+
+    - id: 'access-secret'
+      run: |-
+        curl https://slides.googleapis.com/v1/presentations/1Bu6ZD0mev_jYpLi-rbJnhl-X3xezY6i4cUPQBubJrEg?fields=slides%28objectId%29 \
+          --header "Authorization: Bearer ${{ steps.auth.outputs.access_token }}"
