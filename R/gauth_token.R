@@ -57,3 +57,8 @@ httr_request <- function (method = NULL, url = NULL, headers = NULL, fields = NU
                  fields = fields, options = compact(keep_last(options)),
                  auth_token = auth_token, output = output), class = "request")
 }
+
+keep_last <- function (...) {
+  x <- c(...)
+  x[!duplicated(names(x), fromLast = TRUE)]
+}
