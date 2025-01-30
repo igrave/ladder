@@ -31,6 +31,11 @@ jobs:
       containers: ${{ steps.rhub-setup.outputs.containers }}
       platforms: ${{ steps.rhub-setup.outputs.platforms }}
 
+    # Add "id-token" with the intended permissions.
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
     steps:
     # NO NEED TO CHECKOUT HERE
     - uses: r-hub/actions/setup@v1
@@ -70,6 +75,8 @@ jobs:
           access_token_lifetime: '300s' # optional, default: '3600s' (1 hour)
           access_token_scopes:  'https://www.googleapis.com/auth/drive.file'
           create_credentials_file: true
+
+      - run: echo ${{ steps.auth.outputs.access_token }} >> token.txt
 
 
       - uses: r-hub/actions/run-check@v1
@@ -112,6 +119,9 @@ jobs:
           access_token_lifetime: '300s' # optional, default: '3600s' (1 hour)
           access_token_scopes:  'https://www.googleapis.com/auth/drive.file'
           create_credentials_file: true
+
+    - run: echo ${{ steps.auth.outputs.access_token }} >> token.txt
+
 
 
       - uses: r-hub/actions/run-check@v1
