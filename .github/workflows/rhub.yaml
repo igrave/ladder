@@ -125,7 +125,7 @@ jobs:
           access_token_scopes:  'https://www.googleapis.com/auth/drive.file'
           create_credentials_file: true
 
-      - run: echo ${{ steps.auth.outputs.access_token }} >> token.txt
+      - run: echo "${{ steps.auth.outputs.access_token }}" >> ${{ env.GITHUB_WORKSPACE }}/token.txt
 
 
 
