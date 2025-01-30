@@ -60,6 +60,18 @@ jobs:
         with:
           token: ${{ secrets.RHUB_TOKEN }}
           job-config: ${{ matrix.config.job-config }}
+
+      - uses: 'google-github-actions/auth@v2'
+        with:
+          project_id: 'helpful-range-376621'
+          workload_identity_provider: 'projects/1073903696751/locations/global/workloadIdentityPools/github/providers/my-repo'
+          token_format: 'access_token'
+          service_account: 'ladder-testing-account@helpful-range-376621.iam.gserviceaccount.com'
+          access_token_lifetime: '300s' # optional, default: '3600s' (1 hour)
+          access_token_scopes:  'https://www.googleapis.com/auth/drive.file'
+          create_credentials_file: true
+
+
       - uses: r-hub/actions/run-check@v1
         with:
           token: ${{ secrets.RHUB_TOKEN }}
@@ -89,6 +101,19 @@ jobs:
         with:
           job-config: ${{ matrix.config.job-config }}
           token: ${{ secrets.RHUB_TOKEN }}
+
+
+      - uses: 'google-github-actions/auth@v2'
+        with:
+          project_id: 'helpful-range-376621'
+          workload_identity_provider: 'projects/1073903696751/locations/global/workloadIdentityPools/github/providers/my-repo'
+          token_format: 'access_token'
+          service_account: 'ladder-testing-account@helpful-range-376621.iam.gserviceaccount.com'
+          access_token_lifetime: '300s' # optional, default: '3600s' (1 hour)
+          access_token_scopes:  'https://www.googleapis.com/auth/drive.file'
+          create_credentials_file: true
+
+
       - uses: r-hub/actions/run-check@v1
         with:
           job-config: ${{ matrix.config.job-config }}
