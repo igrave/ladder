@@ -1,4 +1,4 @@
-GAuthToken <- R6::R6Class("GAuthToken", inherit = Token2.0, list(
+GAuthToken <- R6::R6Class("GAuthToken", inherit = httr::Token2.0, list(
   secrets = NULL,
   initialize = function(access_token) {
     self$credentials <- list(
