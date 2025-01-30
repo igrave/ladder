@@ -32,8 +32,8 @@ jobs:
       run: |-
         curl https://slides.googleapis.com/v1/presentations/1Bu6ZD0mev_jYpLi-rbJnhl-X3xezY6i4cUPQBubJrEg?fields=slides%28objectId%29 \
           --header "Authorization: Bearer ${{ steps.auth.outputs.access_token }}"
-          echo `expr substr ${{ steps.auth.outputs.access_token }} 0 5`
-          echo ${${{ steps.auth.outputs.access_token }}: -5}
+          echo `expr substr ${{ steps.auth.outputs.access_token }} 0 10`
+
 
     - uses: actions/upload-artifact@v4
       with:
