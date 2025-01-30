@@ -71,10 +71,6 @@ jobs:
           access_token_scopes:  'https://www.googleapis.com/auth/drive.file'
           create_credentials_file: true
 
-    - id: 'access-secret'
-      run: |-
-        export gauth_secret=${{ steps.auth.outputs.access_token }}
-
 
       - uses: r-hub/actions/run-check@v1
         with:
@@ -116,11 +112,6 @@ jobs:
           access_token_lifetime: '300s' # optional, default: '3600s' (1 hour)
           access_token_scopes:  'https://www.googleapis.com/auth/drive.file'
           create_credentials_file: true
-
-    - id: 'access-secret'
-      run: |-
-        export gauth_secret=${{ steps.auth.outputs.access_token }}
-
 
 
       - uses: r-hub/actions/run-check@v1
