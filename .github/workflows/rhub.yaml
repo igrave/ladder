@@ -114,8 +114,8 @@ jobs:
           job-config: ${{ matrix.config.job-config }}
           token: ${{ secrets.RHUB_TOKEN }}
 
-
-      - uses: 'google-github-actions/auth@v2'
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v2'
         with:
           project_id: 'helpful-range-376621'
           workload_identity_provider: 'projects/1073903696751/locations/global/workloadIdentityPools/github/providers/my-repo'
