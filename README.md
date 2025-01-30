@@ -14,7 +14,7 @@ library(ladder)
 ```
 
 Select a presentation and authorise it for use with `ladder`.
-(Currently not working with hosted environments, eg RStudio workbench.)
+
 ```r
 slides_id <- choose_slides()
 ```
@@ -62,3 +62,31 @@ add_to_slides(ft, slides_id)
 
 You can directly preview the slides with `view_slide(slides_id)` or get a link 
 with `get_link(slides_id)`.
+
+## Features
+
+All kinds of formatting including
+- horizontal text alignment in cells (paragraph style)
+- text run styling
+- cell styling, eg background colour, vertical alignment
+- merging cells
+- highlighting
+- row/column width/height
+
+R objects
+-  flextable
+-  data.frame
+-  matrix
+
+*Please create an issue if something isn't working as expected.*
+
+## Limitations
+
+### Not possible in Slides
+- images in tables
+- changes to cell padding
+  - May be possible to set ParagraphSyle IndentStart to a negative value?
+
+### Not supported in flextable (AFAIK)
+- multiple paragraphs in cells
+  - that means no left and right alignment on different lines in a cell
