@@ -16,9 +16,11 @@ Imports: gargle,
          httpuv,
          httr,
          rlang,
-         checkmate
+         checkmate,
+         curl
 URL: https://www.r-ladder.com
 BugReports: https://github.com/igrave/ladder/issues
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+Language: en-GB
