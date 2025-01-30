@@ -1,6 +1,11 @@
+test_that("token exists", {
+  expect_string(Sys.getenv("access_token"), min.chars = 1)
+})
+
 test_that("get_slide_img works", {
   # skip_on_cran()
-  path <- file.path(Sys.getenv("GITHUB_WORKSPACE"), "token.txt")
+  Sys.getenv("access_token")
+  path <- file.path(Sys.getenv("HOME"), "token.txt")
   expect_true(file.exists(path))
   expect_true(file.size(path) > 0)
   accesstoken <- readLines(path)[[1]]
