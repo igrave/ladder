@@ -62,3 +62,8 @@ keep_last <- function (...) {
   x <- c(...)
   x[!duplicated(names(x), fromLast = TRUE)]
 }
+
+compact <- function(x) {
+  empty <- vapply(x, is_empty, logical(1))
+  x[!empty]
+}
