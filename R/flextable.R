@@ -34,20 +34,12 @@ make_table <- function(ft, table_id = new_id("table"), pageObjectId = "p") {
   reqs
 }
 
-#' Add table to Slides
-#'
-#' @param object A table object (flextable)
-#' @param presentation_id The id from the Slides presentation
-#' @param object_id A unique id for the table
-#' @param on The id or number of the slide to add to
-#' @param overwrite If TRUE and an object with `object_id` exists it will deleted and replaced.
-#' @param ... Not used in this method
-#'
-#' @return A presentation object after updating
 #' @export
-#'
+#' @rdname add_to_slides
+#' @details A flextable object is added with all formatting.
 #' @examplesIf interactive()
 #' \donttest{
+#' ## Add a flextable
 #' s <- choose_slides()
 #' library(flextable)
 #' ft <- flextable(iris[1:5, ])

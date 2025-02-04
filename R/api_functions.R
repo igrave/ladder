@@ -91,7 +91,7 @@ presentations.create <- function(Presentation) {
 #' @param pageObjectId The object ID of the page to retrieve
 #'
 #' @importFrom gargle request_build request_make response_process
-#'
+#' @noRd
 presentations.pages.get <- function(presentationId, pageObjectId) {
   request <- gargle::request_build(
     method = "GET",
@@ -118,7 +118,7 @@ presentations.pages.get <- function(presentationId, pageObjectId) {
 #' @param pageObjectId The object ID of the page whose thumbnail to retrieve
 #' @param thumbnailProperties.thumbnailSize The optional thumbnail image size
 #' @param thumbnailProperties.mimeType The optional mime type of the thumbnail image
-#'
+#' @noRd
 #'
 presentations.pages.getThumbnail <- function(presentationId,
                                              pageObjectId,
