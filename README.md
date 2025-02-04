@@ -65,7 +65,8 @@ with `get_link(slides_id)`.
 
 ## Features
 
-All kinds of formatting including
+All kinds of formatting including:
+
 - horizontal text alignment in cells (paragraph style)
 - text run styling
 - cell styling, eg background colour, vertical alignment
@@ -73,7 +74,8 @@ All kinds of formatting including
 - highlighting
 - row/column width/height
 
-R objects
+Create table from R objects:
+
 -  flextable
 -  data.frame
 -  matrix
@@ -82,11 +84,16 @@ R objects
 
 ## Limitations
 
+As far as I know these are limitations of the Slides platform/API and flextable.
+Let me know if you find something different.
+
 ### Not possible in Slides
+
 - images in tables
 - changes to cell padding
   - May be possible to set ParagraphSyle IndentStart to a negative value?
 
 ### Not supported in flextable (AFAIK)
+
 - multiple paragraphs in cells
   - that means no left and right alignment on different lines in a cell
