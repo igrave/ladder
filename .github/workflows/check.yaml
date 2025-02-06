@@ -18,6 +18,8 @@ on:
 permissions:
   contents: 'read'
   id-token: 'write'
+  checks: 'write'
+  pull-requests: 'write'
 
 env:
   LADDER_KEY: ${{ secrets.LADDER_KEY }}
