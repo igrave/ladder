@@ -42,6 +42,9 @@ jobs:
   #       checking for unstated dependencies in vignettes .* NOTE
   #       checking top-level files .* NOTE
   r-cmd-non-cran:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
     name: R CMD Check (non-CRAN) 🧬
     uses: insightsengineering/r.pkg.template/.github/workflows/build-check-install.yaml@main
     secrets:
@@ -69,7 +72,7 @@ jobs:
       REPO_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     with:
       additional-env-vars: |
-        LADDER_KEY=$LADDER_KEY
+        LADDER_KEY=${{ env.LADDER_KEY }}
   linter:
     if: github.event_name != 'push'
     name: SuperLinter 🦸‍♀️
