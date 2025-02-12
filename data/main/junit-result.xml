@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="api_gluestick" timestamp="2025-02-12T12:48:05Z" hostname="9ff617da9968" tests="1" skipped="0" failures="0" errors="0" time="0.016">
-    <testcase time="0.016" classname="api_gluestick" name="gluestick_works"/>
+  <testsuite name="api_gluestick" timestamp="2025-02-12T19:10:23Z" hostname="b2e7e8a4cae0" tests="1" skipped="0" failures="0" errors="0" time="0.014">
+    <testcase time="0.014" classname="api_gluestick" name="gluestick_works"/>
   </testsuite>
-  <testsuite name="thumbnail" timestamp="2025-02-12T12:48:05Z" hostname="9ff617da9968" tests="4" skipped="0" failures="2" errors="1" time="0.302">
-    <testcase time="0.237" classname="thumbnail" name="get_slide_img_works">
+  <testsuite name="thumbnail" timestamp="2025-02-12T19:10:23Z" hostname="b2e7e8a4cae0" tests="4" skipped="0" failures="2" errors="1" time="0.259">
+    <testcase time="0.201" classname="thumbnail" name="get_slide_img_works">
       <failure type="failure" message="file.exists(path) is not TRUE ('test-thumbnail.R:4:3')">file.exists(path) is not TRUE
 
 `actual`:   FALSE
 `expected`: TRUE </failure>
     </testcase>
-    <testcase time="0.037" classname="thumbnail" name="get_slide_img_works">
+    <testcase time="0.034" classname="thumbnail" name="get_slide_img_works">
       <failure type="failure" message="file.size(path) &gt; 0 is not TRUE ('test-thumbnail.R:5:3')">file.size(path) &gt; 0 is not TRUE
 
 `actual`:   &lt;NA&gt;
 `expected`: TRUE</failure>
     </testcase>
-    <testcase time="0.0239999999999999" classname="thumbnail" name="get_slide_img_works"/>
-    <testcase time="0.004" classname="thumbnail" name="get_slide_img_works">
+    <testcase time="0.021" classname="thumbnail" name="get_slide_img_works"/>
+    <testcase time="0.003" classname="thumbnail" name="get_slide_img_works">
       <error type="error" message="Error in `file(con, &quot;r&quot;)`: cannot open the connection ('test-thumbnail.R:6:3')">Error in `file(con, "r")`: cannot open the connection
 Backtrace:
     x
