@@ -1,8 +1,8 @@
-pandoc: 3.1.11
+pandoc: 3.6.2
 pkgdown: 2.1.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2025-01-30T13:04Z
+last_built: 2025-02-12T12:47Z
 urls:
-  reference: https://www.r-ladder.com/reference
-  article: https://www.r-ladder.com/articles
+  reference: https://www.r-ladder.com/main/reference
+  article: https://www.r-ladder.com/main/articles
