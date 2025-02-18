@@ -132,11 +132,16 @@ table_requests <- function(ft, table_id = table_id, part = c("header", "body", "
       df <- part_content$data[i, j][[1]]
 
       if (isTRUE(part_spans$ind[i, j])) {
+        cell_text <- paste0(df$txt, collapse = "")
+        if (cell_text == "") {
+          next # InsertTextRequest can't have empty text
+        }
+
         # Add all text
         add(my_tab) <- InsertTextRequest(
           objectId = table_id,
           cellLocation = TableCellLocation(rowIndex = i_gs, columnIndex = j_gs),
-          text = paste0(df$txt, collapse = ""),
+          text = cell_text,
           insertionIndex = 0
         )
 
