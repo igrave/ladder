@@ -49,6 +49,9 @@ choose_slides <- function() {
 
 
 picker_page <- function() {
+  # Refresh token here otherwise Picker API fails
+  ladder_token()$auth_token$refresh()
+
   token <- ladder_token()
   CLIENT_ID <- token$auth_token$client$id
   # Google Picker API only Key
