@@ -1,3 +1,10 @@
+#' Create a new Google Slides presentation
+#'
+#' @returns A presentation id
+#' @export
+#'
+#' @examplesif interactive()
+#' create_slides()
 create_slides <- function() {
   p <- presentations.create(Presentation())
   slides_url(p$presentationId)
@@ -5,31 +12,72 @@ create_slides <- function() {
 }
 
 
-new_slide <- function(presentation_id, title = NULL, subtitle = NULL, layout) {
+#' Add a slide to a presentation
+#'
+#' @param presentation_id
+#' @param layout The layout to use for the slide
+#' @param title
+#' @param subtitle
+#'
+#' @returns
+#' @export
+#'
+#' @examples
+new_slide <- function(
+    presentation_id,
+    layout,
+    centered_title = NULL,
+    subtitle = NULL,
+    title = NULL,
+    body = NULL
+) {
   requests <- list()
   placeholder_mappings <- list()
 
-  if (!missing(title)) {
-    assert_string(title, min.chars = 1)
-    title_id <- new_id("title")
-    add(placeholder_mappings) <- LayoutPlaceholderIdMapping(
-      layoutPlaceholder = Placeholder(
-        type = "TITLE",
-        index = 1
-      ),
-      objectId = title_id
-    )
+  if (!is.null(title)) {
+    title_ids <- character(length(title))
+    for (i in seq_along(title)) {
+      if (is.na(title[i])) next
+      assert_string(title[[i]], min.chars = 1)
+      title_ids[i] <- new_id("title")
+      add(placeholder_mappings) <- LayoutPlaceholderIdMapping(
+        layoutPlaceholder = Placeholder(
+          type = "TITLE",
+          index = i - 1
+        ),
+        objectId = title_ids[i]
+      )
+    }
   }
-  if (!missing(subtitle)) {
-    assert_string(subtitle, min.chars = 1)
-    subtitle_id <- new_id("subtitle")
-    add(placeholder_mappings) <- LayoutPlaceholderIdMapping(
-      layoutPlaceholder = Placeholder(
-        type = "SUBTITLE",
-        index = 1
-      ),
-      objectId = subtitle_id
-    )
+
+  if (!is.null(subtitle)) {
+    subtitle_ids <- character(length(subtitle))
+    for (i in seq_along(subtitle)) {
+      assert_string(subtitle[[i]], min.chars = 1)
+      subtitle_ids[i] <- new_id("subtitle")
+      add(placeholder_mappings) <- LayoutPlaceholderIdMapping(
+        layoutPlaceholder = Placeholder(
+          type = "SUBTITLE",
+          index = i - 1
+        ),
+        objectId = subtitle_ids[i]
+      )
+    }
+  }
+
+  if (!is.null(body)) {
+    body_ids <- character(length(body))
+    for (i in seq_along(body)) {
+      assert_string(body[[i]], min.chars = 1)
+      body_ids[i] <- new_id("body")
+      add(placeholder_mappings) <- LayoutPlaceholderIdMapping(
+        layoutPlaceholder = Placeholder(
+          type = "BODY",
+          index = i - 1
+        ),
+        objectId = body_ids[i]
+      )
+    }
   }
 
   add(requests) <- CreateSlideRequest(
@@ -38,17 +86,32 @@ new_slide <- function(presentation_id, title = NULL, subtitle = NULL, layout) {
     placeholderIdMappings = placeholder_mappings
   )
 
-  if (!missing(title)) {
-    add(requests) <- InsertTextRequest(
-      objectId = title_id,
-      text = title
-    )
+  if (!is.null(title)) {
+    for (i in seq_along(title)) {
+      if (is.na(title[i])) next
+      add(requests) <- InsertTextRequest(
+        objectId = title_ids[i],
+        text = title[i]
+      )
+    }
   }
-  if (!missing(subtitle)) {
-    add(requests) <- InsertTextRequest(
-      objectId = subtitle_id,
-      text = subtitle
-    )
+
+  if (!is.null(subtitle)) {
+    for (i in seq_along(subtitle)) {
+      add(requests) <- InsertTextRequest(
+        objectId = subtitle_ids[i],
+        text = subtitle[i]
+      )
+    }
+  }
+
+  if (!is.null(body)) {
+    for (i in seq_along(body)) {
+      add(requests) <- InsertTextRequest(
+        objectId = body_ids[i],
+        text = body[i]
+      )
+    }
   }
 
   requests <- lapply(requests, trim_nulls)
