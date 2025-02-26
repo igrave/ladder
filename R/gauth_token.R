@@ -35,9 +35,8 @@ use_gauth_workflow <- function(access_token) {
 }
 
 
-httr_request <- function (method = NULL, url = NULL, headers = NULL, fields = NULL,
-                          options = NULL, auth_token = NULL, output = NULL)
-{
+httr_request <- function(method = NULL, url = NULL, headers = NULL, fields = NULL,
+                         options = NULL, auth_token = NULL, output = NULL) {
   if (!is.null(method)) {
     stopifnot(is.character(method), length(method) == 1)
   }
@@ -58,7 +57,7 @@ httr_request <- function (method = NULL, url = NULL, headers = NULL, fields = NU
                  auth_token = auth_token, output = output), class = "request")
 }
 
-keep_last <- function (...) {
+keep_last <- function(...) {
   x <- c(...)
   x[!duplicated(names(x), fromLast = TRUE)]
 }
@@ -68,4 +67,4 @@ compact <- function(x) {
   x[!empty]
 }
 
-is_empty <- function (x) length(x) == 0
+is_empty <- function(x) length(x) == 0

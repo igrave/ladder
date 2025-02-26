@@ -29,8 +29,7 @@ new_slide <- function(
     centered_title = NULL,
     subtitle = NULL,
     title = NULL,
-    body = NULL
-) {
+    body = NULL) {
   requests <- list()
   placeholder_mappings <- list()
 
@@ -131,24 +130,28 @@ get_layouts <- function(presentation_id) {
   p <- presentations.get(presentation_id)
   layouts <- p$layouts
   layout_list <- lapply(
-    layouts, function(lo) {
+    layouts,
+    function(lo) {
       objectId <- lo$objectId
       name <- lo$layoutProperties$name
       displayName <- lo$layoutProperties$displayName
 
       if (length(lo$pageElements)) {
         placeholders <- lapply(
-          lo$pageElements, function(pe) {
+          lo$pageElements,
+          function(pe) {
             objectId <- if (is.null(pe$objectId)) NA else pe$objectId
             index <- if (is.null(pe$shape$placeholder$index)) NA else pe$shape$placeholder$index
             type <- if (is.null(pe$shape$placeholder$type)) NA else pe$shape$placeholder$type
             data.frame(placeholder_objectId = objectId, index = index, type = type)
-          })
+          }
+        )
         placeholders_df <- do.call(rbind, placeholders)
       } else {
         placeholders_df <- data.frame(placeholder_objectId = NA, index = NA, type = NA)
       }
-      df <- data.frame(layout_objectId = objectId, name, displayName, placeholders_df)
-    })
+      data.frame(layout_objectId = objectId, name, displayName, placeholders_df)
+    }
+  )
   do.call(rbind.data.frame, layout_list)
 }
