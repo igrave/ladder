@@ -152,6 +152,5 @@ Request <- function(...) {
     req_list[[req_type]] <- req
     req_list
   })
-  # names(req_list) <- req_types
   structure(req_types, class = c("Request", "list"))
 }

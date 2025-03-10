@@ -15,6 +15,12 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  contents: 'read'
+  id-token: 'write'
+  checks: 'write'
+  pull-requests: 'write'
+
 env:
   LADDER_KEY: ${{ secrets.LADDER_KEY }}
 jobs:
@@ -67,9 +73,9 @@ jobs:
     uses: insightsengineering/r.pkg.template/.github/workflows/test-coverage.yaml@main
     secrets:
       REPO_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    with:
-      additional-env-vars: |
-        LADDER_KEY=$LADDER_KEY
+    # with:
+    #   additional-env-vars: |
+    #     LADDER_KEY=${{ env.LADDER_KEY }}
   linter:
     if: github.event_name != 'push'
     name: SuperLinter 🦸‍♀️

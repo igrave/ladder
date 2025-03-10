@@ -6,16 +6,11 @@
 #' @param object_id A unique id for the new object on the slides
 #' @param overwrite If TRUE and an object with `object_id` exists it will deleted and replaced.
 #' @param ... Other arguments used in methods
+#' @param digits the minimum number of significant digits, see [format]. If `NULL`
+#'   `getOption("digits")` is used.
 #'
 #' @return A presentation object after updating
 #' @export
-#'
-#' @examplesIf interactive()
-#' \donttest{
-#' s <- choose_slides()
-#' obj <- iris[1:5, ]
-#' add_to_slides(obj, s, on = 1, object_id = "iris_table")
-#' }
 #'
 add_to_slides <- function(object, presentation_id, on = NULL, object_id, overwrite, ...) {
   UseMethod("add_to_slides")

@@ -1,5 +1,27 @@
 url: https://www.r-ladder.com
 template:
   bootstrap: 5
-  bootswatch: darkly
+  bootswatch: flatly
+  light-switch: true
 
+reference:
+- title: Slides functions
+  contents:
+  - add_to_slides
+  - choose_slides
+  - get_object_ids
+  - get_slide_ids
+  - slides_url
+  - view_slide
+  - new_slide
+  - get_layouts
+  - create_slides
+- title: Auth functions
+  contents:
+  - ladder_auth
+  - ladder_auth_configure
+  - ladder_deauth
+  - ladder_has_token
+  - ladder_token
+  - ladder_user
+  - use_gauth_workflow

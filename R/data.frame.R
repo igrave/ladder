@@ -1,23 +1,14 @@
-#' Add data frame to Slides
-#'
-#' @param object A data.frame
-#' @param presentation_id The id from the Slides presentation
-#' @param object_id A unique id for the table
-#' @param on The id or number of the slide to add to
-#' @param digits the minimum number of significant digits, see [format]. If `NULL`
-#'   `getOption("digits")` is used.
-#' @param overwrite If TRUE and an object with `object_id` exists it will deleted and replaced.
-#' @param ... Not used in this method
-#'
-#' @return A presentation object after updating
+
 #' @details
-#' The data frame is added as a table with the column names in bold as the first row.
+#' A data.frame object is added as a table with the column names in bold as the first row.
 #' For other formatting use the `flextable` package and [add_to_slides.flextable].
 #'
+#' @rdname add_to_slides
 #' @export
 #'
 #' @examplesIf interactive()
 #' \donttest{
+#' ## Add a data.frame
 #' s <- choose_slides()
 #' obj <- iris[1:5, ]
 #' add_to_slides(obj, s, on = 1)

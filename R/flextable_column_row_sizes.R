@@ -14,7 +14,7 @@ column_row_requests <- function(table_id, row_offset, widths, heights) {
       objectId = table_id,
       columnIndices = cols,
       tableColumnProperties = TableColumnProperties(
-        columnWidth = Dimension(width * 914400, unit = "EMU")
+        columnWidth = Dimension(max(width * 914400, 406400), unit = "EMU")
       ),
       fields = "columnWidth"
     )

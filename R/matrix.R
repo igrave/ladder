@@ -1,22 +1,11 @@
-#' Add matrix to Slides
-#'
-#' @param object A matrix
-#' @param presentation_id The id from the Slides presentation
-#' @param object_id A unique id for the table
-#' @param on The id or number of the slide to add to
-#' @param digits the minimum number of significant digits, see [format]. If `NULL`
-#'   `getOption("digits")` is used.
-#' @param overwrite If TRUE and an object with `object_id` exists it will deleted and replaced.
-#' @param ... Not used in this method
-#'
-#' @return A presentation object is returned invisibly
 #' @details
-#' The matrix is added as a table without any row or column names.
-#'
+#' A matrix object is added as a table without any row or column names.
+#' @rdname add_to_slides
 #' @export
 #'
 #' @examplesIf interactive()
 #' \donttest{
+#' ## Add a matrix
 #' s <- choose_slides()
 #' obj <- cov(iris[, 1:4])
 #' add_to_slides(obj, s, on = 1)
