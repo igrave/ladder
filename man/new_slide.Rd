@@ -18,7 +18,7 @@ new_slide(
 
 \item{layout}{The layout to use for the slide. See \link{get_layouts}.}
 
-\item{centered_title}{Character vector to be inserted into the centered title placeholders in
+\item{centered_title}{Character vector to be inserted into the "centered_title" placeholders in
 order as for \code{title}}
 
 \item{subtitle}{Character vector to be inserted into the subtitle placeholders in order as for

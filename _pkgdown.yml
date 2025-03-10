@@ -13,6 +13,9 @@ reference:
   - get_slide_ids
   - slides_url
   - view_slide
+  - new_slide
+  - get_layouts
+  - create_slides
 - title: Auth functions
   contents:
   - ladder_auth

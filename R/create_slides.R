@@ -20,7 +20,7 @@ create_slides <- function() {
 #'   entries will be skip the corresponding placeholder.
 #' @param subtitle Character vector to be inserted into the subtitle placeholders in order as for
 #'   `title`
-#' @param centered_title Character vector to be inserted into the centered title placeholders in
+#' @param centered_title Character vector to be inserted into the "centered_title" placeholders in
 #'   order as for `title`
 #' @param body Character vector to be inserted into the body placeholders in order as for `title`
 #'
