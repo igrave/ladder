@@ -3,7 +3,7 @@
 #' @returns A presentation id
 #' @export
 #'
-#' @examplesif interactive()
+#' @examplesIf interactive()
 #' create_slides()
 create_slides <- function() {
   p <- presentations.create(Presentation())
@@ -14,15 +14,26 @@ create_slides <- function() {
 
 #' Add a slide to a presentation
 #'
-#' @param presentation_id
-#' @param layout The layout to use for the slide
-#' @param title
-#' @param subtitle
+#' @param presentation_id The presentation id
+#' @param layout The layout to use for the slide. See [get_layouts].
+#' @param title Character vector to be inserted into the title placeholders in order. Any `NA`
+#'   entries will be skip the corresponding placeholder.
+#' @param subtitle Character vector to be inserted into the subtitle placeholders in order as for
+#'   `title`
+#' @param centered_title Character vector to be inserted into the centered title placeholders in
+#'   order as for `title`
+#' @param body Character vector to be inserted into the body placeholders in order as for `title`
 #'
-#' @returns
+#' @returns The result of the API call. TODO format this object
 #' @export
 #'
-#' @examples
+#' @examplesIf interactive()
+#' \donttest{
+#' s <- create_slides()
+#' layout <- get_layouts(s)
+#' layout_p9 <- layout$layout_objectId[20]
+#' new_slide(s, layout_p9, title = "Slide Title", subtitle = "A Subtitle", body = "Body Text")
+#' }
 new_slide <- function(
     presentation_id,
     layout,
@@ -122,10 +133,20 @@ new_slide <- function(
       requests = requests
     )
   )
-  result
+
+  slides_url(result$presentationId, result$replies[[1]]$createSlide$objectId)
 }
 
-
+#' Get layouts from a presentation
+#' @param presentation_id The presentation id
+#' @return A data frame with columns `layout_objectId`, `name`, `displayName`, and `placeholders_df`
+#' @export
+#' @examplesIf interactive()
+#' \donttest{
+#' s <- choose_slides()
+#' get_layouts(s)
+#' }
+#'
 get_layouts <- function(presentation_id) {
   p <- presentations.get(presentation_id)
   layouts <- p$layouts

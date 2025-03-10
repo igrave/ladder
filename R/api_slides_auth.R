@@ -277,8 +277,8 @@ ladder_auth_internal <- function(account = c("testing"),
 
 #' Authenticate with a WIF Token from Github Actions
 #' @param ... Arguments passed to `gargle::credentials_github_actions()`.
-#' @export
-ladder_auth_gha_workflow <- function(...) {
-  token <- gargle::credentials_github_actions(...)
-  .auth$set_cred(token)
-}
+# ladder_auth_gha_workflow <- function(...) {
+#   # Proposed addition to gargle
+#   token <- gargle::credentials_github_actions(...)
+#   .auth$set_cred(token)
+# }
