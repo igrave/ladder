@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="api_gluestick" timestamp="2025-04-24T13:23:16Z" hostname="778a0cfb80da" tests="1" skipped="0" failures="0" errors="0" time="0.015">
+    <testcase time="0.015" classname="api_gluestick" name="gluestick_works"/>
+  </testsuite>
+  <testsuite name="thumbnail" timestamp="2025-04-24T13:23:16Z" hostname="778a0cfb80da" tests="2" skipped="0" failures="0" errors="0" time="0.114">
+    <testcase time="0.11" classname="thumbnail" name="id_token_variables_exist"/>
+    <testcase time="0.004" classname="thumbnail" name="id_token_variables_exist"/>
+  </testsuite>
+</testsuites>
