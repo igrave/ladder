@@ -59,6 +59,10 @@ picker_page <- function() {
   APP_ID <- "1073903696751"
   TOKEN <- token$auth_token$credentials$access_token
 
+  # Convert logo to Base64
+  logo_path <- "man/figures/logo.svg"
+  logo_base64 <- base64enc::dataURI(file = logo_path, mime = "image/svg+xml")
+
   body <- gluestick(
     r"--(
 <!DOCTYPE html>
@@ -66,126 +70,154 @@ picker_page <- function() {
 <head>
   <title>Choose Slides for ladder</title>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootswatch Flatly Theme -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.1/dist/flatly/bootstrap.min.css">
+  <style>
+    .container {
+      max-width: 800px;
+      padding: 2rem;
+    }
+    .logo-container {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .logo {
+      max-width: 150px;
+      height: auto;
+    }
+    .btn-primary {
+      margin-top: 1rem;
+    }
+    #content {
+      margin-top: 2rem;
+      padding: 1rem;
+      background-color: #f8f9fa;
+      border-radius: 0.25rem;
+    }
+    .card {
+      margin-top: 2rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
 <body>
-<p>Choose Slides for ladder</p>
+  <div class="container">
+    <div class="card">
+      <div class="card-body">
+        <div class="logo-container">
+          <img src="{{logo_base64}}" alt="ladder logo" class="logo">
+          <h2 class="mt-3">Choose Slides for ladder</h2>
+          <p class="text-muted">Select a Google Slides presentation to use with ladder</p>
+        </div>
 
-<!--Add buttons to initiate auth sequence and sign out-->
-<button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
+        <div class="d-grid gap-2">
+          <button id="authorize_button" onclick="handleAuthClick()" class="btn btn-primary">Choose Presentation</button>
+        </div>
 
-<pre id="content" style="white-space: pre-wrap;"></pre>
+        <div class="alert alert-success mt-3" role="alert" id="status-container" style="display: none;">
+          <pre id="content" style="white-space: pre-wrap;"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<script type="text/javascript">
-  /* exported gapiLoaded */
-  /* exported gisLoaded */
-  /* exported handleAuthClick */
-  /* exported handleSignoutClick */
+  <script type="text/javascript">
+    // Authorization scopes required by the API; multiple scopes can be
+    // included, separated by spaces.
+    const SCOPES = 'https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/presentations.currentonly';
 
-  // Authorization scopes required by the API; multiple scopes can be
-  // included, separated by spaces.
-  const SCOPES = 'https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/presentations.currentonly';
+    // client ID and API key from the Developer Console
 
-  // client ID and API key from the Developer Console
+    const API_KEY = '{{API_KEY}}';
+    const APP_ID = '{{APP_ID}}';
+    const RAT = '{{TOKEN}}';
 
-  const API_KEY = '{{API_KEY}}';
-  const APP_ID = '{{APP_ID}}';
-  const RAT = '{{TOKEN}}';
+    let tokenClient;
+    let accessToken = RAT;
 
-  let tokenClient;
-  let accessToken = RAT;
-
-  let accessToken2 = RAT;
-  let pickerInited = false;
-  let gisInited = false;
-
-
-  document.getElementById('authorize_button').style.visibility = 'hidden';
-
-  /**
-   * Callback after api.js is loaded.
-   */
-  function gapiLoaded() {
-    gapi.load('client:picker', initializePicker);
-  }
-
-  /**
-   * Callback after the API client is loaded. Loads the
-   * discovery doc to initialize the API.
-   */
-  async function initializePicker() {
-    await gapi.client.load('https://www.googleapis.com/discovery/v1/apis/drive/v3/rest');
-    pickerInited = true;
-    maybeEnableButtons();
-  }
+    let accessToken2 = RAT;
+    let pickerInited = false;
+    let gisInited = false;
 
 
+    document.getElementById('authorize_button').style.visibility = 'hidden';
 
-  /**
-   * Enables user interaction after all libraries are loaded.
-   */
-  function maybeEnableButtons() {
-    if (pickerInited) {
-      document.getElementById('authorize_button').style.visibility = 'visible';
+    /**
+     * Callback after api.js is loaded.
+     */
+    function gapiLoaded() {
+      gapi.load('client:picker', initializePicker);
     }
-  }
 
-  /**
-   *  Sign in the user upon button click.
-   */
-  function handleAuthClick() {
-    createPicker();
-//  await createPicker();
-  }
-
-
-  //  Create and render a Picker object for searching presentations
-  function createPicker() {
-    accessToken = RAT;
-    const view = new google.picker.View(google.picker.ViewId.PRESENTATIONS);
-    const picker = new google.picker.PickerBuilder()
-        //.enableFeature(google.picker.Feature.NAV_HIDDEN)
-        //.enableFeature(google.picker.Feature.MULTISELECT_ENABLED)
-        .setDeveloperKey(API_KEY)
-        .setAppId(APP_ID)
-        .setOAuthToken(accessToken)
-        .addView(view)
-        //.addView(new google.picker.DocsUploadView())
-        .setCallback(pickerCallback)
-        .build();
-    picker.setVisible(true);
-  }
-
-  /**
-   * Displays the file details of the user's selection.
-   * @param {object} data - Containers the user selection from the picker
-   */
-  async function pickerCallback(data) {
-    if (data.action === google.picker.Action.PICKED) {
-
-
-
-      const document = data[google.picker.Response.DOCUMENTS][0];
-      const fileId = document[google.picker.Document.ID];
-      const fileURL = document[google.picker.Document.URL];
-      let text = `ladder authorised to use\n ${fileURL}\n`;
-
-
-      console.log(fileId);
-      console.log(fileURL);
-
-      window.document.getElementById('content').innerText = text;
-
-      var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
-      var theUrl = "response?slides=" + fileId;
-      xmlhttp.open("GET", theUrl);
-      xmlhttp.send();
+    /**
+     * Callback after the API client is loaded. Loads the
+     * discovery doc to initialize the API.
+     */
+    async function initializePicker() {
+      await gapi.client.load('https://www.googleapis.com/discovery/v1/apis/drive/v3/rest');
+      pickerInited = true;
+      maybeEnableButtons();
     }
-  }
-</script>
-<script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+
+    /**
+     * Enables user interaction after all libraries are loaded.
+     */
+    function maybeEnableButtons() {
+      if (pickerInited) {
+        document.getElementById('authorize_button').style.visibility = 'visible';
+      }
+    }
+
+    /**
+     *  Sign in the user upon button click.
+     */
+    function handleAuthClick() {
+      createPicker();
+    }
+
+    //  Create and render a Picker object for searching presentations
+    function createPicker() {
+      accessToken = RAT;
+      const view = new google.picker.View(google.picker.ViewId.PRESENTATIONS);
+      const picker = new google.picker.PickerBuilder()
+          .setDeveloperKey(API_KEY)
+          .setAppId(APP_ID)
+          .setOAuthToken(accessToken)
+          .addView(view)
+          .setCallback(pickerCallback)
+          .build();
+      picker.setVisible(true);
+    }
+
+    /**
+     * Displays the file details of the user's selection.
+     * @param {object} data - Containers the user selection from the picker
+     */
+    async function pickerCallback(data) {
+      if (data.action === google.picker.Action.PICKED) {
+        const document = data[google.picker.Response.DOCUMENTS][0];
+        const fileId = document[google.picker.Document.ID];
+        const fileURL = document[google.picker.Document.URL];
+        let text = `ladder authorised to use\n ${fileURL}\n`;
+
+        console.log(fileId);
+        console.log(fileURL);
+
+ // set container with status-container id display visible
+        document.getElementById('status-container').style.display = 'block';
+        window.document.getElementById('content').innerText = text;
+
+        var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+        var theUrl = "response?slides=" + fileId;
+        xmlhttp.open("GET", theUrl);
+        xmlhttp.send();
+      }
+    }
+  </script>
+  <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
 </body>
 </html>
-
 )--"
   )
 
