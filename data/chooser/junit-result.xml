@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="api_gluestick" timestamp="2025-04-25T07:56:59Z" hostname="6a18b275f1bd" tests="1" skipped="0" failures="0" errors="0" time="0.014">
-    <testcase time="0.014" classname="api_gluestick" name="gluestick_works"/>
+  <testsuite name="api_gluestick" timestamp="2025-04-25T12:25:44Z" hostname="8a59d5b0f9b3" tests="1" skipped="0" failures="0" errors="0" time="0.017">
+    <testcase time="0.017" classname="api_gluestick" name="gluestick_works"/>
   </testsuite>
-  <testsuite name="functions" timestamp="2025-04-25T07:56:59Z" hostname="6a18b275f1bd" tests="3" skipped="0" failures="0" errors="0" time="0.11">
-    <testcase time="0.089" classname="functions" name="extract_id_works_with_url"/>
-    <testcase time="0.014" classname="functions" name="extract_id_works_with_empty_string"/>
-    <testcase time="0.00699999999999995" classname="functions" name="extract_id_works_with_non_matching_string"/>
+  <testsuite name="functions" timestamp="2025-04-25T12:25:44Z" hostname="8a59d5b0f9b3" tests="3" skipped="0" failures="0" errors="0" time="0.148">
+    <testcase time="0.125" classname="functions" name="extract_id_works_with_url"/>
+    <testcase time="0.016" classname="functions" name="extract_id_works_with_empty_string"/>
+    <testcase time="0.00700000000000001" classname="functions" name="extract_id_works_with_non_matching_string"/>
   </testsuite>
-  <testsuite name="thumbnail" timestamp="2025-04-25T07:56:59Z" hostname="6a18b275f1bd" tests="1" skipped="1" failures="0" errors="0" time="0.019">
-    <testcase time="0.019" classname="thumbnail" name="id_token_variables_exist">
-      <skipped message="Reason: empty test ('test-thumbnail.R:2:1')"/>
+  <testsuite name="thumbnail" timestamp="2025-04-25T12:25:44Z" hostname="8a59d5b0f9b3" tests="1" skipped="1" failures="0" errors="0" time="0.021">
+    <testcase time="0.0209999999999999" classname="thumbnail" name="id_token_variables_exist">
+      <skipped message="Reason: empty test ('test-thumbnail.R:1:1')"/>
     </testcase>
   </testsuite>
 </testsuites>
