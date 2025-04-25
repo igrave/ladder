@@ -54,18 +54,17 @@ choose_slides <- function(presentation = NULL) {
 
 
 picker_page <- function(file_id = "") {
-  token <- ladder_token()
-  CLIENT_ID <- token$auth_token$client$id
-  # Google Picker API only Key
-  API_KEY <- paste("AIzaSyAyLt5QNsDtC73", "fbV7ayndchq5iEzyy-k", sep = "_")
-  APP_ID <- "1073903696751"
-  TOKEN <- token$auth_token$credentials$access_token
-
-  # Convert logo to Base64
+  ladder_token <- ladder_token()
   logo_path <- system.file("help/figures/logo.svg", package = "ladder")
-  logo_base64 <- base64enc::dataURI(file = logo_path, mime = "image/svg+xml")
 
   body <- gluestick(
+    src = list(
+      API_KEY = paste("AIzaSyAyLt5QNsDtC73", "fbV7ayndchq5iEzyy-k", sep = "_"),  # Google Picker API only Key
+      APP_ID = "1073903696751",
+      TOKEN = ladder_token$auth_token$credentials$access_token,
+      SVG_LOGO = paste(readLines(logo_path), collapse = "\n"),
+      FILE_ID = file_id
+    ),
     r"--(
 <!DOCTYPE html>
 <html>
@@ -102,7 +101,7 @@ picker_page <- function(file_id = "") {
     <div class="card">
       <div class="card-body">
         <div class="logo-container">
-          <img src="{{logo_base64}}" alt="ladder logo" class="logo">
+          <div class="logo">{{SVG_LOGO}}</div>
           <h2 class="mt-3">Choose Slides for ladder</h2>
           <p class="text-muted">Select a Google Slides presentation to use with ladder</p>
         </div>
@@ -121,7 +120,8 @@ picker_page <- function(file_id = "") {
   <script type="text/javascript">
     // Authorization scopes required by the API; multiple scopes can be
     // included, separated by spaces.
-    const SCOPES = 'https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/presentations.currentonly';
+    const SCOPES = 'https://www.googleapis.com/auth/drive.file' + 
+      ' https://www.googleapis.com/auth/presentations.currentonly';
 
     // client ID and API key from the Developer Console
 
@@ -130,7 +130,7 @@ picker_page <- function(file_id = "") {
     const RAT = '{{TOKEN}}';
 
 
-    const FILE_ID = '{{file_id}}';
+    const FILE_ID = '{{FILE_ID}}';
 
     let tokenClient;
     let accessToken = RAT;

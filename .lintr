@@ -3,6 +3,7 @@ linters: linters_with_defaults(
   )
 exclusions: list(
     "R/api_objects.R",
+    "R/api_object_request.R",
     "R/api_functions.R"
   ) # see vignette("lintr")
 encoding: "UTF-8"
