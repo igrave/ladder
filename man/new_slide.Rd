@@ -36,7 +36,7 @@ The result of the API call. TODO format this object
 Add a slide to a presentation
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 \donttest{
 s <- create_slides()
 layout <- get_layouts(s)

@@ -16,7 +16,7 @@ A vector of slide ids.
 Get ids of Slides pages
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 \donttest{
 s <- choose_slides()
 get_slide_ids(s)

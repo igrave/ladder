@@ -70,7 +70,7 @@ A flextable object is added with all formatting.
 A matrix object is added as a table without any row or column names.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 \donttest{
 ## Add a data.frame
 s <- choose_slides()
@@ -78,7 +78,7 @@ obj <- iris[1:5, ]
 add_to_slides(obj, s, on = 1)
 }
 \dontshow{\}) # examplesIf}
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 \donttest{
 ## Add a flextable
 s <- choose_slides()
@@ -90,7 +90,7 @@ ft <- autofit(ft)
 add_to_slides(ft, s, on = 1)
 }
 \dontshow{\}) # examplesIf}
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 \donttest{
 ## Add a matrix
 s <- choose_slides()

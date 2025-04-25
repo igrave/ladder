@@ -2,7 +2,7 @@
 #'
 #' Opens a webpage for a user to authenticate with Google and select a presentation. This
 #' presentation is then authorised for use with ladder.
-#'
+#' @param presentation A string containing the presentation link/URL or the presentation ID.
 #' @return A presentation id
 #'
 #' @export
@@ -11,9 +11,14 @@
 #' \donttest{
 #' id <- choose_slides()
 #' }
-choose_slides <- function() {
+choose_slides <- function(presentation = NULL) {
   request_url <- "http://localhost:1410/index.html"
   auth_slide_id <- NULL
+
+  # Refresh token here otherwise Picker API fails
+  ladder_token()$auth_token$refresh()
+
+  file_id <- extract_id(presentation)
 
   server <- httpuv::startServer(
     host = "127.0.0.1",
@@ -23,7 +28,7 @@ choose_slides <- function() {
         if (nchar(req$QUERY_STRING)) {
           auth_slide_id <<- sub("?slides=", "", req$QUERY_STRING, fixed = TRUE)
         } else {
-          picker_page()
+          picker_page(file_id)
         }
       }
     )
@@ -48,10 +53,7 @@ choose_slides <- function() {
 }
 
 
-picker_page <- function() {
-  # Refresh token here otherwise Picker API fails
-  ladder_token()$auth_token$refresh()
-
+picker_page <- function(file_id = "") {
   token <- ladder_token()
   CLIENT_ID <- token$auth_token$client$id
   # Google Picker API only Key
@@ -60,7 +62,7 @@ picker_page <- function() {
   TOKEN <- token$auth_token$credentials$access_token
 
   # Convert logo to Base64
-  logo_path <- "man/figures/logo.svg"
+  logo_path <- system.file("help/figures/logo.svg", package = "ladder")
   logo_base64 <- base64enc::dataURI(file = logo_path, mime = "image/svg+xml")
 
   body <- gluestick(
@@ -89,12 +91,6 @@ picker_page <- function() {
     .btn-primary {
       margin-top: 1rem;
     }
-    #content {
-      margin-top: 2rem;
-      padding: 1rem;
-      background-color: #f8f9fa;
-      border-radius: 0.25rem;
-    }
     .card {
       margin-top: 2rem;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -113,11 +109,11 @@ picker_page <- function() {
 
         <div class="d-grid gap-2">
           <button id="authorize_button" onclick="handleAuthClick()" class="btn btn-primary">Choose Presentation</button>
+          <div id="response"></div>
         </div>
 
-        <div class="alert alert-success mt-3" role="alert" id="status-container" style="display: none;">
-          <pre id="content" style="white-space: pre-wrap;"></pre>
-        </div>
+
+
       </div>
     </div>
   </div>
@@ -132,6 +128,9 @@ picker_page <- function() {
     const API_KEY = '{{API_KEY}}';
     const APP_ID = '{{APP_ID}}';
     const RAT = '{{TOKEN}}';
+
+
+    const FILE_ID = '{{file_id}}';
 
     let tokenClient;
     let accessToken = RAT;
@@ -179,7 +178,13 @@ picker_page <- function() {
     //  Create and render a Picker object for searching presentations
     function createPicker() {
       accessToken = RAT;
-      const view = new google.picker.View(google.picker.ViewId.PRESENTATIONS);
+      let view = new google.picker.DocsView(google.picker.ViewId.PRESENTATIONS)
+          .setMode(google.picker.DocsViewMode.LIST);
+
+      if (FILE_ID !== "") {
+        view = view.setFileIds(FILE_ID);
+      }
+
       const picker = new google.picker.PickerBuilder()
           .setDeveloperKey(API_KEY)
           .setAppId(APP_ID)
@@ -199,15 +204,27 @@ picker_page <- function() {
         const document = data[google.picker.Response.DOCUMENTS][0];
         const fileId = document[google.picker.Document.ID];
         const fileURL = document[google.picker.Document.URL];
+        const fileName = document[google.picker.Document.NAME];
+        const iconURL = document[google.picker.Document.ICON_URL];
         let text = `ladder authorised to use\n ${fileURL}\n`;
 
-        console.log(fileId);
-        console.log(fileURL);
 
- // set container with status-container id display visible
-        document.getElementById('status-container').style.display = 'block';
-        window.document.getElementById('content').innerText = text;
+        let response_content = `
+        <div class="alert alert-primary mt-3" role="alert">
+          <h4 class="alert-heading">Authorisation successful</h4>
+          <p>
+            <img src="${iconURL}" alt="Google Slides" class="img-fluid" style="max-width: 50px;">
+            ${fileName}
+            <a href="${fileURL}" target="_blank">[Link]</a>
+          </p>
+          <p class="mb-0">Please close this window and return to R.</p>
+        `;
+        window.document.getElementById('response').innerHTML = response_content;
 
+        // hide authorize_button
+        window.document.getElementById('authorize_button').style.display = 'none';
+
+        // send fileId to R
         var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
         var theUrl = "response?slides=" + fileId;
         xmlhttp.open("GET", theUrl);

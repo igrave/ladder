@@ -2491,7 +2491,7 @@ ThemeColorPair <- function(
 #' @details
 #' Request message for PresentationsService.BatchUpdatePresentation.
 #'
-#' @param requests (list of [Request] objects)
+#' @param requests (list of Request objects)
 #'  A list of updates to apply to the presentation.
 #' @param writeControl ([WriteControl])
 #'  Provides control over how write requests are executed.
@@ -4287,7 +4287,6 @@ BatchUpdatePresentationResponse <- function(
 #'  The result of grouping objects.
 #'
 #' @return Response object
-#'
 #' @noRd
 Response <- function(
     createSlide = NULL,

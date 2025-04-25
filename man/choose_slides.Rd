@@ -4,7 +4,10 @@
 \alias{choose_slides}
 \title{Choose Slides presentation}
 \usage{
-choose_slides()
+choose_slides(presentation = NULL)
+}
+\arguments{
+\item{presentation}{A string containing the presentation link/URL or the presentation ID.}
 }
 \value{
 A presentation id
@@ -14,7 +17,7 @@ Opens a webpage for a user to authenticate with Google and select a presentation
 presentation is then authorised for use with ladder.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 \donttest{
 id <- choose_slides()
 }

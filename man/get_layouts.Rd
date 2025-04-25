@@ -16,7 +16,7 @@ A data frame with columns \code{layout_objectId}, \code{name}, \code{displayName
 Get layouts from a presentation
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 \donttest{
 s <- choose_slides()
 get_layouts(s)

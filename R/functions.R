@@ -51,3 +51,24 @@ on_slide_id <- function(presentation_id, on) {
   }
   this_slide_id
 }
+
+
+#' Extract the Presentation ID from a URL string
+#'
+#' @param presentation A string containing the presentation URL
+#' See [slides_url()] for the inverse operation.
+#' @returns The file ID of the presentation
+#' @export
+#' @examples 
+#' extract_id("https://docs.google.com/presentation/d/1RbEmFUkKs6gBp4ZMABQ/present?slide=id.p5")
+extract_id <- function(presentation) {
+  if (!is.null(presentation)) {
+      if (grepl("docs.google.com", presentation, fixed = TRUE)) {
+        sub("/.*$", "", sub("^.*/d/", "", presentation))
+      } else {
+        presentation
+      }
+  } else {
+    ""
+  }
+}
