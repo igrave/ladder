@@ -35,4 +35,3 @@ get_object_ids <- function(presentation_id) {
   )
   lapply(result$slides, unlist, use.names = FALSE)
 }
-
