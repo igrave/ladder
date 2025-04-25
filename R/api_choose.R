@@ -59,7 +59,7 @@ picker_page <- function(file_id = "") {
 
   body <- gluestick(
     src = list(
-      API_KEY = paste("AIzaSyAyLt5QNsDtC73", "fbV7ayndchq5iEzyy-k", sep = "_"),  # Google Picker API only Key
+      API_KEY = paste("AIzaSyAyLt5QNsDtC73", "fbV7ayndchq5iEzyy-k", sep = "_"), # Google Picker API only Key
       APP_ID = "1073903696751",
       TOKEN = ladder_token$auth_token$credentials$access_token,
       SVG_LOGO = paste(readLines(logo_path), collapse = "\n"),
@@ -120,7 +120,7 @@ picker_page <- function(file_id = "") {
   <script type="text/javascript">
     // Authorization scopes required by the API; multiple scopes can be
     // included, separated by spaces.
-    const SCOPES = 'https://www.googleapis.com/auth/drive.file' + 
+    const SCOPES = 'https://www.googleapis.com/auth/drive.file' +
       ' https://www.googleapis.com/auth/presentations.currentonly';
 
     // client ID and API key from the Developer Console
