@@ -4,7 +4,10 @@
 \alias{choose_slides}
 \title{Choose Slides presentation}
 \usage{
-choose_slides()
+choose_slides(presentation = NULL)
+}
+\arguments{
+\item{presentation}{A string containing the presentation link/URL or the presentation ID.}
 }
 \value{
 A presentation id

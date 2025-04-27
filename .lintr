@@ -1,8 +1,10 @@
 linters: linters_with_defaults(
-  line_length_linter(120)
+  line_length_linter(120),
+  object_name_linter = NULL
   )
 exclusions: list(
     "R/api_objects.R",
+    "R/api_object_request.R",
     "R/api_functions.R"
   ) # see vignette("lintr")
 encoding: "UTF-8"

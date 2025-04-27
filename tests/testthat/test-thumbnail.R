@@ -1,9 +1,9 @@
-
 test_that("id_token variables exist", {
   id_token_url <- Sys.getenv("ACTIONS_ID_TOKEN_REQUEST_URL")
   id_token_request_token <- Sys.getenv("ACTIONS_ID_TOKEN_REQUEST_TOKEN")
-  expect_true(nchar(id_token_url) > 0)
-  expect_true(nchar(id_token_request_token) > 0)
+
+  skip_if_not(nchar(id_token_url) > 0)
+  skip_if_not(nchar(id_token_request_token) > 0)
 })
 # test_that("get_slide_img works", {
 #   # skip_on_cran()

@@ -58,7 +58,7 @@ ladder_auth <- function(email = gargle::gargle_oauth_email(),
                         token = NULL) {
   cred <- gargle::token_fetch(
     scopes = scopes,
-    app = ladder_oauth_client() %||% builtin_ladder_oauth_client(),
+    app = if (is.null(ladder_oauth_client())) builtin_ladder_oauth_client() else ladder_oauth_client(),
     email = email,
     path = path,
     subject = subject,
