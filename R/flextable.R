@@ -34,11 +34,12 @@ make_table <- function(ft, table_id = new_id("table"), pageObjectId = "p") {
   reqs
 }
 
+
+#' @include generics.R
 #' @export
 #' @rdname add_to_slides
 #' @details A flextable object is added with all formatting.
 #' @examplesIf interactive()
-#' \donttest{
 #' ## Add a flextable
 #' s <- choose_slides()
 #' library(flextable)
@@ -47,7 +48,6 @@ make_table <- function(ft, table_id = new_id("table"), pageObjectId = "p") {
 #' ft <- color(ft, i = 1:3, j = 1:2, "pink", part = "body")
 #' ft <- autofit(ft)
 #' add_to_slides(ft, s, on = 1)
-#' }
 add_to_slides.flextable <- function(object,
                                     presentation_id,
                                     on = NULL,

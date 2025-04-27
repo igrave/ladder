@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_slides.R
 \name{new_slide}
 \alias{new_slide}
-\title{Add a slide to a presentation}
+\title{Add a new slide to a presentation}
 \usage{
 new_slide(
   presentation_id,
@@ -30,18 +30,17 @@ entries will be skip the corresponding placeholder.}
 \item{body}{Character vector to be inserted into the body placeholders in order as for \code{title}}
 }
 \value{
-The result of the API call. TODO format this object
+The URL of the new slide.
+This function is mostly used for its side effect of adding a slide to the presentation.
 }
 \description{
-Add a slide to a presentation
+Add a new slide to a presentation
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-\donttest{
 s <- create_slides()
 layout <- get_layouts(s)
 layout_p9 <- layout$layout_objectId[20]
 new_slide(s, layout_p9, title = "Slide Title", subtitle = "A Subtitle", body = "Body Text")
-}
 \dontshow{\}) # examplesIf}
 }

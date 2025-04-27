@@ -6,10 +6,8 @@
 #'
 #' @export
 #' @examplesIf interactive()
-#' \donttest{
 #' s <- choose_slides()
 #' get_slide_ids(s)
-#' }
 get_slide_ids <- function(presentation_id) {
   result <- presentations.get(presentation_id, params = list(fields = "slides(objectId)"))
   setNames(unlist(result), seq_along(result))
@@ -24,10 +22,8 @@ get_slide_ids <- function(presentation_id) {
 #'   all object ids on that page. Contains ids for all tables, images, lines, shapes, etc.
 #'
 #' @examplesIf interactive()
-#' \donttest{
 #' s <- choose_slides()
 #' get_object_ids(s)
-#' }
 get_object_ids <- function(presentation_id) {
   result <- presentations.get(
     presentation_id,
