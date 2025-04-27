@@ -19,3 +19,4 @@ Extract the Presentation ID from a URL string
 \examples{
 extract_id("https://docs.google.com/presentation/d/1RbEmFUkKs6gBp4ZMABQ/present?slide=id.p5")
 }
+\keyword{internal}
