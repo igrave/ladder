@@ -1,4 +1,3 @@
-
 # test_that("id_token variables exist", {
 #   id_token_url <- Sys.getenv("ACTIONS_ID_TOKEN_REQUEST_URL")
 #   id_token_request_token <- Sys.getenv("ACTIONS_ID_TOKEN_REQUEST_TOKEN")
