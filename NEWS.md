@@ -1,6 +1,6 @@
-# ladder 0.0.0.9008
+# ladder 0.0.1
 
 * Initial implementation
-* Supports data.frame, matrix and flextable
+* Supports adding data.frame, matrix and flextable objects to slides
 * Get preview image of slides
-* Slide picker
+* Implemend slide picker to select and authorise presentation for use with ladder
