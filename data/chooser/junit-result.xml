@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="api_gluestick" timestamp="2025-04-25T13:28:17Z" hostname="fadc6070e660" tests="1" skipped="0" failures="0" errors="0" time="0.015">
+  <testsuite name="api_gluestick" timestamp="2025-04-27T08:51:25Z" hostname="3ae513807b1f" tests="1" skipped="0" failures="0" errors="0" time="0.015">
     <testcase time="0.015" classname="api_gluestick" name="gluestick_works"/>
   </testsuite>
-  <testsuite name="functions" timestamp="2025-04-25T13:28:17Z" hostname="fadc6070e660" tests="3" skipped="0" failures="0" errors="0" time="0.128">
-    <testcase time="0.107" classname="functions" name="extract_id_works_with_url"/>
-    <testcase time="0.014" classname="functions" name="extract_id_works_with_empty_string"/>
+  <testsuite name="functions" timestamp="2025-04-27T08:51:25Z" hostname="3ae513807b1f" tests="3" skipped="0" failures="0" errors="0" time="0.13">
+    <testcase time="0.108" classname="functions" name="extract_id_works_with_url"/>
+    <testcase time="0.015" classname="functions" name="extract_id_works_with_empty_string"/>
     <testcase time="0.00700000000000001" classname="functions" name="extract_id_works_with_non_matching_string"/>
   </testsuite>
-  <testsuite name="thumbnail" timestamp="2025-04-25T13:28:17Z" hostname="fadc6070e660" tests="1" skipped="1" failures="0" errors="0" time="0.019">
-    <testcase time="0.019" classname="thumbnail" name="id_token_variables_exist">
+  <testsuite name="thumbnail" timestamp="2025-04-27T08:51:26Z" hostname="3ae513807b1f" tests="1" skipped="1" failures="0" errors="0" time="0.02">
+    <testcase time="0.02" classname="thumbnail" name="id_token_variables_exist">
       <skipped message="Reason: empty test ('test-thumbnail.R:1:1')"/>
     </testcase>
   </testsuite>
