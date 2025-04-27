@@ -19,9 +19,7 @@ Get ids of objects on Slides
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-\donttest{
 s <- choose_slides()
 get_object_ids(s)
-}
 \dontshow{\}) # examplesIf}
 }

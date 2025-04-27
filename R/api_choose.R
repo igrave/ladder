@@ -8,9 +8,7 @@
 #' @export
 #'
 #' @examplesIf interactive()
-#' \donttest{
 #' id <- choose_slides()
-#' }
 choose_slides <- function(presentation = NULL) {
   request_url <- "http://localhost:1410/index.html"
   auth_slide_id <- NULL

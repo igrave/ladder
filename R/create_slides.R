@@ -12,7 +12,7 @@ create_slides <- function() {
 }
 
 
-#' Add a slide to a presentation
+#' Add a new slide to a presentation
 #'
 #' @param presentation_id The presentation id
 #' @param layout The layout to use for the slide. See [get_layouts].
@@ -24,16 +24,15 @@ create_slides <- function() {
 #'   order as for `title`
 #' @param body Character vector to be inserted into the body placeholders in order as for `title`
 #'
-#' @returns The result of the API call. TODO format this object
+#' @returns The URL of the new slide.
+#' This function is mostly used for its side effect of adding a slide to the presentation.
 #' @export
 #'
 #' @examplesIf interactive()
-#' \donttest{
 #' s <- create_slides()
 #' layout <- get_layouts(s)
 #' layout_p9 <- layout$layout_objectId[20]
 #' new_slide(s, layout_p9, title = "Slide Title", subtitle = "A Subtitle", body = "Body Text")
-#' }
 new_slide <- function(
     presentation_id,
     layout,
@@ -142,10 +141,8 @@ new_slide <- function(
 #' @return A data frame with columns `layout_objectId`, `name`, `displayName`, and `placeholders_df`
 #' @export
 #' @examplesIf interactive()
-#' \donttest{
 #' s <- choose_slides()
 #' get_layouts(s)
-#' }
 #'
 get_layouts <- function(presentation_id) {
   p <- presentations.get(presentation_id)

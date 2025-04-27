@@ -219,7 +219,7 @@ ladder_user <- function() {
 
 #' Built-in oauth client
 #' @noRd
-
+#' @param type The type of OAuth client to use. Either "installed" or "web".
 builtin_ladder_oauth_client <- function(type = NULL) {
   if (is.null(type) || is.na(type)) {
     type <- gargle::gargle_oauth_client_type()
@@ -232,13 +232,13 @@ builtin_ladder_oauth_client <- function(type = NULL) {
       # path = system.file("web.json", package = "ladder")),
       path = gargle::secret_decrypt_json(
         path = system.file("web.json.enc", package = "ladder"),
-        key = "SLIDES_KEY"
+        key = I("DwRpLbD_jXSFKxhjwrgHQg")
       )
     ),
     installed = gargle::gargle_oauth_client_from_json(
       path = gargle::secret_decrypt_json(
         path = system.file("installed.json.enc", package = "ladder"),
-        key = "SLIDES_KEY"
+        key = I("DwRpLbD_jXSFKxhjwrgHQg")
       )
     )
   )

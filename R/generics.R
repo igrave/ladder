@@ -9,7 +9,8 @@
 #' @param digits the minimum number of significant digits, see [format]. If `NULL`
 #'   `getOption("digits")` is used.
 #'
-#' @return A presentation object after updating
+#' @return A presentation object updated with the new object. This function is used for its side
+#' effect of adding an object to the slides. The returned object in R is mostly for inspection.
 #' @export
 #'
 add_to_slides <- function(object, presentation_id, on = NULL, object_id, overwrite, ...) {

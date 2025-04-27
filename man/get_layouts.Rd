@@ -17,9 +17,7 @@ Get layouts from a presentation
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-\donttest{
 s <- choose_slides()
 get_layouts(s)
-}
 \dontshow{\}) # examplesIf}
 }

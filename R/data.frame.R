@@ -1,4 +1,4 @@
-
+#' @include generics.R
 #' @details
 #' A data.frame object is added as a table with the column names in bold as the first row.
 #' For other formatting use the `flextable` package and [add_to_slides.flextable].
@@ -7,12 +7,10 @@
 #' @export
 #'
 #' @examplesIf interactive()
-#' \donttest{
 #' ## Add a data.frame
 #' s <- choose_slides()
 #' obj <- iris[1:5, ]
 #' add_to_slides(obj, s, on = 1)
-#' }
 add_to_slides.data.frame <- function(object,
                                      presentation_id,
                                      on = NULL,

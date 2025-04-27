@@ -4,12 +4,10 @@
 #' @export
 #'
 #' @examplesIf interactive()
-#' \donttest{
 #' ## Add a matrix
 #' s <- choose_slides()
 #' obj <- cov(iris[, 1:4])
 #' add_to_slides(obj, s, on = 1)
-#' }
 add_to_slides.matrix <- function(object,
                                  presentation_id,
                                  on = NULL,
