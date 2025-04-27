@@ -17,7 +17,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Isaac Gravestock \email{isaac.gravestock@gmail.com} (\href{https://orcid.org/orcid=0000-0003-0283-2065}{ORCID})
+\strong{Maintainer}: Isaac Gravestock \email{isaac.gravestock@gmail.com} (\href{https://orcid.org/0000-0003-0283-2065}{ORCID})
 
 }
 \keyword{internal}

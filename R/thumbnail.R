@@ -8,6 +8,10 @@
 #' @return A character string of the file path to the saved image and
 #'  opens the image in the viewer or browser if `viewer = TRUE`.
 #' @export
+#' @examplesIf interactive()
+#' s <- choose_slides()
+#' tmp_image <- view_slide(s, 1)
+#' file.remove(tmp_image)
 view_slide <- function(presentation_id, page, size = "MEDIUM", viewer = TRUE) {
   size <- match.arg(size, c("SMALL", "MEDIUM", "LARGE"))
   page_id <- on_slide_id(presentation_id, page)

@@ -3,7 +3,7 @@ Title: Get on to the Slides
 Version: 0.0.0.9008
 Authors@R: 
     person("Isaac", "Gravestock", , "isaac.gravestock@gmail.com", role = c("aut", "cre"),
-           comment = c(ORCID = "orcid=0000-0003-0283-2065"))
+           comment = c(ORCID = "0000-0003-0283-2065"))
 Description: Create tables from within R directly on Google Slides
     presentations.  Currently supports matrix, data.frame and 'flextable'
     objects.
@@ -25,7 +25,7 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-GB
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2.9000
+RoxygenNote: 7.3.2
 Collate: 
     'api_choose.R'
     'api_functions.R'
