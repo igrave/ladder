@@ -20,9 +20,9 @@ If auth has been deactivated via \code{\link[=ladder_deauth]{ladder_deauth()}}, 
 returns \code{NULL}.
 }
 \examples{
-\dontrun{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 ladder_token()
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other low-level API functions: 

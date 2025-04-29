@@ -76,6 +76,9 @@ httr's class \code{request}, i.e. a token that has been prepared with
 \code{\link[httr:config]{httr::config()}} and has a \link[httr:Token-class]{Token2.0} in the
 \code{auth_token} component.}
 }
+\value{
+Called for side-effect. Returns invisible \code{NULL}.
+}
 \description{
 Authorize ladder to view and manage your presentations. This function is a
 wrapper around \code{\link[gargle:token_fetch]{gargle::token_fetch()}}.

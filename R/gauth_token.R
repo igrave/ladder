@@ -27,7 +27,16 @@ GAuthToken <- R6::R6Class("GAuthToken", inherit = httr::Token2.0, list(
 ))
 
 #' Use a Google token from github auth workflow
+#'
 #' @param access_token The access token from github auth workflow
+#' @returns Sets the internal token to use the provided `access_token` string and returns the
+#' `AuthState` token object.
+#'
+#'  See <https://github.com/google-github-actions/auth/> for more details.
+#'
+#' @examples
+#' google_access_token <- Sys.getenv("access_token")
+#' use_gauth_workflow("your_access_token")
 #' @export
 use_gauth_workflow <- function(access_token) {
   token <- GAuthToken$new(access_token = access_token)

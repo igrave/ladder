@@ -6,6 +6,9 @@
 \usage{
 ladder_deauth()
 }
+\value{
+Called for side-effect. Returns invisible \code{NULL}.
+}
 \description{
 Put ladder into a de-authorized state. Instead of sending a token,
 ladder will send an API key. This can be used to access public
@@ -18,10 +21,10 @@ via \code{\link[=ladder_auth_configure]{ladder_auth_configure()}} and retrieve t
 In the absence of a user-configured key, a built-in default key is used.
 }
 \examples{
-\dontrun{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 ladder_deauth()
 ladder_user()
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other auth functions: 

@@ -21,6 +21,7 @@ get_slide_ids <- function(presentation_id) {
 #'   slide page has no objects the list element is `NULL` otherwise a character vector containing
 #'   all object ids on that page. Contains ids for all tables, images, lines, shapes, etc.
 #'
+#' @export
 #' @examplesIf interactive()
 #' s <- choose_slides()
 #' get_object_ids(s)
