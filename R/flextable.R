@@ -85,7 +85,7 @@ table_requests <- function(ft, table_id = table_id, part = c("header", "body", "
   part_spans <- ft[[part]]$spans
   part_spans$ind <- part_spans$rows * part_spans$columns >= 1
 
-  if (any(part_dim == 0)) {
+  if (any(part_dim == 0) || is.null(part_dim)) {
     return(list())
   }
 

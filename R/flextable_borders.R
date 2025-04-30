@@ -39,7 +39,7 @@ border_request_helper <- function(objectId, i, j, rowspan, colspan, border_posit
 
 border_requests <- function(style_data, row_offset, objectId) {
   part_dim <- dim(style_data[[1]][["data"]])
-  if (any(part_dim == 0)) {
+  if (any(part_dim == 0) || is.null(part_dim)) {
     return(list())
   }
 
