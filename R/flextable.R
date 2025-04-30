@@ -80,6 +80,9 @@ table_requests <- function(ft, table_id = table_id, part = c("header", "body", "
   part <- match.arg(part)
   my_tab <- list()
   part_content <- ft[[part]]$content
+  if (is.list(part_content) && length(part_content) == 1) {
+    part_content <- part_content[[1]]
+  }
   part_styles <- ft[[part]]$styles
   part_dim <- dim(part_content$data)
   part_spans <- ft[[part]]$spans
