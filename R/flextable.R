@@ -192,8 +192,9 @@ table_requests <- function(ft, table_id = table_id, part = c("header", "body", "
   par_style_requests <- paragraph_style(
     part_styles$pars,
     row_offset = row_offset,
+    has_text = part_spans$ind,
     objectId = table_id
   )
-  c(my_tab, par_style_requests)
+  my_tab <- c(my_tab, par_style_requests)
   my_tab
 }
