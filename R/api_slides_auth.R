@@ -21,7 +21,7 @@ gargle_lookup_table <- list(
 #' @eval gargle:::PREFIX_auth_params()
 #' @param scopes A character vector of scopes to request.
 #'   Pick from those listed at <https://developers.google.com/identity/protocols/oauth2/scopes>.
-#'
+#' @returns Called for side-effect. Returns invisible `NULL`.
 #' @family auth functions
 #' @export
 #'
@@ -86,12 +86,11 @@ ladder_auth <- function(email = gargle::gargle_oauth_email(),
 #' @eval gargle:::PREFIX_deauth_description_with_api_key(gargle_lookup_table)
 #'
 #' @family auth functions
+#' @returns Called for side-effect. Returns invisible `NULL`.
 #' @export
-#' @examples
-#' \dontrun{
+#' @examplesIf interactive()
 #' ladder_deauth()
 #' ladder_user()
-#' }
 ladder_deauth <- function() {
   .auth$set_auth_active(FALSE)
   .auth$clear_cred()
@@ -105,10 +104,8 @@ ladder_deauth <- function() {
 #'
 #' @family low-level API functions
 #' @export
-#' @examples
-#' \dontrun{
+#' @examplesIf interactive()
 #' ladder_token()
-#' }
 ladder_token <- function() {
   if (!ladder_has_token()) {
     ladder_auth()
@@ -203,6 +200,8 @@ ladder_oauth_client <- function() {
 #' @eval gargle:::PREFIX_user_seealso()
 #' @eval gargle:::PREFIX_user_return()
 #'
+#' @returns Returns the username associated with the current token or
+#' `NULL` if not authenticated.
 #' @export
 #' @examples
 #' \dontrun{

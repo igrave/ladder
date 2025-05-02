@@ -9,6 +9,16 @@ use_gauth_workflow(access_token)
 \arguments{
 \item{access_token}{The access token from github auth workflow}
 }
+\value{
+Sets the internal token to use the provided \code{access_token} string and returns the
+\code{AuthState} token object.
+
+See \url{https://github.com/google-github-actions/auth/} for more details.
+}
 \description{
 Use a Google token from github auth workflow
+}
+\examples{
+google_access_token <- Sys.getenv("access_token")
+use_gauth_workflow("your_access_token")
 }

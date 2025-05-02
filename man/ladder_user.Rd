@@ -8,6 +8,9 @@ ladder_user()
 }
 \value{
 An email address or, if no token has been loaded, \code{NULL}.
+
+Returns the username associated with the current token or
+\code{NULL} if not authenticated.
 }
 \description{
 Reveals the email address of the user associated with the current token.

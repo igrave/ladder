@@ -80,12 +80,15 @@ table_requests <- function(ft, table_id = table_id, part = c("header", "body", "
   part <- match.arg(part)
   my_tab <- list()
   part_content <- ft[[part]]$content
+  if (is.list(part_content) && length(part_content) == 1) {
+    part_content <- part_content[[1]]
+  }
   part_styles <- ft[[part]]$styles
   part_dim <- dim(part_content$data)
   part_spans <- ft[[part]]$spans
   part_spans$ind <- part_spans$rows * part_spans$columns >= 1
 
-  if (any(part_dim == 0)) {
+  if (any(part_dim == 0) || is.null(part_dim)) {
     return(list())
   }
 
@@ -189,8 +192,9 @@ table_requests <- function(ft, table_id = table_id, part = c("header", "body", "
   par_style_requests <- paragraph_style(
     part_styles$pars,
     row_offset = row_offset,
+    has_text = part_spans$ind,
     objectId = table_id
   )
-  c(my_tab, par_style_requests)
+  my_tab <- c(my_tab, par_style_requests)
   my_tab
 }
