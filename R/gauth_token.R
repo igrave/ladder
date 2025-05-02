@@ -61,9 +61,11 @@ httr_request <- function(method = NULL, url = NULL, headers = NULL, fields = NUL
   if (!is.null(output)) {
     stopifnot(inherits(output, "write_function"))
   }
-  structure(list(method = method, url = url, headers = keep_last(headers),
-                 fields = fields, options = compact(keep_last(options)),
-                 auth_token = auth_token, output = output), class = "request")
+  structure(list(
+    method = method, url = url, headers = keep_last(headers),
+    fields = fields, options = compact(keep_last(options)),
+    auth_token = auth_token, output = output
+  ), class = "request")
 }
 
 keep_last <- function(...) {
