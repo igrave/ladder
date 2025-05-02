@@ -16,8 +16,8 @@ make_table <- function(ft, table_id = new_id("table"), page_id = "p", from_top_l
 
   ncols <- flextable::ncol_keys(ft)
   dims <- flextable::flextable_dim(ft)
-  
-  
+
+
   add(my_tab) <- CreateTableRequest(
     objectId = table_id,
     elementProperties = PageElementProperties(
