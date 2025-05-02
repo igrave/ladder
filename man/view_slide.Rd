@@ -24,7 +24,7 @@ opens the image in the viewer or browser if \code{viewer = TRUE}.
 Preview Slide as Image
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 s <- choose_slides()
 tmp_image <- view_slide(s, 1)
 file.remove(tmp_image)

@@ -7,7 +7,7 @@
 \usage{
 inches(...)
 
-cm(x)
+cm(...)
 }
 \arguments{
 \item{...}{One or more numeric values to convert}

@@ -37,7 +37,7 @@ This function is mostly used for its side effect of adding a slide to the presen
 Add a new slide to a presentation
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 s <- create_slides()
 layout <- get_layouts(s)
 layout_p9 <- layout$layout_objectId[20]

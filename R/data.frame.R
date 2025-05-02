@@ -20,6 +20,9 @@ add_to_slides.data.frame <- function(object,
                                      digits = NULL,
                                      ...) {
   assert_string(object_id, min.chars = 5)
+  assert_string(presentation_id)
+  presentation_id <- extract_id(presentation_id)
+  
   page_id <- on_slide_id(presentation_id, on)
 
   if (!is.null(from_top_left)) {
@@ -62,6 +65,7 @@ make_df_table <- function(df, table_id, page_id, from_top_left, digits = NULL) {
     elementProperties = PageElementProperties(
       pageObjectId = page_id,
       transform = AffineTransform(
+        1, 1, 0, 0,
         translateX = from_top_left[1],
         translateY = from_top_left[2],
         unit = "EMU"

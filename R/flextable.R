@@ -15,12 +15,19 @@ make_table <- function(ft, table_id = new_id("table"), page_id = "p", from_top_l
     flextable::nrow_part(ft, part = "footer")
 
   ncols <- flextable::ncol_keys(ft)
-
+  dims <- flextable::flextable_dim(ft)
+  
+  
   add(my_tab) <- CreateTableRequest(
     objectId = table_id,
     elementProperties = PageElementProperties(
       pageObjectId = page_id,
+      size = Size(
+        width = Dimension(inch_to_emu(dims$widths), unit = "EMU"),
+        height = Dimension(inch_to_emu(dims$heights), unit = "EMU")
+      ),
       transform = AffineTransform(
+        1, 1, 0, 0,
         translateX = from_top_left[1],
         translateY = from_top_left[2],
         unit = "EMU"
@@ -65,6 +72,8 @@ add_to_slides.flextable <- function(object,
                                     from_top_left = NULL,
                                     ...) {
   assert_string(object_id, min.chars = 5)
+  assert_string(presentation_id)
+  presentation_id <- extract_id(presentation_id)
   page_id <- on_slide_id(presentation_id, on)
 
   if (!is.null(from_top_left)) {
@@ -116,7 +125,7 @@ table_requests <- function(ft, table_id = table_id, part = c("header", "body", "
   dim_requests <- column_row_requests(
     table_id,
     row_offset = row_offset,
-    widths = ft[[part]]$colwidths,
+    widths = dim(ft)$widths,
     heights = ft[[part]]$rowheights
   )
 
