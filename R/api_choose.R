@@ -84,6 +84,7 @@ picker_page <- function(file_id = "") {
     .logo {
       max-width: 150px;
       height: auto;
+      margin: auto;
     }
     .btn-primary {
       margin-top: 1rem;
