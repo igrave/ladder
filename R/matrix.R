@@ -1,5 +1,6 @@
 #' @details
 #' A matrix object is added as a table without any row or column names.
+#' @param digits Number of digits to passed to [format] for numeric matrices and data frame columns.
 #' @rdname add_to_slides
 #' @export
 #'

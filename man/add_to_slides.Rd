@@ -66,6 +66,8 @@ the distance in from the left and down from the top of the slide in EMU.
 Use \code{cm(x)} or \code{inches(x)} to convert to EMU. If \code{NULL} a default position is used.}
 
 \item{...}{Other arguments used in methods}
+
+\item{digits}{Number of digits to passed to \link{format} for numeric matrices and data frame columns.}
 }
 \value{
 A presentation object updated with the new object. This function is used for its side
