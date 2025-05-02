@@ -2,7 +2,6 @@ url: https://www.r-ladder.com
 template:
   bootstrap: 5
   bootswatch: flatly
-  light-switch: true
 
 reference:
 - title: Slides functions
@@ -16,6 +15,8 @@ reference:
   - new_slide
   - get_layouts
   - create_slides
+  - inches
+  - cm
 - title: Auth functions
   contents:
   - ladder_auth

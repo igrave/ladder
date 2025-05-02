@@ -4,8 +4,17 @@ To get on to the (Google) Slides 🛝
 
 
 ## Installation
+
+CRAN version:
 ```r
-install.packages('ladder', repos = c('https://igrave.r-universe.dev', 'https://cloud.r-project.org'))
+install.packages('ladder')
+```
+
+Latest development version:
+```r
+install.packages('ladder',
+  repos = c('https://igrave.r-universe.dev', 'https://cloud.r-project.org')
+)
 ```
 
 ## Basic Usage

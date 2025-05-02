@@ -8,7 +8,15 @@
 \alias{add_to_slides.matrix}
 \title{Add Object to Slides}
 \usage{
-add_to_slides(object, presentation_id, on = NULL, object_id, overwrite, ...)
+add_to_slides(
+  object,
+  presentation_id,
+  on = NULL,
+  object_id,
+  overwrite,
+  from_top_left = NULL,
+  ...
+)
 
 \method{add_to_slides}{data.frame}(
   object,
@@ -16,6 +24,7 @@ add_to_slides(object, presentation_id, on = NULL, object_id, overwrite, ...)
   on = NULL,
   object_id = new_id("table"),
   overwrite = FALSE,
+  from_top_left = NULL,
   digits = NULL,
   ...
 )
@@ -26,6 +35,7 @@ add_to_slides(object, presentation_id, on = NULL, object_id, overwrite, ...)
   on = NULL,
   object_id = new_id("table"),
   overwrite = FALSE,
+  from_top_left = NULL,
   ...
 )
 
@@ -35,6 +45,7 @@ add_to_slides(object, presentation_id, on = NULL, object_id, overwrite, ...)
   on = NULL,
   object_id = new_id("table"),
   overwrite = FALSE,
+  from_top_left = NULL,
   digits = NULL,
   ...
 )
@@ -50,10 +61,13 @@ add_to_slides(object, presentation_id, on = NULL, object_id, overwrite, ...)
 
 \item{overwrite}{If TRUE and an object with \code{object_id} exists it will deleted and replaced.}
 
+\item{from_top_left}{Numerical vector of length two giving the position of the table as
+the distance in from the left and down from the top of the slide in EMU.
+Use \code{cm(x)} or \code{inches(x)} to convert to EMU. If \code{NULL} a default position is used.}
+
 \item{...}{Other arguments used in methods}
 
-\item{digits}{the minimum number of significant digits, see \link{format}. If \code{NULL}
-\code{getOption("digits")} is used.}
+\item{digits}{Number of digits to passed to \link{format} for numeric matrices and data frame columns.}
 }
 \value{
 A presentation object updated with the new object. This function is used for its side
