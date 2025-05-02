@@ -6,7 +6,7 @@ col2RgbColor <- function(col) {
 
 
 
-make_table <- function(ft, table_id = new_id("table"), pageObjectId = "p") {
+make_table <- function(ft, table_id = new_id("table"), page_id = "p", from_top_left) {
   my_tab <- list()
 
   nrows <-
@@ -18,10 +18,19 @@ make_table <- function(ft, table_id = new_id("table"), pageObjectId = "p") {
 
   add(my_tab) <- CreateTableRequest(
     objectId = table_id,
-    elementProperties = PageElementProperties(pageObjectId = pageObjectId),
+    elementProperties = PageElementProperties(
+      pageObjectId = page_id,
+      transform = AffineTransform(
+        translateX = from_top_left[1],
+        translateY = from_top_left[2],
+        unit = "EMU"
+      )
+    ),
     rows = nrows,
     columns = ncols
   )
+
+
 
   my_header <- table_requests(ft, table_id = table_id, part = "header")
   my_body <- table_requests(ft, table_id = table_id, part = "body")
@@ -53,11 +62,17 @@ add_to_slides.flextable <- function(object,
                                     on = NULL,
                                     object_id = new_id("table"),
                                     overwrite = FALSE,
+                                    from_top_left = NULL,
                                     ...) {
   assert_string(object_id, min.chars = 5)
   page_id <- on_slide_id(presentation_id, on)
 
-  reqs <- make_table(object, object_id, page_id)
+  if (!is.null(from_top_left)) {
+    assert_numeric(from_top_left, len = 2, finite = TRUE, any.missing = FALSE)
+  } else {
+    from_top_left <- c(571450, 1442675)
+  }
+  reqs <- make_table(object, object_id, page_id, from_top_left)
 
   if (isTRUE(overwrite)) {
     if (object_id %in% unlist(get_object_ids(presentation_id))) {
@@ -86,7 +101,7 @@ table_requests <- function(ft, table_id = table_id, part = c("header", "body", "
   part_styles <- ft[[part]]$styles
   part_dim <- dim(part_content$data)
   part_spans <- ft[[part]]$spans
-  part_spans$ind <- part_spans$rows * part_spans$columns >= 1
+  part_spans$ind <- (part_spans$rows * part_spans$columns) >= 1
 
   if (any(part_dim == 0) || is.null(part_dim)) {
     return(list())
@@ -189,10 +204,13 @@ table_requests <- function(ft, table_id = table_id, part = c("header", "body", "
     }
   }
 
+  has_text <- part_spans$ind &
+    apply(part_content$data, 1:2, function(x) any(nchar(x[[1]]$txt) > 0))
+
   par_style_requests <- paragraph_style(
     part_styles$pars,
     row_offset = row_offset,
-    has_text = part_spans$ind,
+    has_text = has_text,
     objectId = table_id
   )
   my_tab <- c(my_tab, par_style_requests)

@@ -8,7 +8,15 @@
 \alias{add_to_slides.matrix}
 \title{Add Object to Slides}
 \usage{
-add_to_slides(object, presentation_id, on = NULL, object_id, overwrite, ...)
+add_to_slides(
+  object,
+  presentation_id,
+  on = NULL,
+  object_id,
+  overwrite,
+  from_top_left = NULL,
+  ...
+)
 
 \method{add_to_slides}{data.frame}(
   object,
@@ -16,6 +24,7 @@ add_to_slides(object, presentation_id, on = NULL, object_id, overwrite, ...)
   on = NULL,
   object_id = new_id("table"),
   overwrite = FALSE,
+  from_top_left = NULL,
   digits = NULL,
   ...
 )
@@ -26,6 +35,7 @@ add_to_slides(object, presentation_id, on = NULL, object_id, overwrite, ...)
   on = NULL,
   object_id = new_id("table"),
   overwrite = FALSE,
+  from_top_left = NULL,
   ...
 )
 
@@ -35,6 +45,7 @@ add_to_slides(object, presentation_id, on = NULL, object_id, overwrite, ...)
   on = NULL,
   object_id = new_id("table"),
   overwrite = FALSE,
+  from_top_left = NULL,
   digits = NULL,
   ...
 )
@@ -50,10 +61,11 @@ add_to_slides(object, presentation_id, on = NULL, object_id, overwrite, ...)
 
 \item{overwrite}{If TRUE and an object with \code{object_id} exists it will deleted and replaced.}
 
-\item{...}{Other arguments used in methods}
+\item{from_top_left}{Numerical vector of length two giving the position of the table as
+the distance in from the left and down from the top of the slide in EMU.
+Use \code{cm(x)} or \code{inches(x)} to convert to EMU. If \code{NULL} a default position is used.}
 
-\item{digits}{the minimum number of significant digits, see \link{format}. If \code{NULL}
-\code{getOption("digits")} is used.}
+\item{...}{Other arguments used in methods}
 }
 \value{
 A presentation object updated with the new object. This function is used for its side
@@ -71,13 +83,13 @@ A flextable object is added with all formatting.
 A matrix object is added as a table without any row or column names.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 ## Add a data.frame
 s <- choose_slides()
 obj <- iris[1:5, ]
 add_to_slides(obj, s, on = 1)
 \dontshow{\}) # examplesIf}
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 ## Add a flextable
 s <- choose_slides()
 library(flextable)
@@ -87,7 +99,7 @@ ft <- color(ft, i = 1:3, j = 1:2, "pink", part = "body")
 ft <- autofit(ft)
 add_to_slides(ft, s, on = 1)
 \dontshow{\}) # examplesIf}
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 ## Add a matrix
 s <- choose_slides()
 obj <- cov(iris[, 1:4])

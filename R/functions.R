@@ -73,3 +73,30 @@ extract_id <- function(presentation) {
     ""
   }
 }
+
+
+
+#' Convert lengths to EMU
+#'
+#' @param ... One or more numeric values to convert
+#'
+#' @returns A numeric vector of lengths converted to EMU
+#' @export
+#' @rdname convert-units
+#' @examples
+#' inches(2, 0)
+inches <- function(...) {
+  x <- list(...)
+  assert_list(x, types = "numeric")
+  inch_to_emu(unlist(x))
+}
+
+#' @rdname convert-units
+#' @export
+#' @examples
+#' cm(3, 2)
+cm <- function(...) {
+  x <- list(...)
+  assert_list(x, types = "numeric")
+  cm_to_emu(unlist(x))
+}

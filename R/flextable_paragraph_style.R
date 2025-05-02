@@ -23,7 +23,6 @@ paragraph_style <- function(style_data, row_offset, has_text, objectId) {
       if (!isTRUE(has_text[this_i, this_j])) {
         next
       } else {
-
         add(reqs) <- UpdateParagraphStyleRequest(
           objectId = objectId,
           cellLocation = TableCellLocation(rowIndex = i_gs[this_i], j_gs[this_j]),

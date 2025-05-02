@@ -13,12 +13,19 @@ add_to_slides.matrix <- function(object,
                                  on = NULL,
                                  object_id = new_id("table"),
                                  overwrite = FALSE,
+                                 from_top_left = NULL,
                                  digits = NULL,
                                  ...) {
   assert_string(object_id, min.chars = 5)
   page_id <- on_slide_id(presentation_id, on)
 
-  reqs <- make_matrix_table(object, object_id, page_id, digits)
+  if (!is.null(from_top_left)) {
+    assert_numeric(from_top_left, len = 2, finite = TRUE, any.missing = FALSE)
+  } else {
+    from_top_left <- c(571450, 1442675)
+  }
+
+  reqs <- make_matrix_table(object, object_id, page_id, from_top_left, digits)
 
   if (isTRUE(overwrite)) {
     if (object_id %in% unlist(get_object_ids(presentation_id))) {
@@ -38,7 +45,7 @@ add_to_slides.matrix <- function(object,
   invisible(result)
 }
 
-make_matrix_table <- function(m, table_id, page_id, digits = NULL) {
+make_matrix_table <- function(m, table_id, page_id, from_top_left, digits = NULL) {
   ncols <- ncol(m)
   nrows <- nrow(m)
   if (nrows < 1 || ncols < 1) stop("Must have at least 1 row and column.")
@@ -50,7 +57,14 @@ make_matrix_table <- function(m, table_id, page_id, digits = NULL) {
 
   add(my_tab) <- CreateTableRequest(
     objectId = table_id,
-    elementProperties = PageElementProperties(pageObjectId = page_id),
+    elementProperties = PageElementProperties(
+      pageObjectId = page_id,
+      transform = AffineTransform(
+        translateX = from_top_left[1],
+        translateY = from_top_left[2],
+        unit = "EMU"
+      )
+    ),
     rows = nrows,
     columns = ncols
   )
