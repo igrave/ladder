@@ -21,7 +21,7 @@ via \code{\link[=ladder_auth_configure]{ladder_auth_configure()}} and retrieve t
 In the absence of a user-configured key, a built-in default key is used.
 }
 \examples{
-\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 ladder_deauth()
 ladder_user()
 \dontshow{\}) # examplesIf}

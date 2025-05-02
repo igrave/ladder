@@ -13,7 +13,7 @@ A presentation id
 Create a new Google Slides presentation
 }
 \examples{
-\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 create_slides()
 \dontshow{\}) # examplesIf}
 }
