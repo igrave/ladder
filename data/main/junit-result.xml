@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="api_gluestick" timestamp="2025-05-02T13:25:52Z" hostname="0b6d418df9d3" tests="1" skipped="0" failures="0" errors="0" time="0.014">
-    <testcase time="0.014" classname="api_gluestick" name="gluestick_works"/>
+  <testsuite name="api_gluestick" timestamp="2025-05-02T13:37:47Z" hostname="2190e8252551" tests="1" skipped="0" failures="0" errors="0" time="0.016">
+    <testcase time="0.016" classname="api_gluestick" name="gluestick_works"/>
   </testsuite>
-  <testsuite name="functions" timestamp="2025-05-02T13:25:52Z" hostname="0b6d418df9d3" tests="3" skipped="0" failures="0" errors="0" time="0.089">
-    <testcase time="0.069" classname="functions" name="extract_id_works_with_url"/>
-    <testcase time="0.014" classname="functions" name="extract_id_works_with_empty_string"/>
-    <testcase time="0.00600000000000001" classname="functions" name="extract_id_works_with_non_matching_string"/>
+  <testsuite name="functions" timestamp="2025-05-02T13:37:47Z" hostname="2190e8252551" tests="3" skipped="0" failures="0" errors="0" time="0.106">
+    <testcase time="0.083" classname="functions" name="extract_id_works_with_url"/>
+    <testcase time="0.016" classname="functions" name="extract_id_works_with_empty_string"/>
+    <testcase time="0.00700000000000001" classname="functions" name="extract_id_works_with_non_matching_string"/>
   </testsuite>
 </testsuites>
