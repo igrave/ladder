@@ -1,4 +1,4 @@
-# ladder 0.0.2.9000
+# ladder 0.0.3
 
 * fix horizontal alignment and column width for flextables
 * add offset when adding tables
