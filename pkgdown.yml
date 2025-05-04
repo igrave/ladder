@@ -2,7 +2,7 @@ pandoc: 3.6.3
 pkgdown: 2.1.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2025-05-04T19:44Z
+last_built: 2025-05-04T19:45Z
 urls:
-  reference: https://www.r-ladder.com/main/reference
-  article: https://www.r-ladder.com/main/articles
+  reference: https://www.r-ladder.com/latest-tag/reference
+  article: https://www.r-ladder.com/latest-tag/articles
