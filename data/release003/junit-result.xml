@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="api_gluestick" timestamp="2025-05-04T19:44:03Z" hostname="bc20d351981b" tests="1" skipped="0" failures="0" errors="0" time="0.015">
+    <testcase time="0.015" classname="api_gluestick" name="gluestick_works"/>
+  </testsuite>
+  <testsuite name="functions" timestamp="2025-05-04T19:44:03Z" hostname="bc20d351981b" tests="3" skipped="0" failures="0" errors="0" time="0.097">
+    <testcase time="0.076" classname="functions" name="extract_id_works_with_url"/>
+    <testcase time="0.015" classname="functions" name="extract_id_works_with_empty_string"/>
+    <testcase time="0.00600000000000001" classname="functions" name="extract_id_works_with_non_matching_string"/>
+  </testsuite>
+</testsuites>
