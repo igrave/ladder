@@ -6,10 +6,14 @@
 `add<-` <- function(x, value) {
   if (is.null(value)) {
     x
+  } else if (isa(value, "list")) {
+    c(x, value)
   } else {
     c(x, list(value))
   }
 }
+
+
 
 #' Print presentation URL
 #'

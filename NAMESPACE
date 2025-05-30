@@ -2,6 +2,7 @@
 
 S3method(add_to_slides,data.frame)
 S3method(add_to_slides,flextable)
+S3method(add_to_slides,gt_tbl)
 S3method(add_to_slides,matrix)
 export(add_to_slides)
 export(choose_slides)
