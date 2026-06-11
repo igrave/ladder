@@ -18,7 +18,7 @@ all object ids on that page. Contains ids for all tables, images, lines, shapes,
 Get ids of objects on Slides
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 s <- choose_slides()
 get_object_ids(s)
 \dontshow{\}) # examplesIf}
