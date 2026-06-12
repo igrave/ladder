@@ -1,4 +1,4 @@
-# ladder 0.0.3.9000
+# ladder 0.0.3.9001
 
 * Add size argument for add_to_slides for matrix and data.frame methods
 * Fix overwriting of horizontal lines in flextable
