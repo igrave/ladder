@@ -17,12 +17,13 @@
 #' @export
 #'
 add_to_slides <- function(
-    object,
-    presentation_id,
-    on = NULL,
-    object_id,
-    overwrite,
-    from_top_left = NULL,
-    ...) {
+  object,
+  presentation_id,
+  on = NULL,
+  object_id,
+  overwrite,
+  from_top_left = NULL,
+  ...
+) {
   UseMethod("add_to_slides")
 }

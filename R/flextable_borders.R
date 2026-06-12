@@ -57,11 +57,11 @@ border_requests <- function(style_data, row_offset, objectId) {
 
 
   # Borders ---------
-    
+
   # Process Rows
 
   if (row_offset == 0) {
-  # TOP border only when this part is the top of the table
+    # TOP border only when this part is the top of the table
     wi <- style_data[["border.width.top"]][["data"]][1, ]
     co <- style_data[["border.color.top"]][["data"]][1, ]
     st <- style_data[["border.style.top"]][["data"]][1, ]
@@ -81,7 +81,7 @@ border_requests <- function(style_data, row_offset, objectId) {
         )
       }
     } # end TOP
-  } 
+  }
 
   # BOTTOM borders
   for (this_i in i) {
@@ -149,4 +149,4 @@ border_requests <- function(style_data, row_offset, objectId) {
     }
   } # end RIGHT
   reqs
-  }
+}
