@@ -8,6 +8,8 @@
 #' @param from_top_left Numerical vector of length two giving the position of the table as
 #'  the distance in from the left and down from the top of the slide in EMU.
 #'  Use `cm(x)` or `inches(x)` to convert to EMU. If `NULL` a default position is used.
+#' @param size Numerical vector of length two giving the width and height of the table in EMU.
+#'  Use `cm(x)` or `inches(x)` to convert to EMU. If `NULL` a default size is used.
 #' @param ... Other arguments used in methods
 #'
 #' @return A presentation object updated with the new object. This function is used for its side

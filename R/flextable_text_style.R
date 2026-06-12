@@ -25,7 +25,7 @@ make_text_style <- function(text_style = NULL,
   }
   style_list <- list()
 
-  style_list$backgroundColor <- if (!is.na(s$shading.color)) {
+  style_list$backgroundColor <- if (!is.na(s$shading.color) & s$shading.color != "transparent") {
     OptionalColor(opaqueColor = OpaqueColor(
       rgbColor = col2RgbColor(s$shading.color)
     ))
