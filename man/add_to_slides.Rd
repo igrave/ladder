@@ -26,6 +26,7 @@ add_to_slides(
   overwrite = FALSE,
   from_top_left = NULL,
   digits = NULL,
+  size = NULL,
   ...
 )
 
@@ -47,6 +48,7 @@ add_to_slides(
   overwrite = FALSE,
   from_top_left = NULL,
   digits = NULL,
+  size = NULL,
   ...
 )
 }
@@ -68,6 +70,9 @@ Use \code{cm(x)} or \code{inches(x)} to convert to EMU. If \code{NULL} a default
 \item{...}{Other arguments used in methods}
 
 \item{digits}{Number of digits to passed to \link{format} for numeric matrices and data frame columns.}
+
+\item{size}{Numerical vector of length two giving the width and height of the table in EMU.
+Use \code{cm(x)} or \code{inches(x)} to convert to EMU. If \code{NULL} a default size is used.}
 }
 \value{
 A presentation object updated with the new object. This function is used for its side

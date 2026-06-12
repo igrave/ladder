@@ -27,8 +27,8 @@ ladder_user()
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Other auth functions: 
-\code{\link{ladder_auth}()},
-\code{\link{ladder_auth_configure}()}
+Other auth functions:
+\code{\link[=ladder_auth]{ladder_auth()}},
+\code{\link[=ladder_auth_configure]{ladder_auth_configure()}}
 }
 \concept{auth functions}

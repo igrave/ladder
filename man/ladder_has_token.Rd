@@ -17,7 +17,7 @@ requests.
 ladder_has_token()
 }
 \seealso{
-Other low-level API functions: 
-\code{\link{ladder_token}()}
+Other low-level API functions:
+\code{\link[=ladder_token]{ladder_token()}}
 }
 \concept{low-level API functions}

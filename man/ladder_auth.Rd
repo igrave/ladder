@@ -156,8 +156,8 @@ ladder_auth(path = "foofy-83ee9e7c9c48.json")
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Other auth functions: 
-\code{\link{ladder_auth_configure}()},
-\code{\link{ladder_deauth}()}
+Other auth functions:
+\code{\link[=ladder_auth_configure]{ladder_auth_configure()}},
+\code{\link[=ladder_deauth]{ladder_deauth()}}
 }
 \concept{auth functions}
