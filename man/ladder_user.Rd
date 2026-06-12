@@ -22,6 +22,6 @@ ladder_user()
 }
 }
 \seealso{
-\code{\link[gargle:token-info]{gargle::token_userinfo()}}, \code{\link[gargle:token-info]{gargle::token_email()}},
-\code{\link[gargle:token-info]{gargle::token_tokeninfo()}}
+\code{\link[gargle:token_userinfo]{gargle::token_userinfo()}}, \code{\link[gargle:token_email]{gargle::token_email()}},
+\code{\link[gargle:token_tokeninfo]{gargle::token_tokeninfo()}}
 }

@@ -29,7 +29,7 @@ argument.}
 \value{
 \itemize{
 \item \code{ladder_auth_configure()}: An object of R6 class
-\link[gargle:AuthState-class]{gargle::AuthState}, invisibly.
+\link[gargle:AuthState]{gargle::AuthState}, invisibly.
 \item \code{ladder_oauth_client()}: the current user-configured OAuth client.
 \item \code{ladder_api_key()}: the current user-configured API key.
 }
@@ -79,8 +79,8 @@ ladder_api_key()
 ladder_auth_configure(client = original_client, api_key = original_api_key)
 }
 \seealso{
-Other auth functions: 
-\code{\link{ladder_auth}()},
-\code{\link{ladder_deauth}()}
+Other auth functions:
+\code{\link[=ladder_auth]{ladder_auth()}},
+\code{\link[=ladder_deauth]{ladder_deauth()}}
 }
 \concept{auth functions}

@@ -6,6 +6,8 @@
 \alias{ladder-package}
 \title{ladder: Get on to the Slides}
 \description{
+\if{html}{\figure{logo.svg}{options: style='float: right' alt='logo' width='120'}}
+
 Create tables from within R directly on Google Slides presentations. Currently supports matrix, data.frame and 'flextable' objects.
 }
 \seealso{
@@ -18,6 +20,11 @@ Useful links:
 }
 \author{
 \strong{Maintainer}: Isaac Gravestock \email{isaac.gravestock@gmail.com} (\href{https://orcid.org/0000-0003-0283-2065}{ORCID})
+
+Authors:
+\itemize{
+  \item Isaac Gravestock \email{isaac.gravestock@gmail.com} (\href{https://orcid.org/0000-0003-0283-2065}{ORCID})
+}
 
 }
 \keyword{internal}

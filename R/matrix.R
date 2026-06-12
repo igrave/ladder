@@ -16,6 +16,7 @@ add_to_slides.matrix <- function(object,
                                  overwrite = FALSE,
                                  from_top_left = NULL,
                                  digits = NULL,
+                                 size = NULL,
                                  ...) {
   assert_string(object_id, min.chars = 5)
   assert_string(presentation_id)
@@ -29,7 +30,7 @@ add_to_slides.matrix <- function(object,
     from_top_left <- c(571450, 1442675)
   }
 
-  reqs <- make_matrix_table(object, object_id, page_id, from_top_left, digits)
+  reqs <- make_matrix_table(object, object_id, page_id, from_top_left, digits, size)
 
   if (isTRUE(overwrite)) {
     if (object_id %in% unlist(get_object_ids(presentation_id))) {
@@ -49,7 +50,7 @@ add_to_slides.matrix <- function(object,
   invisible(result)
 }
 
-make_matrix_table <- function(m, table_id, page_id, from_top_left, digits = NULL) {
+make_matrix_table <- function(m, table_id, page_id, from_top_left, digits = NULL, size = NULL) {
   ncols <- ncol(m)
   nrows <- nrow(m)
   if (nrows < 1 || ncols < 1) stop("Must have at least 1 row and column.")
@@ -59,10 +60,16 @@ make_matrix_table <- function(m, table_id, page_id, from_top_left, digits = NULL
 
   my_tab <- list()
 
+  if (!is.null(size) & !inherits(size, "Size")) {
+    assert_numeric(size, len = 2, finite = TRUE, any.missing = FALSE)
+    size <- Size(width = Dimension(size[1], unit = "EMU"), height = Dimension(size[2], unit = "EMU"))
+  }
+
   add(my_tab) <- CreateTableRequest(
     objectId = table_id,
     elementProperties = PageElementProperties(
       pageObjectId = page_id,
+      size = size,
       transform = AffineTransform(
         1, 1, 0, 0,
         translateX = from_top_left[1],

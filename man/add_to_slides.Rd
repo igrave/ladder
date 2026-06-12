@@ -26,6 +26,7 @@ add_to_slides(
   overwrite = FALSE,
   from_top_left = NULL,
   digits = NULL,
+  size = NULL,
   ...
 )
 
@@ -47,6 +48,7 @@ add_to_slides(
   overwrite = FALSE,
   from_top_left = NULL,
   digits = NULL,
+  size = NULL,
   ...
 )
 }
@@ -68,6 +70,9 @@ Use \code{cm(x)} or \code{inches(x)} to convert to EMU. If \code{NULL} a default
 \item{...}{Other arguments used in methods}
 
 \item{digits}{Number of digits to passed to \link{format} for numeric matrices and data frame columns.}
+
+\item{size}{Numerical vector of length two giving the width and height of the table in EMU.
+Use \code{cm(x)} or \code{inches(x)} to convert to EMU. If \code{NULL} a default size is used.}
 }
 \value{
 A presentation object updated with the new object. This function is used for its side
@@ -85,13 +90,13 @@ A flextable object is added with all formatting.
 A matrix object is added as a table without any row or column names.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 ## Add a data.frame
 s <- choose_slides()
 obj <- iris[1:5, ]
 add_to_slides(obj, s, on = 1)
 \dontshow{\}) # examplesIf}
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 ## Add a flextable
 s <- choose_slides()
 library(flextable)
@@ -101,7 +106,7 @@ ft <- color(ft, i = 1:3, j = 1:2, "pink", part = "body")
 ft <- autofit(ft)
 add_to_slides(ft, s, on = 1)
 \dontshow{\}) # examplesIf}
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 ## Add a matrix
 s <- choose_slides()
 obj <- cov(iris[, 1:4])

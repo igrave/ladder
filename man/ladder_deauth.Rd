@@ -21,14 +21,14 @@ via \code{\link[=ladder_auth_configure]{ladder_auth_configure()}} and retrieve t
 In the absence of a user-configured key, a built-in default key is used.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 ladder_deauth()
 ladder_user()
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Other auth functions: 
-\code{\link{ladder_auth}()},
-\code{\link{ladder_auth_configure}()}
+Other auth functions:
+\code{\link[=ladder_auth]{ladder_auth()}},
+\code{\link[=ladder_auth_configure]{ladder_auth_configure()}}
 }
 \concept{auth functions}

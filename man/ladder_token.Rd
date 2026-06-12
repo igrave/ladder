@@ -7,7 +7,7 @@
 ladder_token()
 }
 \value{
-A \code{request} object (an S3 class provided by \link[httr:httr-package]{httr}).
+A \code{request} object (an S3 class provided by \link[httr:httr]{httr}).
 }
 \description{
 For internal use or for those programming around the Slides API.
@@ -20,12 +20,12 @@ If auth has been deactivated via \code{\link[=ladder_deauth]{ladder_deauth()}}, 
 returns \code{NULL}.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 ladder_token()
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Other low-level API functions: 
-\code{\link{ladder_has_token}()}
+Other low-level API functions:
+\code{\link[=ladder_has_token]{ladder_has_token()}}
 }
 \concept{low-level API functions}

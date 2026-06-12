@@ -6,3 +6,5 @@ googleslides.flextable.Rproj
 docs
 
 *.Rproj
+
+.DS_Store

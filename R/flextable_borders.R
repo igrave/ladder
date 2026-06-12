@@ -11,10 +11,15 @@ border_request_helper <- function(objectId, i, j, rowspan, colspan, border_posit
     "SOLID"
   )
 
-  border_position <- match.arg(border_position, c("BOTTOM", "LEFT", "RIGHT", "TOP"))
+  border_position <- match.arg(border_position, c("BOTTOM", "LEFT", "RIGHT", "TOP", "ALL"))
 
   if (this_width == 0) {
-    return(NULL)
+    this_alpha <- 0
+    this_width <- 1 / 9525
+    this_colour <- NULL
+  } else {
+    this_alpha <- 1
+    this_colour <- OpaqueColor(rgbColor = col2RgbColor(this_colour))
   }
 
   UpdateTableBorderPropertiesRequest(
@@ -27,7 +32,7 @@ border_request_helper <- function(objectId, i, j, rowspan, colspan, border_posit
     borderPosition = border_position,
     tableBorderProperties = TableBorderProperties(
       tableBorderFill = TableBorderFill(
-        solidFill = SolidFill(color = OpaqueColor(rgbColor = col2RgbColor(this_colour)))
+        solidFill = SolidFill(color = this_colour, alpha = this_alpha)
       ),
       weight = Dimension(magnitude = this_width * 9525, unit = "EMU"),
       dashStyle = this_style
@@ -52,26 +57,30 @@ border_requests <- function(style_data, row_offset, objectId) {
 
 
   # Borders ---------
-  # Process Rows
-  # TOP border only
-  wi <- style_data[["border.width.top"]][["data"]][1, ]
-  co <- style_data[["border.color.top"]][["data"]][1, ]
-  st <- style_data[["border.style.top"]][["data"]][1, ]
 
-  if (all(wi == wi[1]) && all(co == co[1]) && all(st == st[1])) {
-    add(reqs) <- border_request_helper(
-      objectId,
-      i = i_gs[1], j = j_gs[1], rowspan = 1, colspan = part_dim[2],
-      border_position = "TOP", col = co[1], lwd = wi[1], lty = st[1]
-    )
-  } else {
-    for (this_j in j) {
+  # Process Rows
+
+  if (row_offset == 0) {
+    # TOP border only when this part is the top of the table
+    wi <- style_data[["border.width.top"]][["data"]][1, ]
+    co <- style_data[["border.color.top"]][["data"]][1, ]
+    st <- style_data[["border.style.top"]][["data"]][1, ]
+
+    if (all(wi == wi[1]) && all(co == co[1]) && all(st == st[1])) {
       add(reqs) <- border_request_helper(
         objectId,
-        i = i_gs[1], j = j_gs[this_j], rowspan = 1, colspan = 1,
-        border_position = "TOP", col = co[this_j], lwd = wi[this_j], lty = st[this_j]
+        i = i_gs[1], j = j_gs[1], rowspan = 1, colspan = part_dim[2],
+        border_position = "TOP", col = co[1], lwd = wi[1], lty = st[1]
       )
-    }
+    } else {
+      for (this_j in j) {
+        add(reqs) <- border_request_helper(
+          objectId,
+          i = i_gs[1], j = j_gs[this_j], rowspan = 1, colspan = 1,
+          border_position = "TOP", col = co[this_j], lwd = wi[this_j], lty = st[this_j]
+        )
+      }
+    } # end TOP
   }
 
   # BOTTOM borders

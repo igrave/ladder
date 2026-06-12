@@ -133,7 +133,7 @@ For details on the many ways to find a token, see
 To learn more about gargle options, see \link[gargle:gargle_options]{gargle::gargle_options}.
 }
 \examples{
-\dontshow{if (rlang::is_interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (rlang::is_interactive()) withAutoprint(\{ # examplesIf}
 # load/refresh existing credentials, if available
 # otherwise, go to browser for authentication and authorization
 ladder_auth()
@@ -156,8 +156,8 @@ ladder_auth(path = "foofy-83ee9e7c9c48.json")
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Other auth functions: 
-\code{\link{ladder_auth_configure}()},
-\code{\link{ladder_deauth}()}
+Other auth functions:
+\code{\link[=ladder_auth_configure]{ladder_auth_configure()}},
+\code{\link[=ladder_deauth]{ladder_deauth()}}
 }
 \concept{auth functions}
